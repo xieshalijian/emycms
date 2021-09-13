@@ -1,0 +1,99 @@
+<link href="{$template_path}/visual/list/listtypetag/list_pic/css/style.css" rel="stylesheet">
+
+<div class="type-list-pic type-list-pic-$_id">
+	<div class="row">
+	{loop $archives $i $archive}
+	{if $_align-number == 6}
+	{if $i%2==0 && $i>0}
+	<div class="clearfix"></div>
+	{/if}
+	{elseif $_align-number == 4}
+	{if $i%3==0 && $i>0}
+	<div class="clearfix"></div>
+	{/if}
+	{elseif $_align-number == 3}
+	{if $i%4==0 && $i>0}
+	<div class="clearfix"></div>
+	{/if}
+	{elseif $_align-number == 2}
+	{if $i%6==0 && $i>0}
+	<div class="clearfix"></div>
+	{/if}
+	{else}
+	<div class="clearfix"></div>
+	{/if}
+
+	<div class="col-sm-$_align-number">
+		<div class="type-list-pic-item">
+			<div class="type-list-pic-img">
+				<a href="{$archive['url']}">
+					<img alt="{$archive['stitle']}" src="{$archive['thumb']}" cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="thumb" class="cmseasyeditimg img-responsive" />
+				</a>
+			</div>
+			<div class="type-list-pic-text">
+				<h4 cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="title" class="cmseasyedit ">
+					{$archive['title']}
+				</h4>
+				<p cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="intro" class="cmseasyedit textarea">
+					{cut(strip_tags($archive['introduce']),$_intro-number)}
+				</p>
+			</div>
+			<div class="type-list-pic-more">
+				<a href="{$archive['url']}">
+						<span class=" cmseasyedit" cmseasy-id="more" cmseasy-table="lang" cmseasy-field="template">
+							{lang('more')}
+						</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	{/loop}
+	</div>
+</div>
+
+<style>
+	.type-list-pic-$_id .type-list-pic-item {
+		background:$_background-color;
+		border-color:$_background-border-color;
+	}
+	.type-list-pic-$_id .type-list-pic-item:hover {
+		background:$_background-hover-color;
+		border-color:$_background-border-hover-color;
+	}
+	.type-list-pic-$_id .type-list-pic-text h4 {
+		font-size:$_link-font-size;
+		color:$_link-color;
+		border-color:$_link-border-color;
+		border-radius: $_link-border-radius;
+		background:$_link-background-color;
+	}
+	.type-list-pic-$_id .type-list-pic-item:hover .type-list-pic-text h4 {
+		color:$_link-hover-color;
+		border-color:$_link-border-hover-color;
+		border-radius: $_link-border-hover-radius;
+		background:$_link-background-hover-color;
+	}
+
+	.type-list-pic-$_id .type-list-pic-text p {
+		height：$_height;
+		font-size:$_p-size;
+		color:$_p-color;
+	}
+	.type-list-pic-$_id .type-list-pic-item:hover .type-list-pic-text p {
+		color:$_p-hover-color;
+	}
+	.type-list-pic-$_id .type-list-pic-item .type-list-pic-more a {
+		font-size:$_btn-size;
+		color:$_btn-text-color;
+		border-color:$_btn-border-color;
+		border-radius: $_btn-border-radius;
+		background:$_btn-background-color;
+	}
+	.type-list-pic-$_id .type-list-pic-item:hover .type-list-pic-more a {
+		color:$_btn-text-hover-color;
+		border-color:$_btn-border-hover-color;
+		border-radius: $_btn-border-hover-radius;
+		background:$_btn-background-hover-color;
+	}
+</style>
+

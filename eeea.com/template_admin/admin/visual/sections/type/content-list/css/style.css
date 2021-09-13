@@ -1,0 +1,22 @@
+
+
+.content-list ul li {
+    border-width:1px;
+    margin-bottom:15px;
+}
+.content-list ul li.col-sm-12 {
+    padding:0px;
+}
+.content-list ul li .time {
+    padding:0px 15px;
+    font-size:10px;
+}
+.content-list ul li a {
+    border-width:1px;
+}
+.content-list .content-list-title {
+    margin-bottom:15px;
+    padding-left: 13px;
+    border-left-style: solid;
+    border-left-width: 4px;
+}

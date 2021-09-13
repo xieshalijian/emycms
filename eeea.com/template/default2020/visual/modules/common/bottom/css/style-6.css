@@ -1,0 +1,18 @@
+
+.foot-ul-6 {margin: 20px 15px; border-width:1px; border-style:solid;}
+.foot-ul-6 .erweima {text-align: center;margin: 20px 0;}
+.foot-ul-6 .erweima img {max-width: 100%;height: auto;}
+.foot-ul-6 .erweima p {margin-top: 10px;color: #999;}
+
+@media screen and (min-width: 0) and (max-width: 486px){
+    .foot-ul-6 .erweima {display: none;}
+}
+
+
+
+
+
+
+
+
+

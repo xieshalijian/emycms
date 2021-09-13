@@ -1,0 +1,9 @@
+
+.hot-tag .title {
+    padding-left: 13px;
+    border-left-style: solid;
+    border-left-width: 4px;
+}
+.hot-tag .hot-tag-list {
+    margin:15px 0px;
+}

@@ -1,0 +1,49 @@
+
+
+.column-list-loop-pic-title {margin: 0 15px 15px; }
+.column-list-loop-pic-title p {margin-bottom: 0;}
+
+
+.column-list-loop-pic-item {
+    margin-bottom: 15px;
+    border-width:1px;
+    border-style:solid;
+    padding:0px 0px 15px 0px;
+}
+
+.column-list-loop-pic-text {
+    text-align:left;
+    overflow: hidden;
+    padding:10px;
+}
+
+.column-list-loop-pic-img {
+    max-height:200px;
+    overflow: hidden;
+}
+
+.column-list-loop-pic-text h4 {
+    margin: 15px 0px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.column-list-loop-pic-text p {
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+
+.column-list-loop-pic-item:hover .column-list-loop-pic-text p {
+    opacity: .9;
+}
+
+.column-list-loop-pic-more {
+    padding:0px 10px;
+}
+.column-list-loop-pic-more a {
+    padding:5px 15px;
+    border-width:1px;
+    border-style:solid;
+}

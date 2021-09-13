@@ -1,0 +1,43 @@
+
+.content-relevant .content-relevant-title {clear:both; margin:15px 0px;}
+
+.content-relevant-list-item {
+    margin-bottom: 40px;
+    border-width:1px;
+    border-style:solid;
+}
+
+.content-relevant-list-item-date {
+    float: left;
+    margin-right: 30px;
+    text-align: center;
+}
+.content-relevant-list-item-date span {
+    display:block;
+    line-height:1;
+    font-size:50px;
+}
+.content-relevant-list-item-date p {
+    margin-bottom: 0;
+}
+.content-relevant-list-item-text {
+    text-align:left;
+    overflow: hidden;
+
+}
+.content-relevant-list-item-text h4 {
+    margin: 0px 0px 15px 0px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.content-relevant-list-item-text p {
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+
+.content-relevant-list-item:hover .content-relevant-list-item-text p {
+    opacity: .9;
+}

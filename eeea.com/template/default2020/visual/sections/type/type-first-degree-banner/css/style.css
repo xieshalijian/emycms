@@ -1,0 +1,9 @@
+
+
+
+.type-first-degree-banner {position: relative; overflow:hidden;}
+.type-first-degree-banner-img {position: revert; z-index: 0; height:100%; text-align:center;}
+.type-first-degree-banner-img img {width:100% !important;object-fit:cover;}
+.type-first-degree-banner .type-first-degree-banner-title {position: absolute; top:50%;transform: translateY(-50%) !important; width:100%; z-index: 2;}
+.type-first-degree-banner .type-first-degree-banner-title h1 {display:inline-block;padding-bottom:5px;}
+.type-first-degree-banner .type-first-degree-banner-title p {display:inline-block;}

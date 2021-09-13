@@ -1,0 +1,21 @@
+
+.visual-print:after {
+    content:"";
+    display:table;
+    clear:both;
+}
+.visual-print-tools {
+    margin:15px;
+    padding:5px 15px;
+    text-align:right;
+}
+.visual-print-tools a {
+    display: inline-block;
+    margin:0px 5px;
+}
+
+@media screen and (min-width: 0) and (max-width: 767px) {
+    .visual-print {
+        display:none;
+    }
+}

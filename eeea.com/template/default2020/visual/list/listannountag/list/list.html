@@ -1,0 +1,53 @@
+<link href="{$template_path}/visual/list/listannountag/list/css/style.css" rel="stylesheet">
+
+        <div class="announ-list announ-list-$_id">
+            <ul>
+                {loop announ($_align-number,$_title-number,$_isdate) $an}
+                <li>
+
+                    <span cmseasy-id="{$an['aid']}" cmseasy-table="announ" cmseasy-field="adddate" class="cmseasyedit time badge announ-date $_align-data">
+                        {$an['adddate']}
+                    </span>
+                        <a title="{$an['title']}" href="{$an['url']}" cmseasy-id="{$an['id']}" cmseasy-table="announ" cmseasy-field="title" class="cmseasyedit ">
+                            {$an['title']}
+                        </a>
+
+                </li>
+                {/loop}
+            </ul>
+        </div>
+
+        <style>
+            .announ-list-$_id ul li a {
+                font-size:$_link-font-size;
+                color:$_link-color;
+                background:$_link-background-color;
+            }
+            .announ-list-$_id ul li:hover a,
+            .announ-list-$_id ul li a:hover {
+                color:$_link-hover-color;
+                border-color:$_link-border-hover-color;
+            }
+            .announ-list-$_id ul li {
+                border-color:$_link-border-color;
+                border-radius: $_link-border-radius;
+            }
+            .announ-list-$_id ul li:hover {
+                border-radius: $_link-border-hover-radius;
+                background:$_link-background-hover-color;
+            }
+            .announ-list-$_id ul li span {
+                font-size:$_btn-size;
+                color:$_btn-text-color;
+                border-color:$_btn-border-color;
+                border-radius: $_btn-border-radius;
+                background:$_btn-background-color;
+            }
+            .announ-list-$_id ul li:hover span,
+            .announ-list-$_id ul li span:hover {
+                color:$_btn-text-hover-color;
+                border-color:$_btn-border-hover-color;
+                border-radius: $_btn-border-hover-radius;
+                background:$_btn-background-hover-color;
+            }
+        </style>

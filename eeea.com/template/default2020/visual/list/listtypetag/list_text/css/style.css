@@ -1,0 +1,45 @@
+
+
+.type-list-text-item {
+    margin-bottom: 40px;
+    padding: 30px;
+    border-width:1px;
+    border-style:solid;
+}
+
+.type-list-text-date {
+    float: left;
+    margin-right: 30px;
+    text-align: center;
+}
+.type-list-text-date span {
+    display:block;
+    line-height:1;
+    font-size:50px;
+}
+.type-list-text-date p {
+    margin-bottom: 0;
+}
+.type-list-text-text {
+    text-align:left;
+    overflow: hidden;
+
+}
+.type-list-text-text h4 {
+    margin: 0px 0px 15px 0px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.type-list-text-text p {
+    overflow: hidden;
+    margin-bottom: 0;
+}
+.type-list-text-item:hover {
+    box-shadow:0 5px 15px 0 #ccc;
+}
+
+.type-list-text-item:hover .type-list-text-text p {
+    opacity: .9;
+}

@@ -1,0 +1,7 @@
+
+
+.three-content-and-btn-title:after{content:"";display:table;clear:both;}
+.three-content-and-btn-title ul.index-title-ul{text-align: center;}
+.three-content-and-btn-title ul.index-title-ul li{display: inline-block;margin-left: 2px;}
+.three-content-and-btn-title ul.index-title-ul li a{display: inline-block;line-height: 30px;padding: 0 15px;border-width:1px; border-style:solid ;}
+

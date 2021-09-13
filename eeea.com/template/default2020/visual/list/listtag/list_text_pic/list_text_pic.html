@@ -1,0 +1,86 @@
+<link href="{$template_path}/visual/list/listtag/list_text_pic/css/style.css" rel="stylesheet">
+
+<div class="column-list-text-pic column-list-text-pic-$_id">
+	<div class="row">
+		{loop $archives $i $archive}
+		{if $_align-number == 6}
+		{if $i%2==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{elseif $_align-number == 4}
+		{if $i%3==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{elseif $_align-number == 3}
+		{if $i%4==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{elseif $_align-number == 2}
+		{if $i%6==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{else}
+		<div class="clearfix"></div>
+		{/if}
+		<div class="col-sm-$_align-number">
+			<div class="column-list-text-pic-item">
+				<div class="column-list-text-pic-img">
+					<a target="_blank" href="{$archive['url']}">
+						<img src="{$archive['thumb']}" alt="{$archive['stitle']}" cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="thumb" class="cmseasyeditimg img-responsive" />
+					</a>
+					<span>
+					{=sdate($archive['adddate'],'Y.m.d')}
+				</span>
+				</div>
+				<div class="column-list-text-pic-text">
+					<h4>
+						<a title="{$archive['stitle']}" href="{$archive['url']}" cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="title" class="cmseasyedit ">
+							{$archive['title']}
+						</a>
+					</h4>
+					<p cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="introduce" class="cmseasyedit textarea">
+						{cut(strip_tags($archive['introduce']),$_intro-number)}
+					</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		{/loop}
+	</div>
+</div>
+
+<style>
+	.column-list-text-pic-$_id .column-list-text-pic-item {
+		background:$_background-color;
+		border-color:$_background-border-color;
+	}
+	.column-list-text-pic-$_id .column-list-text-pic-item:hover {
+		background:$_background-hover-color;
+		border-color:$_background-border-hover-color;
+	}
+	.column-list-text-pic-$_id .column-list-text-pic-text h4 a {
+		font-size:$_link-font-size;
+		color:$_link-color;
+		border-color:$_link-border-color;
+		border-radius: $_link-border-radius;
+		background:$_link-background-color;
+	}
+	.column-list-text-pic-$_id .column-list-text-pic-item:hover .column-list-text-pic-text h4 a {
+		color:$_link-hover-color;
+		border-color:$_link-border-hover-color;
+		border-radius: $_link-border-hover-radius;
+		background:$_link-background-hover-color;
+	}
+	.column-list-text-pic-$_id .column-list-text-pic-item:hover .column-list-text-pic-date span,
+	.column-list-text-pic-$_id .column-list-text-pic-item:hover .column-list-text-pic-date p {
+		color:$_link-hover-color;
+	}
+	.column-list-text-pic-$_id .column-list-text-pic-text p {
+		font-size:$_p-size;
+		color:$_p-color;
+	}
+	.column-list-text-pic-$_id .column-list-text-pic-item:hover .column-list-text-pic-text p {
+		color:$_p-hover-color;
+	}
+</style>
+

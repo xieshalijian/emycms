@@ -1,0 +1,11 @@
+.announ-list ul li span {
+        display: inline-block;
+        min-width: 10px;
+        padding: 3px 7px;
+        line-height: 1;
+    font-weight:normal;
+}
+.announ-list ul li a {
+    display: inline-block;
+}
+

@@ -1,0 +1,7 @@
+
+
+.scroll-pic-list-index-title:after{content:"";display:table;clear:both;}
+
+.scroll-pic-list-index-title h4{margin:0;text-align:center;}
+.scroll-pic-list-index-title p{text-align:center;margin-top:3px;}
+.scroll-pic-list-index-title h4:after{content:"";display:block;height:2px;width:2em;background:#060D33;margin:10px auto;}

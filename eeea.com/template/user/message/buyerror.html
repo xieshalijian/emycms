@@ -1,0 +1,67 @@
+{template 'header.html'}
+<div class="container-fluid clearfix">
+    <div class="row column">
+        <div class="tag">
+            <link href="/template_admin/admin/visual/sections/category/category-first-degree-banner/css/style.css" rel="stylesheet">
+
+            <div class="category-first-degree-banner clearfix">
+                <div class="category-first-degree-banner-img category-first-degree-banner-img-3">
+                    <img cmseasy-id="21" class="cmseasyeditimg" src="/images/banner/s1.jpg">
+                </div>
+                <div class="category-first-degree-banner-title category-first-degree-banner-title-3">
+                    <div class="container  text-center">
+                        <h1 cmseasy-id="21" class="cmseasyedit">
+                                    </h1>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <style type="text/css">
+                .category-first-degree-banner {
+                    height: 250px;
+                    background:#06276a;
+                }
+                .category-first-degree-banner-img-3 {
+                    height: 250px;
+                }
+                .category-first-degree-banner-title-3 h1 {
+                    font-size:30px;
+                    color:#ffffff;
+
+                }
+
+                .category-first-degree-banner-title-3 h1:hover {
+                    color:#ffffff;
+
+                }
+
+                .category-first-degree-banner-title-3 p {
+                    font-size:14px;
+                    color:#ffffff;
+                }
+
+                .category-first-degree-banner-title-3 p:hover {
+                    color:#ffffff;
+                }
+
+
+            </style>
+        </div>
+        <div class="clearfix">
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .copy {clear:both; text-align:center; margin-top:20px; font-size:12px;color:#666;}
+    .copy a {color:#666;}
+
+</style>
+<div class='tip_box' style='width:300px;margin:0px auto;margin-top:50px;padding:20px;border:5px solid #ccc;border-radius: 5px 5px 5px 5px;text-align:center;'>
+    {lang('no_buy_no_read')}
+    <div class="blank30"></div>
+    <a href='#' class="btn btn-primary" onclick="shoppingarchive('{url('archive/buyarchive/aid/'.$aid)}','{lang("doyou_buy")}')">{lang('buy')}</a>
+</div>
+<div class="blank30"></div>
+<div class="blank30"></div>
+{template 'footer.html'}

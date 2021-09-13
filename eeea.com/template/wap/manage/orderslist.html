@@ -1,0 +1,71 @@
+{template 'user/head.html'}
+
+<div class="t_1 wow fadeIn">
+<div>
+<h3>{lang(vieworders)}</h3>
+<p>Query Order</p>
+</div>
+</div>
+
+<div class="p10">
+
+
+
+<form name="listform" id="listform"  action="<?php echo uri();?>" method="post">
+
+<table width="100%" border="0" align="center" cellpadding="8" cellspacing="0"  class="o_list">
+        
+        <thead>
+            <tr class="th">
+                <th align="center"><!--oid-->{lang(id)}</th>
+                <th align="center">商品名</th>
+                <th align="center"><!--status-->{lang(orderstatus)}</th>               
+                <th align="center"><!--adddate-->{lang('adddate')}</th>
+          
+                <th align="center">{lang(dosomething)}</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {loop $data $d}
+<?php
+if($d['status']==1){
+	$d['status']='<font color="green">完成</font>';
+}elseif($d['status']==0){
+	$d['status']='<font color="red">新订单</font>';
+}elseif($d['status']==2){
+	$d['status']='<font color="blue">处理中</font>';
+} 
+?>
+            <tr class="s_out" onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+
+                <td align="center">{cut($d['oid'])}</td>
+                <td align="center">{getArchiveTitle($d['aid'])}</td>
+                <td align="center">{$d['status']}</td>
+                <td align="center">{cut(date('Y-m-d H:i:s',$d['adddate']))}</td>
+
+                <td align="center">
+                    <a href='<?php echo url("archive/orders/oid/".$d['oid'],false);?>' target="_blank" >{lang(look)}</a>                   
+                </td>
+            </tr>
+            {/loop}
+
+
+        </tbody>
+    </table>
+
+
+    <div class="blank30"></div>
+   
+
+</form>
+
+
+<div class="pages">
+<?php if(get('table')!='type' && front::get('case')!='field') echo pagination::html($record_count); ?>
+</div>
+<div class="blank10"></div>
+<div class="blank30"></div>
+<div class="blank30"></div>
+
+{template 'user/foot.html'}

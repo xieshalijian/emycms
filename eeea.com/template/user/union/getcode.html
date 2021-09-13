@@ -1,0 +1,97 @@
+{{template_user 'head.html'}
+
+<div class="index-bg">
+    <div class="container">
+        <div class="section2">
+
+            <div class="user-content-table-nav">
+                <ul>
+                    <li><a href="{url('union/stats/manage/union')}">{lang('stats')}</a></li>
+                    <li class="active"><a href="{url('union/getcode/manage/union')}">{lang('access_code')}</a></li>
+                    <li><a href="{url('union/visit/manage/union')}">{lang('access_statistics')}</a></li>
+                    <li><a href="{url('union/reguser/manage/union')}">{lang('registered_users')}</a></li>
+                    <li><a href="{url('union/pay/manage/union')}">{lang('promotion_of_settlement')}</a></li>
+                    <li><a href="{url('union/edit/manage/union')}">{lang('edituserinfo')}</a></li>
+                </ul>
+            </div>
+            <div class="blank30"></div>
+
+
+            <div class="user-content">
+
+
+
+
+
+                <div class="clearBoth">
+                    <strong>{lang('promotion-link')}</strong>
+                    <div class="clearBoth">
+
+                        <textarea class="form-control share-links-input" id="union-url">{get('site_url')}?case=union&act=into&{$data['userid']}</textarea>
+                        <input class="union-copy" type="button" onClick="copyUrl2()" value="{lang('copy')}" />
+                        <script type="text/javascript">
+                             function copyUrl2()
+                             {
+                                 var Url2=document.getElementById("union-url");
+                                 Url2.select(); // 选择对象
+                                 document.execCommand("Copy"); // 执行浏览器复制命令
+                                 alert("{lang('reproduction_success')}");
+                                 }
+                            </script>
+
+                    </div>
+                </div>
+                <div class="blank10"></div>
+
+                <div class="clearBoth">
+                    <strong>{lang('HTML-code-text')}</strong>
+                    <div class="clearBoth">
+                        <textarea name="unioncode" id="union-link" class="form-control share-links-input" id="union-url"><a href="{get('site_url')}?case=union&act=into&{$data['userid']}">{get('sitename')}</a></textarea>
+
+                        <input class="union-copy" type="button" onClick="copyUrl2()" value="{lang('copy')}" />
+                        <script type="text/javascript">
+                            function copyUrl2()
+                            {
+                                var Url2=document.getElementById("union-link");
+                                Url2.select(); // 选择对象
+                                document.execCommand("Copy"); // 执行浏览器复制命令
+                                alert("{lang('reproduction_success')}");
+                            }
+                        </script>
+
+                        <p><strong>{lang('demonstration')}：</strong> <a href="{get('site_url')}?case=union&act=into&{$data['userid']}">{get('sitename')}</a></p>
+                    </div>
+                </div>
+                <div class="clearBoth">
+                    <strong>{lang('HTML-code-pic')}</strong>
+                    <div class="clearBoth">
+                        <textarea name="unioncode" id="union-img" class="form-control share-links-input" id="union-url"><a href="{get('site_url')}?case=union&act=into&{$data['userid']}"><img src="{get('site_logo')}" class="img-responsive" alt="{get('sitename')}" /></a></textarea>
+                        <input class="union-copy" type="button" onClick="copyUrl2()" value="复制" />
+                        <script type="text/javascript">
+                            function copyUrl2()
+                            {
+                                var Url2=document.getElementById("union-img");
+                                Url2.select(); // 选择对象
+                                document.execCommand("Copy"); // 执行浏览器复制命令
+                                alert("{lang('reproduction_success')}");
+                            }
+                        </script>
+                        <p><strong>{lang('demonstration')}：</strong> <a href="{get('site_url')}?case=union&act=into&{$data['userid']}"><img src="{get('site_logo')}" class="img-responsive" alt="{get('sitename')}" /></a></p>
+                    </div>
+                </div>
+
+<style type="text/css">
+    .clearBoth {position: relative;}
+    #union-url,#union-link,#union-img {margin-bottom:10px; padding-right:30px;}
+    .union-copy {position: absolute; right:0px; top:0px;border:1px solid #ccc; border-radius:0px 3px 0px 3px; font-size:0.8rem;}
+</style>
+
+
+
+
+            </div>
+</div>
+</div>
+<div class="blank30"></div>
+
+{template_user 'foot.html'}

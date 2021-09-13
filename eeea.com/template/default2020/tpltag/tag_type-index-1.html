@@ -1,0 +1,15 @@
+{php $tys = plugins::typeinfo($_typeid,$_tyname,$_subtitle,$_tycontent,$_len,$_tyimage)}
+{loop $tys $ty}
+{if $ty['image']}
+<a href="{$ty['url']}" title="{$ty['typename']}"><img alt="{$ty['typename']}" class="lazy img-responsive" src="{$ty['image']}"></a>
+{/if}
+{if $ty['typename']}<a href="{$ty['url']}" title="{$ty['typename']}">{$ty['typename']}</a>{/if}
+{if $ty['subtitle']}<p>{$ty['subtitle']}</p>{/if}
+{if $ty['typecontent']}<p>
+{$ty['typecontent']}
+</p>{/if}
+{/loop}
+
+
+
+

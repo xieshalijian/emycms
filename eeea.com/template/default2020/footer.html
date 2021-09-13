@@ -1,0 +1,95 @@
+
+
+
+{template 'bottom.html'}
+
+
+
+<div class="footer">
+    <div class="container">
+            <div class="copyright">
+                <p>
+                    <span class="cmseasyedit" cmseasy-id="site_right" cmseasy-table="config">
+                        {get('site_right')}
+                    </span>
+                    <a title="{get('sitename')}" href="{get('site_url')}" class="cmseasyedit" cmseasy-id="sitename" cmseasy-table="config">
+                        {get('sitename')}
+                    </a>.
+                </p>
+                <p>
+                    {if config::get('site_icp')}
+                    <a rel="nofollow" href="{get('icp_url')}" class="cmseasyedit" cmseasy-id="site_icp" cmseasy-table="config">
+                        {get('site_icp')}
+                    </a>
+                    {/if}
+                    {if config::get('site_beian_number')}&nbsp;&nbsp;<a rel="nofollow" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode={get('site_beian_number')}" rel="nofollow">
+                    <img src="{$base_url}/images/g.png" width="20">
+                    <span class=" cmseasyedit" cmseasy-id="gong_wang_an_bei" cmseasy-table="lang" cmseasy-field="template">
+  {lang('gong_wang_an_bei')}
+  </span>
+                    <span class=" cmseasyedit" cmseasy-id="site_beian_number" cmseasy-table="config">
+                    {get('site_beian_number')}
+                    </span>
+                </a>
+                    {/if}&nbsp;&nbsp;{getCopyRight()}
+                    {if get('guestbook_enable')}&nbsp;&nbsp;<a rel="nofollow" title="{lang('feedback')}" href="{url('guestbook')}" class="cmseasyedit" cmseasy-id="feedback" cmseasy-table="lang" cmseasy-field="template">{lang('feedback')}</a>{/if}{if config::get('opguestadd')=='1'}&nbsp;&nbsp;<a rel="nofollow" href="{$base_url}/?g=1">{lang('opguestadd')}</a>{/if}&nbsp;&nbsp;<a href="{$site_map}" title="{lang('sitemap')}" class="cmseasyedit" cmseasy-id="sitemap" cmseasy-table="lang" cmseasy-field="template">{lang('sitemap')}</a>{if get('saic_pic')} <a href='http://www.sgs.gov.cn/lz/licenselink.do>?nethod=licenceView&entyID={get('saic_pic')}'><img src='{$base_url}/images/gongshang.png' width='20'></a>{/if}
+
+                </p>
+            </div>
+    </div>
+</div>
+
+
+<div class="servers">
+    <!--[if (gte IE 7)|!(IE)]><!-->
+    <!-- 在线客服 -->
+    {template 'system/servers.html'}
+    <![endif]-->
+    <!-- 短信 -->
+    {template 'system/sms.html'}
+</div>
+
+<div class="servers-wap">
+    {if get('wap_style_color')=='1'}
+    <link href="{$skin_path}/css/wap/wap1.css" rel="stylesheet" />
+    {elseif config::get('wap_style_color')=='2'}
+    <link href="{$skin_path}/css/wap/wap2.css" rel="stylesheet" />
+    {elseif config::get('wap_style_color')=='3'}
+    <link href="{$skin_path}/css/wap/wap3.css" rel="stylesheet" />
+    {elseif config::get('wap_style_color')=='4'}
+    <link href="{$skin_path}/css/wap/wap4.css" rel="stylesheet" />
+    {elseif config::get('wap_style_color')=='5'}
+    <link href="{$skin_path}/css/wap/wap5.css" rel="stylesheet" />
+    {elseif config::get('wap_style_color')=='6'}
+    <link href="{$skin_path}/css/wap/wap6.css" rel="stylesheet" />
+    {elseif config::get('wap_style_color')=='7'}
+    <link href="{$skin_path}/css/wap/wap7.css" rel="stylesheet" />
+    {elseif config::get('wap_style_color')=='8'}
+    <link href="{$skin_path}/css/wap/wap8.css" rel="stylesheet" />
+    {elseif config::get('wap_style_color')=='9'}
+    <link href="{$skin_path}/css/wap/wap9.css" rel="stylesheet" />
+    {else}
+    {/if}
+    {if config::get('wap_foot_nav')=='1'}
+    {template 'system/foot_nav_a.html'}
+    {elseif config::get('wap_foot_nav')=='2'}
+    {template 'system/foot_nav_b.html'}
+    {elseif config::get('wap_foot_nav')=='3'}
+    {template 'system/foot_nav_c.html'}
+    {else}
+    {/if}
+</div>
+
+
+
+
+
+
+
+{template_public 'common/plugins/public/foot-js.html'}
+{template 'foot_js.html'}
+
+
+
+</body>
+</html>

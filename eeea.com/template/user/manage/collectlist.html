@@ -1,0 +1,109 @@
+{template_user 'head.html'}
+<style type="text/css">
+    .table td a.list-thumb {
+        display:block;
+        width:100px;
+        height:100px;
+        line-height:100px;
+        overflow: hidden;
+        text-align:center;
+        margin:0px auto;
+    }
+    .table td a.list-thumb img {
+        display: inline !important;
+        max-width:100%;
+        max-height:100%;
+        margin:0px auto;
+    }
+</style>
+<div class="index-bg">
+	<div class="container">
+		<div class="section2">
+
+		<div class="index-title">
+				<h4>{lang('collection_list')}</h4>
+			</div>
+
+
+<div class="user-content">
+
+<form name="listform" id="listform"  action="<?php echo uri();?>" method="post">
+
+<div class="table-responsive">
+    <table class="table table-hover ">
+
+        <thead>
+        <tr class="th">
+                <th class="coupon-list-couponid">{lang('id')}</th>
+                <th class="coupon-list-img">{lang('picture')}</th>
+                <th class="coupon-list-title">{lang('title')}</th>
+                <!--<th class="coupon-list-couponuse">内容</th>-->
+                <th class="coupon-list-manage">{lang('dosomething')}</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {loop $data $d}
+            <tr class="s_out">
+                <td class="coupon-list-couponid">{cut($d['aid'])}</td>
+                <td class="coupon-list-img" >
+                    <a  target="_blank" href="<?php echo $base_url;?>/index.php?case=archive&act=show&aid={$d['aid']}" class="list-thumb">
+                        <img src="{$d['thumb']}" class="img-responsive" onerror='this.src="<?php echo config::get('onerror_pic');?>"' />
+                    </a>
+                </td>
+                <td class="coupon-list-coupontitle"> <a  target="_blank" href="<?php echo $base_url;?>/index.php?case=archive&act=show&aid={$d['aid']}">{$d['title']}</a></td>
+                <!--<th class="coupon-list-couponuse">&lt;!&ndash;couponuse&ndash;&gt;{cut(strip_tags($d['introduce']),66)}…</th>-->
+                <th class="coupon-list-manage" >
+                    <?php $urlname='archive/show/aid/'.$d['aid']; ?>
+                    <a onclick="getarchive('{url($urlname)}')" title="{lang('look')}"><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a onclick="setcollect('{$d['aid']}')" title="{lang('cancel_collection')}"><i class="glyphicon glyphicon-trash"></i></a>
+                </th>
+            </tr>
+            {/loop}
+
+
+        </tbody>
+    </table>
+</div>
+
+    <div class="blank30"></div>
+   
+
+</form>
+<script>
+    //查看
+    function getarchive(url) {
+        window.open(url,"_blank");
+    }
+
+    function setcollect(couponid) {
+        //开始获取优惠劵信息  进行计算
+        var hrefname="<?php echo url("/archive/setcollect"); ?>";
+        $.get(hrefname,{'couponid':couponid},function(data,status){
+            if(data != '') {
+                data = JSON.parse(data);
+                if(data=='0'){
+                    data='' +
+                        '{lang('the_collection_has_been_cancelled')}';
+                }else{
+                    data='{lang('successful_collection')}';
+                }
+                alert(data);   //显示提示信息
+                window.location.href="";//刷新页面
+            }
+        });
+    }
+</script>
+
+
+<div class="pages">
+<?php if(get('table')!='type' && front::get('case')!='field') echo pagination::html($record_count); ?>
+</div>
+<div class="blank30"></div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="blank30"></div>
+{template_user 'foot.html'}

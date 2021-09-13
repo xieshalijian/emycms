@@ -1,0 +1,83 @@
+<link href="{$template_path}/visual/list/listtag/list_text/css/style.css" rel="stylesheet">
+
+<div class="column-list-text column-list-text-$_id">
+	<div class="row">
+	{loop $archives $i $archive}
+		{if $_align-number == 6}
+		{if $i%2==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{elseif $_align-number == 4}
+		{if $i%3==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{elseif $_align-number == 3}
+		{if $i%4==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{elseif $_align-number == 2}
+		{if $i%6==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{else}
+		<div class="clearfix"></div>
+		{/if}
+
+		<div class="col-sm-$_align-number">
+	<div class="column-list-text-item">
+		<div class="column-list-text-date">
+			<span>{=sdate($archive['adddate'],'d')}</span>
+			<p>{=sdate($archive['adddate'],'Y-m')}</p>
+		</div>
+		<div class="column-list-text-text">
+			<h4>
+				<a title="{$archive['stitle']}" href="{$archive['url']}" cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="title" class="cmseasyedit ">
+					{$archive['title']}
+				</a>
+			</h4>
+			<p cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="intro" class="cmseasyedit textarea">
+				{cut(strip_tags($archive['introduce']),66)}
+			</p>
+		</div>
+	</div>
+	</div>
+	{/loop}
+	</div>
+</div>
+
+<style>
+	.column-list-text-$_id .column-list-text-item {
+		background:$_background-color;
+		border-color:$_background-border-color;
+	}
+	.column-list-text-$_id .column-list-text-item:hover {
+		background:$_background-hover-color;
+		border-color:$_background-border-hover-color;
+	}
+
+	.column-list-text-$_id .column-list-text-item .column-list-text-text h4 a {
+		font-size:$_link-font-size;
+		color:$_link-color;
+		border-color:$_link-border-color;
+		border-radius: $_link-border-radius;
+		background:$_link-background-color;
+	}
+	.column-list-text-$_id .column-list-text-item:hover .column-list-text-text h4 a {
+		color:$_link-hover-color;
+		border-color:$_link-border-hover-color;
+		border-radius: $_link-border-hover-radius;
+		background:$_link-background-hover-color;
+	}
+	.column-list-text-$_id .column-list-text-item:hover .column-list-text-date span,
+	.column-list-text-$_id .column-list-text-item:hover .column-list-text-date p {
+		color:$_link-hover-color;
+	}
+	.column-list-text-$_id .column-list-text-text p {
+		font-size:$_p-size;
+		color:$_p-color;
+	}
+	.column-list-text-$_id .column-list-text-item:hover .column-list-text-text p {
+		color:$_p-hover-color;
+	}
+</style>
+

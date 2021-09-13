@@ -1,0 +1,58 @@
+<?php  return array (
+  0 => 
+  array (
+    'id' => '4',
+    'listorder' => '0',
+    'langurlname' => 'sk',
+    'langname' => '한국어',
+    'langimg' => '/cn/upload/images/201908/15631498732217.gif',
+    'static' => '1',
+    'isdefault' => '0',
+    'domain' => '',
+    'istemplate' => '0',
+    'isadmin' => '0',
+    'adminlangid' => '4',
+  ),
+  1 => 
+  array (
+    'id' => '3',
+    'listorder' => '0',
+    'langurlname' => 'jp',
+    'langname' => '日本語',
+    'langimg' => '/cn/upload/images/201908/15631497913676.gif',
+    'static' => '1',
+    'isdefault' => '0',
+    'domain' => '',
+    'istemplate' => '0',
+    'isadmin' => '0',
+    'adminlangid' => '3',
+  ),
+  2 => 
+  array (
+    'id' => '2',
+    'listorder' => '0',
+    'langurlname' => 'en',
+    'langname' => 'English',
+    'langimg' => '/cn/upload/images/201908/15631498094826.gif',
+    'static' => '1',
+    'isdefault' => '0',
+    'domain' => '',
+    'istemplate' => '0',
+    'isadmin' => '0',
+    'adminlangid' => '2',
+  ),
+  3 => 
+  array (
+    'id' => '1',
+    'listorder' => '0',
+    'langurlname' => 'cn',
+    'langname' => '中文',
+    'langimg' => '/cn/upload/images/201908/15631496836234.gif',
+    'static' => '1',
+    'isdefault' => '1',
+    'domain' => '',
+    'istemplate' => '1',
+    'isadmin' => '1',
+    'adminlangid' => '1',
+  ),
+);

@@ -1,0 +1,138 @@
+{template_user 'head.html'}
+
+<div class="index-bg">
+	<div class="container">
+		<div class="section2">
+
+            <div class="user-content-table-nav">
+                <ul>
+                    <li><a href="{url('manage/couponlist/manage/coupon/statu/all')}" <?php if ($usable=='all'){  echo 'class="active"'; }?>>{lang('convertible_coupons')}</a></li>
+                    <li><a href="{url('manage/couponlist/manage/coupon/statu/usable')}" <?php if ($usable=='usableusernum'){  echo 'class="active"'; }?>>{lang('available_coupons')}</a></li>
+                    <li><a href="{url('manage/couponlist/manage/coupon/statu/used')}" <?php if ($usable=='usedusernum'){ echo 'class="active"'; }?>>{lang('used_coupons')}</a></li>
+                    <li><a href="{url('manage/couponlist/manage/coupon/statu/old')}" <?php if ($usable=='oldusernum'){  echo 'class="active"'; }?> >{lang('expired_coupons')}</a></li>
+                </ul>
+            </div>
+            <div class="blank30"></div>
+
+<div class="user-content">
+
+
+<form name="listform" id="listform"  action="<?php echo uri();?>" method="post">
+
+
+
+
+<div class="table-responsive">
+<table class="table table-hover ">
+
+        <thead>
+            <tr class="th">
+                <th class="coupon-list-couponid"><!--couponid-->{lang('id')}</th>
+                <th class="coupon-list-coupontitle">{lang('title')}</th>
+                <th class="coupon-list-couponuse"><!--couponuse-->{lang('purpose')}</th>
+                <th class="coupon-list-couponrange"><!--couponrange-->{lang('scope_of_use')}</th>
+                <th class="coupon-list-overlay"><!--overlay-->{lang('superposition')}</th>
+                <th class="coupon-list-satisfy"><!--satisfy-->{lang('how_much_is_available')}</th>
+                <th class="coupon-list-moeny"><!--moeny-->{lang('amount_of_invoice')}</th>
+                <th class="coupon-list-quantity"><!--quantity-->
+                    <?php  if($usable==''|| $usable=='all' || $usable=='usableusernum'){
+                            echo '剩余数量';
+                           }else if($usable=='usedusernum'){
+                             echo '已用数量';
+                           }else if($usable=='oldusernum'){
+                             echo '过期数量';
+                           }
+                    ?>
+                </th>
+                <th class="coupon-list-exchangepoints"><!--exchangepoints-->{lang('necessary_integral')}</th>
+                <th class="coupon-list-adddatatime"><!--adddatatime-->{lang('expiration_date')}</th>
+                <?php  if($usable=='all'){  ?>
+                <th class="">{lang('dosomething')}</th>
+                <?php }else if($usable=='usableusernum'){  ?>
+
+                <?php }?>
+            </tr>
+
+        </thead>
+        <tbody>
+            {loop $data $d}
+            <tr class="s_out">
+                <td class="coupon-list-couponid">{cut($d['couponid'])}</td>
+                <td class="coupon-list-coupontitle">{$d['coupontitle']}</td>
+                <td class="coupon-list-couponuse"><!--couponuse-->{$d['couponuse']}</td>
+                <td class="coupon-list-couponrange"><!--couponrange-->
+                    <?php
+                     $source = explode(":",trim($d['couponrange']));
+                     if($source[0]=='0'){
+                         echo '全部栏目';
+                     }else{
+                         $catname=category::getcategoryname($source[0]);
+                         echo $catname[0]['catname'];
+                     }
+                     if($source[1]=='0'){
+                           echo '|全部产品';
+                     }else{
+                           $catname=archive::getarchivename($source[1]);
+                           echo '|'.$catname;
+                     }
+                   ?>
+                </td>
+                <td class="coupon-list-overlay"><!--overlay--><?php echo $d['overlay']==1?'是':'否' ?></td>
+                <td class="coupon-list-satisfy"><!--satisfy-->{$d['satisfy']}</td>
+                <td class="coupon-list-moeny"><!--moeny-->{$d['moeny']}</td>
+                <td class="coupon-list-quantity"><!--quantity-->
+                    <?php
+                      if ($usable=='usableusernum'){
+                        echo $d['usableusernum'];
+                      }else if ($usable=='usedusernum'){
+                        echo $d['usedusernum'];
+                      }else if ($usable=='oldusernum'){
+                        echo $d['oldusernum'];
+                      }else{
+                        echo $d['quantity'];
+                      }
+                    ?>
+                </td>
+                <td class="coupon-list-exchangepoints"><!--exchangepoints-->{$d['exchangepoints']}</td>
+                <td class="coupon-list-adddatatime">{cut($d['overduedate'])}</td>
+                <?php  if($usable=='all'){  ?>
+                    <td class="">
+                        <a onclick="setcoupon('{cut($d['couponid'])}')" title="{lang('exchange')}"><i class="icon-present" style="font-size:1.8em;"></i></a>
+                    </td>
+                <?php }else if($usable=='usableusernum'){  ?>
+
+                <?php }?>
+            </tr>
+            {/loop}
+
+
+        </tbody>
+    </table>
+</div>
+
+    <div class="blank30"></div>
+   
+
+</form>
+<script>
+    function setcoupon(couponid) {
+        var hrefname="<?php echo modify("/act/editcoupon/manage/coupon"); ?>";
+        $.get(hrefname,{'couponid':couponid},function(data,status){
+            alert(data);
+            window.location.href="{url('manage/couponlist/manage/coupon/statu/all')}";
+        });
+    }
+</script>
+
+
+<div class="pages">
+<?php if(get('table')!='type' && front::get('case')!='field') echo pagination::html($record_count); ?>
+</div>
+<div class="blank30"></div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="blank30"></div>
+{template_user 'foot.html'}

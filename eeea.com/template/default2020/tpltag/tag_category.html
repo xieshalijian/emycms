@@ -1,0 +1,3 @@
+{loop plugins::categoryinfo($_catid,$_titlenum) $cat}
+<a href="{$cat['url']}" title="{$cat['catname']}" cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit">{$cat['catname']}</a>
+{/loop}

@@ -1,0 +1,14 @@
+
+
+
+
+
+
+.special-banner {position: relative; overflow:hidden;}
+.special-banner .special-banner-img {position: relative; z-index: 0;height:100%;text-align:center;}
+.special-banner .special-banner-img img {width:100% !important;  object-fit:cover;}
+.special-banner {position: relative; overflow:hidden;}
+
+.special-banner .special-banner-title {position: absolute; top:50%;transform: translateY(-50%) !important; width:100%; z-index: 2;}
+.special-banner .special-banner-title h1 {display:inline-block; padding-bottom:5px;}
+.special-banner .special-banner-title p {display:inline-block;}

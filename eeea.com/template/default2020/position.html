@@ -1,0 +1,49 @@
+
+
+<nav class="sub_menu">
+<ol class="breadcrumb">
+<span class="glyphicon glyphicon-list"></span>
+	<li><a href="{$base_url}/">{lang('homepage')}</a></li>
+
+<?php
+if(front::get('case') == 'announ'){
+?>
+<li><a title="{lang('siteannoun')}" href="#">{lang('siteannoun')}</a></li>
+<?php
+}elseif(front::get('case') == 'guestbook'){
+?>
+<li><a title="{lang('guestbook')}" href="#">{lang('guestbook')}</a></li>
+<?php
+}elseif(front::get('case') == 'comment'){
+?>
+<li><a title="{$t['name']}" href="{$t.url}">{lang('commentlist')}</a></li>
+<?php
+}elseif(front::get('case') == 'type'){
+?>
+<li>{type::getpositionhtml($type['typeid'])}</li>
+<?php
+}elseif(front::get('case') == 'special'){
+?>
+<li><a title="{$special['title']}" href="#">{$special['title']}</a></li>
+<?php
+}elseif(front::get('case') == 'tag'){
+?>
+<li><a title="{$tag}" href="#">{$tag}</a></li>
+<?php
+}elseif(front::get('case') == 'mailsubscription'){
+?>
+<li><a href="#" title="{lang('mailsubscription')}">{lang('mailsubscription')}</a></li>
+<?php
+}else{
+?>
+
+	{loop position($catid) $t}
+	<li><a title="{$t['name']}" href="{$t.url}">{$t['name']}</a></li>
+	{/loop}
+
+
+<?php
+}
+?>
+</ol>
+</nav>

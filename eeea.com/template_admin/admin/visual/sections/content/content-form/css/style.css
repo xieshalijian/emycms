@@ -1,0 +1,10 @@
+
+.content-form {
+    position: relative;
+    z-index: 1;
+    width:100%;
+}
+.content-form .table * td .btn
+{
+    padding:5px 15px;
+}

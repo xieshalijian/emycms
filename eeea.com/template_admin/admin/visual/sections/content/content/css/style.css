@@ -1,0 +1,13 @@
+
+.content-text,
+.content-text p {
+    line-height:1.5;
+}
+.content-text img {
+    max-width:100% !important;
+}
+
+.content-text .content img {
+    max-width:100% !important;
+    height:auto !important;
+}

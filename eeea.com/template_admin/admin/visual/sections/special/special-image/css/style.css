@@ -1,0 +1,11 @@
+
+
+
+.special-image {position: relative; overflow:hidden;}
+.special-image .special-image-img {position: relative; z-index: 0;height:100%;text-align:center;}
+.special-image .special-image-img img {width:100% !important;object-fit:cover;min-height:100%;}
+.special-image {position: relative; overflow:hidden;}
+
+.special-image .special-image-title {position: absolute; top:50%;transform: translateY(-50%) !important; width:100%; z-index: 2;}
+.special-image .special-image-title h1 {display:inline-block; padding-bottom:5px;}
+.special-image .special-image-title p {display:inline-block;}

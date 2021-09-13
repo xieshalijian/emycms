@@ -1,0 +1,4 @@
+.left-pic-and-right-content-more{clear:both; padding-top: 15px;text-align: center;}
+.left-pic-and-right-content-more a{display: inline-block;width: 200px;border-width: 1px; border-style: solid;height: 50px;line-height: 48px;text-align: center;transition:all 300ms ease-in-out 0ms;}
+.left-pic-and-right-content-more a span{margin-left: 5px;transition:all 300ms ease-in-out 0ms;}
+.left-pic-and-right-content-more a:hover span{margin-left: 10px;}

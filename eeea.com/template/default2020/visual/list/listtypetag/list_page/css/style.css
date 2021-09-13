@@ -1,0 +1,20 @@
+.type-list-page {
+    margin-left: 15px;
+    margin-right: 15px;
+    paddin:15px;
+    border-width: 1px;
+    border-style:solid;
+    line-height:1.8;
+}
+
+.type-list-page h1,
+.type-list-page h5 {
+    line-height:1.6;
+    display:block !important;
+}
+
+.type-list-page .visual-level {
+    margin:15px 0px;
+    background:#eeeeee;
+    height:1px;
+}

@@ -1,0 +1,33 @@
+
+.visual-comment-banner {
+    position: relative;
+}
+.visual-comment-banner-text {
+    height:100px;
+    position: absolute;
+    top: 50% !important;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%) !important;
+    z-index: 2;
+}
+.visual-comment-banner .container {
+    z-index:0;
+}
+.visual-comment-banner .visual-comment-banner-text h1 {
+    display:inline-block;
+}
+
+.visual-comment-banner .visual-comment-banner-text h1:after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 2em;
+    margin-top: 15px;
+}
+
+.visual-comment-banner img {
+    position: relative;
+    z-index: 1;
+    width:100%;
+}

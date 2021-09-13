@@ -1,0 +1,65 @@
+{{template_user 'head.html'}
+
+<div class="index-bg">
+    <div class="container">
+        <div class="section2">
+
+            <div class="user-content-table-nav">
+                <ul>
+                    <li><a href="{url('union/stats/manage/union')}">{lang('stats')}</a></li>
+                    <li><a href="{url('union/getcode/manage/union')}">{lang('access_code')}</a></li>
+                    <li><a href="{url('union/visit/manage/union')}">{lang('access_statistics')}</a></li>
+                    <li><a class="active" href="{url('union/reguser/manage/union')}">{lang('registered_users')}</a></li>
+                    <li><a href="{url('union/pay/manage/union')}">{lang('promotion_of_settlement')}</a></li>
+                    <li><a href="{url('union/edit/manage/union')}">{lang('edituserinfo')}</a></li>
+                </ul>
+            </div>
+            <div class="blank30"></div>
+
+            <div class="user-content">
+
+
+
+
+<form name="listform" id="listform"  action="<?php echo uri();?>" method="post">
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+        <thead>
+            <tr class="th">
+                <th align="center">{lang('username')}</th>  
+                <th align="center">{lang('guestemail')}</th>  
+            </tr>
+
+        </thead>
+        <tbody>
+        
+
+         
+      {loop $visitlist $val}
+            <tr>
+
+                <td align="center">{$val['username']}</td>
+                <td align="center">{$val['e_mail']}</td>
+            </tr>
+        {/loop}
+
+        </tbody>
+    </table>
+
+    </div>
+    <div class="blank10"></div>
+   
+
+</form>
+
+<div class="blank30"></div>
+
+<div class="pages"><?php echo pagination::html($record_count); ?></div>
+
+
+</div>
+</div>
+</div>
+
+{template_user 'foot.html'}

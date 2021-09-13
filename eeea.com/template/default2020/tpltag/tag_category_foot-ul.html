@@ -1,0 +1,14 @@
+<div class="foot-ul">
+	<ul>
+	{loop plugins::categoryinfo($_catid,$_titlenum) $cat}
+	<h4><a title="{$cat['catname']}" href="{$cat['url']}" cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit">{$cat['catname']}</a></h4>
+	{/loop}
+	{loop plugins::categoryinfo($_catid,$_titlenum) $cat}
+	{loop categories($cat['catid']) $cat}
+	<li><a title="{$cat['catname']}" href="{$cat['url']}" cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit">{$cat['catname']}</a></li>
+	{/loop}  
+	{/loop}  
+	</ul>
+</div>
+
+

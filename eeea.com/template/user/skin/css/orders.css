@@ -1,0 +1,168 @@
+@charset "utf-8";
+html,
+body 
+{ line-height:180%; font-size:1.0em; font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif; background:white;}
+li {list-style:none;}
+input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {  
+
+     
+    -webkit-box-shadow: 0 0 0px 1000px transparent  inset !important;  
+    background-color:transparent;  
+    background-image: none;  
+     transition: background-color 50000s ease-in-out 0s; //背景色透明  生效时长  过渡效果  启用时延迟的时间  
+}  
+input {  
+     background-color:transparent;  
+}
+
+* {outline: none;}
+:focus{
+    outline:none;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
+    border-color: transparent;
+    box-shadow:none;
+}
+
+a {transition: 0.5s; -webkit-transition: 0.5s; -moz-transition: 0.5s; color:#333;}
+
+/* 划过图片放大 */
+.img-auto { display:block; overflow:hidden; }
+.img-auto img { width:auto; height:auto; margin:0px auto; transition: 600ms; }
+.img-auto img:hover { -webkit-transform: scale(1.1);-moz-transform: scale(1.1);-ms-transform: scale(1.1);-o-transform: scale(1.1);transform: scale(1.1); }
+
+
+
+.logo {margin:15px 0px;text-align:center;}
+
+.box,.o_box {display:block; padding:10px;}
+
+p {margin:0px;}
+
+.blank5,.blank10,.blank20,.blank30 {clear:both;height:5px;overflow:hidden;}
+.blank10 {height:10px;}
+.blank20 {height:20px;}
+.blank30 {height:30px;}
+
+.coupon-btn {background:#a9180a; color:#fff; border:none; border-radius: 3px;}
+
+
+
+
+/*定义标题*/
+.t_1{ height:120px;background: url(../images/base/t_1.png) repeat-x top center;color:#000; margin:15px 0px; clear:both;}
+.t_1 div { margin:0px auto; position:relative; padding:0px 10px;}
+.t_1 h3{ font-size:22px; border-bottom:1px solid #666; height:60px; line-height:60px; float:left; font-weight:bold; margin:0px;padding:0px;}
+.t_1 p{ font-size:16px; height:50px; line-height:50px; clear:both;  text-transform:capitalize;}
+.t_1 a{ color:#000;}
+
+
+
+a.buy,input.buy {
+    color: #FF6801;
+    display: inline-block;
+    line-height: 50px;
+    border: 1px solid #FF6801;
+    padding: 0 40px;
+    font-size: 18px;
+}
+
+a.shoppingcart,button.shoppingcart {
+    float:right;
+    display: inline-block;
+    line-height: 50px;
+    border: 1px solid #FF6801;
+    padding: 0 40px;
+
+    font-size: 18px;
+    color: #fff;
+    background: #FF6801;
+}
+
+
+
+.copy {text-align:center;  color:#999; font-size:12px; }
+.copy a {color:#999;}
+
+.table {font-size:14px;}
+
+.ui-datepicker-trigger {display:none;}
+
+
+
+
+.btn-icon-inner {color: #de4437;
+    background: rgba(222, 68, 55, 0.1);border-radius: 3px; padding:2px 10px; }
+.btn-soft-success {color: #00c9a7;
+    background: rgba(0, 201, 167, 0.1);border-radius: 3px; padding:2px 10px; }
+
+@media (min-width: 768px) {
+.orders-list span {display:block;}
+.orders-list span.price,.orders-list span.btn-soft-success,.orders-list span.btn-icon-inner {display:inline-block}
+
+.servers-wap {
+display:none;
+}
+}
+@media (max-width: 768px) {
+/* 手机菜单圆形按钮颜色 */
+.plug-menu {
+background: #ccc;
+}
+
+/* 手机菜单弹出按钮颜色 */
+.top_menu>li {
+background: #ccc;
+list-style:none;
+}
+
+/* 手机菜单平铺背景颜色 */
+.foot_mp {
+background: #ccc;
+}
+
+.orders-info {padding:0px;}
+
+}
+
+
+input.min,input.add {float:left; width:30px;height:30px; line-height:30px; text-align:center;  border:none; border-radius: 5px;  font-size:28px;}
+.thisnum {float:left; line-height:30px; margin:0px 5px; padding:0px 5px;  border:1px solid #ddd; border-radius: 5px; }
+.orders-del { display:inline-block;width:30px;height:30px;line-height:30px;border:none; background:#cecece; font-size:14px;  border-radius:30px;text-align:center; }
+.orders-del:hover { color:red; }
+.orders-padding-x {padding:0px;}
+.thistotal {color:#000;font-weight:bold;}
+.thistotal span {color:#FF4A00;font-size:20px;}
+.orders-conact small {line-height:120%;color:#ccc;}
+
+
+.thisnum {height:29px;}
+
+.orders-list {margin:0px -5px 30px -5px; padding-bottom:15px;border-bottom:1px solid #eee; }
+#tab,.orders-list {font-size:12px;}
+
+.thisnum {height:29px;}
+
+#tab,.orders-list {font-size:12px;}
+
+.nav-pills .orders-btn,
+#step3 .btn {margin-left:20px;padding:13px 25px;}
+
+.btn, .form-control {
+    height: 44px;
+}
+.form-control {
+border-radius: 0px;
+}
+
+@media (max-width: 486px) {
+    a.buy, input.buy {display:inline-block; width:49%;}
+    .shoppingcart {float:none; width:100%;text-align:center;margin-top:10px;}
+}
+

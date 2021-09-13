@@ -1,0 +1,48 @@
+
+		
+ 
+		<div class="s2">
+			<div class="swiper-container swiper2">
+				<div class="swiper-wrapper">
+					{loop plugins::categoryinfo($_catid,$_titlenum) $cat}
+					{loop categories($cat['catid'],null,$_titlenum,$_textnum) $cat}
+					<div class="swiper-slide s2-item">
+						<div class="s2-img">
+							<a title="{$cat['catname']}" href="{$cat['url']}">
+								<img cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="image" class="cmseasyedit img " alt="{$cat['catname']}" src="{$cat['image']}"  />
+							</a>
+						</div>
+						<div class="s2-text">
+							<h4>
+								<a title="{$cat['catname']}" href="{$cat['url']}">
+								<span cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="htmldir" class="cmseasyedit">
+									{$cat['htmldir']}
+								</span>
+								<strong cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit">
+									{$cat['catname']}
+								</strong>
+							</a>
+							</h4>
+							<span cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="subtitle" class="cmseasyedit">{$cat['subtitle']}</span>
+							<p cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="categorycontent" class="cmseasyedit content clearfix">{$cat['categorycontent']}</p>
+							<a class="more" title="{$cat['catname']}" href="{$cat['url']}">{lang('more')}</a>
+						</div>
+					</div>
+					{/loop}
+					{/loop}
+				</div>
+				<div class="swiper-pagination swiper2-pagination"></div>
+			</div>
+		</div>
+		<script>
+			var mySwiper = new Swiper ('.swiper2', {
+				loop: true,
+				slidesPerView : 1,
+				slidesPerGroup : 1,
+				spaceBetween : 10,
+				grabCursor: true,
+				autoHeight: true,
+				navigation: {nextEl: '.swiper2-button-next',prevEl: '.swiper2-button-prev',},
+				pagination: {el: '.swiper2-pagination',clickable: true,},
+			});
+		</script>

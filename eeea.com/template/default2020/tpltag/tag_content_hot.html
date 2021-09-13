@@ -1,0 +1,15 @@
+<div class="hot-news">
+                <div class="title20">
+                    <p>Host List</p>
+                    <h4>{lang('hostlist')}</h4>
+                </div>
+                <ul>
+                    {loop archive($_catid,$_typeid,$_spid,$_area,$_length,$_ordertype,$_limit,$_image,$_attr1,$_son,$_wheretype,$_tpl,$_intro_len,$_istop) $archive}
+                    <li>
+                        <a style="color:{$arc['color']};" href="{$archive['url']}" title="{$archive['stitle']}" cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="title" class="cmseasyedit ">
+                            {$archive['title']}
+                        </a>
+                    </li>
+                   {/loop}
+                </ul>
+            </div>

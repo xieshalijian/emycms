@@ -1,0 +1,27 @@
+
+
+.content-pagination span {
+    padding: 5px 14px;
+    border-width:1px;
+    border-style:solid;
+    max-width:45%;
+}
+.content-pagination .content-archivep {
+    float:left;
+}
+.content-pagination .content-archiven {
+    float:right;
+}
+
+@media (max-width:768px) {
+    .content-pagination .content-archivep,
+    .content-pagination .content-archiven {
+        float:none;
+        clear: both;
+        display:block;
+        width:100%;
+        border-radius: 0px;
+        max-width:100%;
+        margin-bottom:10px;
+    }
+}

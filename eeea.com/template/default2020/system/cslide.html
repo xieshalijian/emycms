@@ -1,0 +1,100 @@
+{php $slide_data=getslide(2);}
+<div class="category-first-degree-banner clearfix">
+	
+	<div class="category-first-degree-banner-img">
+
+	</div>
+	
+	<div class="category-first-degree-banner-title">
+		<div class="container{if $slide_data['slide_style_position'] == 1} text-center{elseif $slide_data['slide_style_position'] == 2} text-right{else} text-left{/if}">
+			<h1>
+				<?php
+                                if(front::get('case') == 'announ'){
+                                ?>
+
+				<h1>{lang('siteannoun')}</h1>
+
+				<?php
+                                }elseif(front::get('case') == 'guestbook'){
+                                ?>
+
+				<h1>{lang('guestbook')}</h1>
+
+				<?php
+                                }elseif(front::get('case') == 'comment'){
+                                ?>
+
+				<h1><{lang('commentlist')}</h1>
+
+				<?php
+                                }elseif(front::get('case') == 'type'){
+                                ?>
+
+				<h1>{type::getpositionhtml($type['typeid'])}</h1>
+
+				<?php
+                                }elseif(front::get('case') == 'special'){
+                                ?>
+
+				<h1><a title="{$special['title']}" href="#">{$special['title']}</a></h1>
+
+				<?php
+                                }elseif(front::get('case') == 'tag'){
+                                ?>
+
+				<h1>{$tag}</h1>
+
+				<?php
+                                }elseif(front::get('case') == 'mailsubscription'){
+                                ?>
+
+				<h1>{lang('mailsubscription')}</h1>
+
+
+
+				<?php
+                                }else{
+                                ?>
+				<h1>{$category[$catid]['catname']}</h1>
+				<?php
+                                }
+                                ?>
+
+			</h1>
+			<div class="clearfix"></div>
+{if $cat['subtitle']}
+			<p cmseasy-id="{$catid}" cmseasy-table="category" cmseasy-field="subtitle" class="cmseasyedit">
+				{$category[$catid]['subtitle']}
+			</p>
+{/if}
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    //<!CDATA[
+    var bodyBgs = [];
+    {php $i=0;}
+    {loop getslide_child(2) $data}
+    {php $k=$i+1;}
+    bodyBgs[{$k}] = "{$data['slide_path']}";
+    {php  $i++; }
+    {/loop}
+        var randomBgIndex = Math.round( Math.random() * {$k} );
+        //输出随机的背景图
+        document.write('<style>.category-first-degree-banner-img{background:url(' + bodyBgs[randomBgIndex] + ') no-repeat 50% bottom;background-size:cover;}</style>');
+    //]]>
+</script>
+
+<style>
+	.category-first-degree-banner,
+	.category-first-degree-banner-img {min-height:{$slide_data['slide_height']}px;}
+	.category-first-degree-banner {position: relative; overflow:hidden;}
+	.category-first-degree-banner .category-first-degree-banner-img {position: relative; z-index: 0;height:100%;text-align:center;}
+	.category-first-degree-banner .category-first-degree-banner-img img {width:100% !important;  object-fit:cover;}
+	.category-first-degree-banner {position: relative; overflow:hidden;}
+
+	.category-first-degree-banner .category-first-degree-banner-title {position: absolute; top:50%;transform: translateY(-50%) !important; width:100%; z-index: 2;}
+	.category-first-degree-banner .category-first-degree-banner-title h1 {display:inline-block; padding-bottom:5px; color:{$slide_data['slide_text_color']}; font-size:{$slide_data['slide_title_size']};}
+	.category-first-degree-banner .category-first-degree-banner-title p {display:inline-block;font-size:{$slide_data['slide_subtitle_size']}; color:{$slide_data['slide_text_color']};}
+</style>

@@ -1,0 +1,67 @@
+
+.content-buy-joinshoppingcart .shop-title{}
+.content-buy-joinshoppingcart .shop-title h1{line-height:1.6;}
+.content-buy-joinshoppingcart .shop-title p{text-overflow:ellipsis;white-space:nowrap;overflow:hidden; background:#f5f5f5; padding:10px; border-radius: 3px;}
+.content-buy-joinshoppingcart .shop-oldprice,
+.content-buy-joinshoppingcart .shop-price,
+.content-buy-joinshoppingcart .shop-salesnum {margin: 5px 0;}
+.content-buy-joinshoppingcart .shop-oldprice:after,
+.content-buy-joinshoppingcart .shop-price:after,
+.content-buy-joinshoppingcart .shop-salesnum:after {content:"";display:table;clear:both;}
+.content-buy-joinshoppingcart .shop-oldprice dt,
+.content-buy-joinshoppingcart .shop-price dt,
+.content-buy-joinshoppingcart .shop-salesnum dt {display: inline-block;float: left;width: 100px;vertical-align:middle; line-height:34px; }
+.content-buy-joinshoppingcart .shop-oldprice dd,
+.content-buy-joinshoppingcart .shop-price dd,
+.content-buy-joinshoppingcart .shop-salesnum dd {vertical-align:middle;line-height:34px;}
+.content-buy-joinshoppingcart .shop-price dd p {font-size:14px !important;}
+/*.shop-oldprice dd span {text-decoration:line-through;}*/
+.content-buy-joinshoppingcart .shop-salesnum dd { font-weight:normal;}
+.content-buy-joinshoppingcart .shop-type{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin: 20px 0 30px; padding:15px 0px; }
+.content-buy-joinshoppingcart .shop-type .shop-type-info {clear:both; }
+.content-buy-joinshoppingcart .shop-type .shop-type-info:after{content:"";display:table;clear:both;}
+.content-buy-joinshoppingcart .shop-type dt {display: inline-block; float:left; width: 80px;vertical-align:middle;}
+.content-buy-joinshoppingcart .shop-type dd {margin-left:80px;}
+.content-buy-joinshoppingcart .shop-type #columntype .btn,
+.content-buy-joinshoppingcart .shop-type #columntype .btn:visited {position: relative; display: inline-block;line-height: 38px;margin:1px 6px 16px 1px; padding: 0 15px; }
+.content-buy-joinshoppingcart .shop-type #columntype .btn img {margin-left:-14px;}
+.content-buy-joinshoppingcart .shop-type #columntype .btn:hover,
+.content-buy-joinshoppingcart .shop-type #columntype .btn:active,
+.content-buy-joinshoppingcart .shop-type #columntype .btn:focus { }
+.content-buy-joinshoppingcart .shop-type #columntype .btn-focus:before{
+    display:block;
+    content:'';
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid #FF6801;
+    border-left: 10px solid transparent;
+    position:absolute;
+    right:0px;
+    bottom:0px;
+}
+.content-buy-joinshoppingcart .shop-type-list>button>img {margin-right:10px;}
+.content-buy-joinshoppingcart .shop-number{height: 42px;border-width:1px; border-style: solid; padding: 0 10px;line-height: 40px;color: #666;width: 80px;text-align: center;}
+
+.content-buy-joinshoppingcart .shop-type-info dd { position: relative;}
+.content-buy-joinshoppingcart .shop-number-btn1{overflow: hidden;height: 18px;width: 18px;line-height:18px;border-width:1px; border-style: solid;text-align: center;padding:0 ;position: absolute;top: 0px;left: 85px;}
+.content-buy-joinshoppingcart .shop-number-btn2{overflow: hidden;height: 18px;width: 18px;line-height:18px;border-width:1px; border-style: solid;margin-top: 6px;text-align: center;padding: 0;position: absolute;bottom:0px;left: 85px;}
+.content-buy-joinshoppingcart .shop-buy{margin: 20px 0;}
+.content-buy-joinshoppingcart .shop-buy a,#buyurl .go-buy {display: inline-block;line-height: 50px;border-width:1px; border-style: solid;padding: 0 40px;margin: 5px;}
+
+
+.content-buy-joinshoppingcart .shop-buy a.shoppingcart span{margin-right: 10px;}
+
+.content-buy-joinshoppingcart .shopping-custom-pic { display:block; width:100%; text-align: center;}
+.content-buy-joinshoppingcart .shopping-custom-pic a { display: block; position: relative;  width:100%;
+    vertical-align: middle; min-height:300px;}
+.content-buy-joinshoppingcart .shopping-custom-pic a img { max-width:100%; max-height:100%; position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.content-buy-joinshoppingcart em {font-style:normal;}
+@media (max-width:468px) {
+    .content-buy-joinshoppingcart .shop-title h1 {font-size:20px !important;}
+    .content-buy-joinshoppingcart .shop-buy a, #buyurl .go-buy {text-align:center;display:block;}
+}

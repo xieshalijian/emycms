@@ -1,0 +1,238 @@
+{template 'header.html'}
+
+
+{if $archive['pics']}
+
+<div class="blank30"></div>
+<div id="slider_swipe" class="swipe" style="visibility:visible;">  
+    <div class="swipe-wrap"> 
+{loop $archive['pics'] $pic}
+        <figure>  
+            <div class="face faceInner">  
+                <img src="{$pic['url']}" alt="{$pic['alt']}" onerror='this.src="{config::get('onerror_pic')}"' />  
+            </div>  
+        </figure>  
+        {/loop}
+    </div>  
+</div>  
+  
+<nav>  
+<ul id="position">
+{loop $archive['pics'] $pic}
+  <li{if $i==1} class="on"{/if}></li>  
+{/loop} 
+</ul>  
+</nav>
+
+		
+
+<script src="{$skin_path}/js/swipe.js"></script>  
+<script>  
+var slider =  
+  Swipe(document.getElementById('slider_swipe'), {  
+    auto: 3000,  
+    continuous: true,  
+    callback: function(pos) {  
+        var i = bullets.length;  
+        while(i--){  
+            bullets[i].className = ' ';  
+        }  
+        bullets[pos].className = 'on';  
+    }  
+  });  
+var bullets = document.getElementById('position').getElementsByTagName('li');  
+</script>
+
+{else}
+
+<div class="blank30"></div>
+<div id="slider_swipe" class="swipe" style="visibility:visible;">  
+    <div class="swipe-wrap"> 
+        <figure>  
+            <div class="face faceInner">  
+                <img src="{$archive['thumb']}" alt="{$archive['title']}" onerror='this.src="{config::get('onerror_pic')}"' />  
+            </div>  
+        </figure>  
+    </div>  
+</div>  
+
+{/if}
+<div class="blank30"></div>
+<div class="blank30"></div>
+<article class="product_info">
+<div>
+<table>
+
+<tr>
+    <th>编号：</strong></th>
+    <td>{if $archive[my_bianhao]}{$archive[my_bianhao]}{else}暂无编号{/if}</td>
+  </tr>
+
+  
+<tr>
+    <th>售价：</th>
+    <td>{if $archive['attr2']}RMB&nbsp;<span class="orange size30">{$archive['attr2']}</span>&nbsp;&nbsp;&nbsp;/&nbsp;终身使用{else}<span class="orange size30">免费版{/if}</span></td>
+  </tr>
+
+
+{if $archive[my_downtemplate]}
+<tr>
+    <th>下载：</th>
+    <td>{attachment_js($archive['aid'])}</td>
+  </tr>
+{/if}
+
+  
+</table>
+</div>
+
+
+
+<div>
+<table>
+
+<tr>
+    <th>{lang('ecoding')}：</th>
+    <td>{if $archive['ecoding']}{$archive[ecoding]}{else}{lang('not')}{/if}</td>
+  </tr>
+
+
+
+
+  <tr>
+    <th>{lang('strgrades')}：</th>
+    <td>{$archive['strgrade']}</td>
+  </tr>
+  
+</table>
+</div>
+<p class="blank30"></p>
+
+
+{if $archive['attr2']}
+<a target="_blank" href="{$archive[my_buy]}" class="goshop">{lang(buy)}</a>
+{/if}
+</article>
+<article class="p10 buy_box">
+<div class="blank30"></div>{if $archive['attr2']}
+<!-- 页面标题开始 -->
+<div class="t_1 wow fadeIn">
+<div>
+<h3>如何购买</h3>
+<p>introduction</p>
+</div>
+</div>
+<div class="blank30"></div>
+
+<h5 class="b1">在线注册</h5>
+
+<p><span>购买授权版用户请直接在<a href=""><strong>授权平台</strong></a>注册用户。</span><a title="立刻注册用户" href="http://buy.cmseasy.cn/index.php?vmod=User&vact=Reg" target="_blank" class="buy_reg floatleft">立刻注册</a></p>
+
+
+<div class="blank20"></div>
+<h5 class="b2">在线充值</h5>
+
+<p>注册用户后台，请点击左侧<strong>财务管理</strong>，然后点击<strong>充值到我的账号</strong>进行 充值。如有疑问请联系：<em class="q">0434-3219159</em></p>
+
+<div class="blank20"></div>
+<h5 class="b3">在线购买</h5>
+
+<p>充值后的用户，请点击<strong>产品管理</strong>，然后点击<strong>查看易通产品</strong>，看到左侧的<strong>商业模板列表</strong>，直接点下方<strong>购买</strong>按钮进行购买。</p>
+
+<div class="blank20"></div>
+<h5 class="b4">关于发票</h5>
+
+<p>本官网所有产品价格均不含<strong>发票费用</strong>，如需发票请支付产品总价格的<strong>8％</strong>税点以及<strong>15</strong>元快递费。</span></p>
+
+<div class="blank30"></div>
+<div class="blank30"></div>
+<h5 class="b5">关于商业授权</h5>
+
+<p><span class="floatleft">免费系统可以使用商业模板，但前后台要保留易通企业网站系统的软件版权。如果要购买去除版权请点击&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+<div class="blank30"></div>
+<div class="blank30"></div><a title="立刻购买商业授权" href="http://buy.cmseasy.cn/index.php?vmod=Product&vact=Buy&p_id=200" target="_blank" class="goshop">购买授权</a>
+<div class="blank30"></div>
+<div class="blank30"></div>
+
+<h5 class="b6">关于问题咨询</h5>
+
+<p><span class="floatleft">本官网所有产品价格均不含<strong>问题咨询费用</strong>，如需系统使用问题的<strong>咨询服务</strong>，请支付<strong>500元/年</strong>咨询服务费。&nbsp;&nbsp;</span><a href="" target="_blank"><em class="q"></em></a></p>
+<div class="blank30"></div>
+<div class="blank30"></div>
+<a title="单独购买咨询服务" href="http://buy.cmseasy.cn/index.php?vmod=Product&vact=Buy&p_id=427" target="_blank" class="goshop">购买服务</a>
+<div class="blank30"></div>
+<div class="blank30"></div>
+
+
+
+<div class="blank30"></div>
+{/if}
+<div class="blank30"></div>
+<div class="blank30"></div>
+</article>
+
+
+
+<div class="blank30"></div>
+<!-- 下载说明结束 -->
+<div class="blank30"></div>
+<!-- 如果专题-->
+		{if $archive['special']}
+		<div class="blank30"></div>
+		{lang('special')}： {$archive['special']}
+		{/if}
+		<!-- 如果专题结束-->
+		<!-- 如果分类 -->
+		{if $archive['type']}
+		<div class="blank30"></div>
+		{lang(type)}： {$archive['type']}
+		{/if}
+		<!-- 如果分类结束 -->
+		<!-- 如果地区 -->
+		{if $archive['area']}
+		<div class="blank130"></div>
+		{lang('area')}： {$archive['area']}
+		<div class="blank30"></div>
+		{/if}
+		<!-- 如果地区结束 -->
+<div class="blank30"></div>
+<!-- 相关文章开始 -->
+Tag： {$archive['tag']}
+<!-- 相关文章结束 -->
+<div class="blank30"></div>
+<div class="blank30"></div>
+<!-- 上下页开始 -->
+<div id="page" class="wow fadeIn" data-wow-delay="0.6s">
+{if $archive['p']['aid']}
+<a href="{$archive['p']['url']}"><strong>{lang('archivep')}：</strong>{$archive['p']['title']}</a>
+{else}
+<a><strong>{lang('archivep')}：</strong>{lang('nopage')}	</a>
+{/if}
+<div class="clear"></div>
+{if $archive['n']['aid']}
+<a href="{$archive['n']['url']}"><strong>{lang('archiven')}：</strong>{$archive['n']['title']}</a>
+{else}
+<a><strong>{lang('archiven')}：</strong>{lang('nopage')}</a>	
+{/if}
+</div>
+<!-- 上下页结束 -->
+
+</article>
+
+
+
+
+
+<div class="blank30"></div>
+<script defer>
+var obj = document.getElementById("content_text").getElementsByTagName("img");
+for(i=0;i<obj.length;i++){
+	if(obj[i].width>300){
+		obj[i].width = 300;
+	}
+}
+</script>
+
+
+{template 'footer.html'}

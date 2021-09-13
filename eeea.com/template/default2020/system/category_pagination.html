@@ -1,0 +1,56 @@
+<nav>
+<ul class="pagination">
+    {if pages('up')}
+    <li><a href="{category::url($catid,pages('up'))}"><span aria-hidden="true">«</span></a></li>
+    {/if}
+	{loop pages() $p}
+	{if $p==$page}
+		<li class="active"><a>{$p}</a></li>
+	{else}
+		<li><a href="{category::url($catid,$p)}">{$p}</a></li>
+	{/if}
+    {/loop}
+	{if pages('down')}
+		<li><a href="{category::url($catid,pages('down'))}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+	{/if}
+<li class="pull-right">
+	<input type="text" name="getto_page" id="getto_page" value="{$page}" class="form-control " oninput = "value=value.replace(/[^\d]/g,'')">
+	<input class="btn btn-primary" type="button" value="{lang('jump')}" name="order"
+		   onclick="getto_page()">
+</li>
+	{if config::get('list_page_php') != '1'}
+		<script>
+			function getto_page(){
+				var totlepage='{count(pages())}';
+				totlepage=parseInt(totlepage);
+				var inpage=parseInt($('#getto_page').val());
+				if( inpage>totlepage){
+					window.location='{category::url($catid,count(pages()))}';
+				}
+				else if(inpage<1){
+					window.location='{category::url($catid,1)}';
+				} else{
+					window.location='{category::url($catid,"")}&page='+inpage;
+				}
+			}
+		</script>
+	{else}
+		<script>
+			function getto_page(){
+				var totlepage='{count(pages())}';
+				totlepage=parseInt(totlepage);
+				var inpage=parseInt($('#getto_page').val());
+				if( inpage>totlepage){
+					window.location='{category::url($catid,count(pages()))}';
+				}
+				else if(inpage<1){
+					window.location='{category::url($catid,1)}';
+				} else{
+					inpage=inpage+".html";
+					window.location='{category::url($catid,"")}/'+inpage;
+				}
+			}
+		</script>
+	{/if}
+</ul>
+</nav>

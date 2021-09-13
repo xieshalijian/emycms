@@ -1,0 +1,25 @@
+
+
+
+.content-pic-list ul li {
+    border-width:1px;
+    padding-bottom:15px;
+    margin-bottom:15px;
+}
+.content-pic-list ul li.col-sm-12 {
+    padding:15px 0px;
+}
+.content-pic-list ul li .time {
+    padding:0px 15px;
+    font-size:10px;
+}
+.content-pic-list ul li img {
+    width:100%;
+}
+
+.content-pic-list .content-pic-list-title {
+    margin-bottom:15px;
+    padding-left: 13px;
+    border-left-style: solid;
+    border-left-width: 4px;
+}

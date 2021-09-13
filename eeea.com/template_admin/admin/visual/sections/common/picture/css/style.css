@@ -1,0 +1,12 @@
+.picture {
+    border-width:1px;
+    border-style:solid;
+    overflow: hidden;
+}
+.picture img {
+    width:100%;
+}
+
+@media (max-width:768px) {
+    .picture {height:auto !important;}
+}

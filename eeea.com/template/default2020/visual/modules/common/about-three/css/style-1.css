@@ -1,0 +1,11 @@
+
+
+
+.about-three {clear:both; }
+.about-three .list-title{text-align: center;}
+@media screen and (min-width: 480px) and (max-width: 767px){
+    .about-three{padding: 0 0 30px;}
+}
+@media screen and (min-width: 0) and (max-width: 479px){
+    .about-three{padding: 0 0 30px;}
+}

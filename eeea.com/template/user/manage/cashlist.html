@@ -1,0 +1,153 @@
+{template_user 'head.html'}
+<?php
+if(hasflash()){
+	$showmessage = showflash();
+	//var_dump($showmessage);exit;
+	if(strlen($showmessage)>200){
+?>
+<div id='message'><span style="color:red;float:left"><?php echo $showmessage; ?></span>
+    <span style="color:blue;float:right"><a href="#" onClick="javascript:turnoff('#message');">(×)</a></span></div><div class="blank20"></div>
+<?php
+    }else{
+?>
+<link rel="stylesheet" href="{$base_url}/js/dialog.css">
+<script type="text/javascript" src="{$base_url}/js/dialog.js"></script>
+<script type="text/javascript">
+    var d = dialog({
+        title: "{lang('prompted')}",
+        content: "<?php echo $showmessage; ?>",
+        ok: function () {}
+    });
+    d.showModal();
+</script>
+<?php
+    }
+}
+?>
+<div class="container">
+
+        <div class="user-center">
+
+            <div class="user-nav-tab">
+                <h3>
+
+                        <i class="icon-settings"></i>
+                    <a href="{url('user/index')}">
+                        {lang('membercenter')}
+                    </a>
+                </h3>
+            </div>
+
+
+            <div class="blank30"></div>
+
+            <div class="user-content-table-nav">
+                <ul>
+
+                    <li><a href="{url('manage/cashlist/manage/cash')}" class="active">{lang('cash_list')}</a></li>
+
+                    <span class="pull-right">
+                        {lang('balance')}：
+                {lang('unit')}<span style="font-size:2.0rem; color: #FF4A00;font-weight: :600;">{getmenoy()}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            	{lang('integral')}：{getintegration()}&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-success" href="{url('archive/consumption')}" target="_blank">
+                                    {lang('recharge')}
+                                </a>
+                    </span>
+                </ul>
+
+            </div>
+            <div class="blank30"></div>
+
+
+
+<form name="listform" id="listform"  action="<?php echo uri();?>" method="post">
+
+
+
+<div class="table-responsive">
+<table class="table table-striped table-hover ">
+        <thead>
+            <tr class="th">
+                <th class="orders-list-id"><!--oid-->{lang('id')}</th>
+                <th class="orders-list-title">{lang('cash_menoy')}</th>
+                <th class="orders-list-title">{lang('adddate')}</th>
+                <th class="orders-list-title">{lang('account_receivable')}</th>
+                <th class="orders-list-title">{lang('cash_type')}</th>
+                <th class="orders-list-title">{lang('remarks')}</th>
+                <th class="orders-list-status"><!--status-->{lang('status')}</th>
+                <th class="">{lang('dosomething')}</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {loop $data $d}
+            <tr class="s_out">
+                <td class="orders-list-id">{cut($d['id'])} </td>
+                <td class="orders-list-title">{cut($d['menoy'])}</td>
+                <td class="orders-list-adddate">{cut($d['adddate'])}</td>
+                <td class="orders-list-number">{cut($d['number'])}</td>
+                <td class="orders-list-type">
+					<?php
+					 switch($d['type']){
+						   case 1:
+						     echo "<p><span class='btn-soft-success'>".lang('pay_zfb')."</span></p>";
+							break;
+                            case 2:
+						     echo "<p><span class='btn-soft-success'>".lang('wechat')."</span></p>";
+							break;
+                            case 3:
+						     echo "<p><span class='btn-soft-success'>".lang('paypal')."</span></p>";
+							break;
+                            case 3:
+						     echo "<p><span class='btn-soft-success'>".lang('tenpay')."</span></p>";
+							break;
+							default:
+							 echo "<p><span class='btn-icon-inner'>".lang('pay_zfb')."</span></p>";
+							break;
+					}
+					?>
+				</td>
+                <td class="orders-list-message">{cut($d['message'])}</td>
+                <td class="orders-list-status">
+					<?php
+					 switch($d['state']){
+						   case 1:
+						     echo "<p><span class='btn-soft-success'>".lang('checked').lang('success')."</span></p>";
+							break;
+                           case 2:
+						     echo "<p><span class='btn-soft-success'>".lang('checked').lang('failure')."</span></p>";
+							break;
+							default:
+							 echo "<p><span class='btn-icon-inner'>".lang('cash_application')."</span></p>";
+							break;
+					}
+					?>
+				</td>
+                <td class="">
+                    <?php
+					 if($d['state']==0){ ?>&nbsp;&nbsp;
+                    <a  class="orders-list-dosomething" href='{url("manage/nocash/manage/cash/id/".$d['id'],false)}'   title="{lang('no_application')}">{lang('no_application')}</a>
+                    <?php };?>
+                </td>
+            </tr>
+            {/loop}
+        </tbody>
+    </table>
+</div>
+
+    <div class="blank30"></div>
+   
+
+</form>
+
+
+<div class="pages">
+<?php if(get('table')!='type' && front::get('case')!='field') echo pagination::html($record_count); ?>
+</div>
+<div class="blank30"></div>
+
+</div>
+</div>
+
+<div class="blank30"></div>
+{template_user 'foot.html'}

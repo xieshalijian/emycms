@@ -1,0 +1,41 @@
+{loop plugins::categoryinfo($_catid,$_titlenum) $cat}
+
+
+<div class="section3">
+	<div class="container">
+		<div class="s3 clearfix">
+			<div class="s3-1">
+				<h4 cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit">
+					{$cat['catname']}
+				</h4>
+				<p cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="htmldir" class="cmseasyedit">
+					{$cat['htmldir']}
+				</p>
+				<h5>
+					<i class="icon-call-end"></i>：{get('tel')}
+				</h5>
+				<h5>
+					<i class="icon-drop"></i>：<span>{get('address')}</span>
+				</h5>
+				<a class="more" title="{$cat['catname']}" href="{$cat['url']}">
+					<em></em>{lang('more')} &gt;
+				</a>
+			</div>
+			<div class="s3-2">
+				<h4 cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit">
+					{$cat['catname']}
+				</h4>
+				<span cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="htmldir" class="cmseasyedit">
+					{$cat['htmldir']}
+				</span>
+				<p cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="categorycontent" class="cmseasyedit content clearfix">
+					{$cat['categorycontent']}
+				</p>
+				<a class="more" title="{$cat['catname']}" href="{$cat['url']}">{lang('more')}  &gt;</a>
+			</div>
+		</div>
+	</div>
+</div>
+ 
+
+{/loop}

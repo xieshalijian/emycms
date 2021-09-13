@@ -1,0 +1,83 @@
+{template_user 'head.html'}
+
+<div class="index-bg">
+	<div class="container">
+		<div class="section2">
+
+		<div class="index-title">
+				<h4>{lang('my-notice_list')}</h4>
+			</div>
+
+
+<div class="user-content">
+
+
+<form name="listform" id="listform"  action="<?php echo uri();?>" method="post">
+
+
+
+<div class="table-responsive">
+<table class="table table-hover ">
+        <thead>
+            <tr class="th">
+                <th class="coupon-list-couponid"><!--couponid-->{lang('id')}</th>
+                <th class="coupon-list-coupontitle">{lang('notice_title')}</th>
+                <th class="coupon-list-coupontitle">{lang('notice_content')}</th>
+                <!--<th class="coupon-list-couponuse">&lt;!&ndash;couponuse&ndash;&gt;内容</th>-->
+                <th class="coupon-list-manage">{lang('dosomething')}</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {loop $data $d}
+            <tr class="s_out">
+                <td class="coupon-list-couponid" >{cut($d['id'])}</td>
+                <td class="coupon-list-coupontitle" ><a href="{url('manage/notificationitem/manage/notification/id/'.$d['id'])}" {if !$d['isread']} style="color: red" {/if}>{$d['title']}{if !$d['isread']}（{lang('unread')}）{/if}</a></td>
+                <td class="coupon-list-coupontitle">{cut(strip_tags($d['note']),20)}</td>
+                <th class="coupon-list-manage">
+                    <a onclick="window.location.href ='{url('manage/notificationitem/manage/notification/id/'.$d['id'])}';" title="{lang('look')}"><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a onclick="javascript: return confirm('{lang('are_you_sure_you_want_to_delete_it')}');" href="<?php echo modify("/act/notificationdelete/manage/notification/id/".$d['id']);?>" title="{lang('delete')}"><i class="glyphicon glyphicon-trash"></i></a>
+                </th>
+            </tr>
+            {/loop}
+
+
+        </tbody>
+    </table>
+</div>
+
+    <div class="blank30"></div>
+   
+
+</form>
+<script>
+
+    function setpraise(aid) {
+        var hrefname='{url("archive/setpraise")}';
+        //点赞
+        $.get(hrefname,{'aid':aid},function(data,status){
+            if(data != '') {
+                data = JSON.parse(data);
+                if(data[0]=='1'){
+                    alert("{lang('success')}");
+                }else{
+                    alert("{lang('cancel_some_praise')}");
+                }
+                window.location.href='{modify("manage/zanarchivelist/manage/archive",true)}';
+            }
+        });
+    }
+</script>
+
+
+<div class="pages">
+<?php if(get('table')!='type' && front::get('case')!='field') echo pagination::html($record_count); ?>
+</div>
+<div class="blank30"></div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="blank30"></div>
+{template_user 'foot.html'}

@@ -1,0 +1,176 @@
+@charset "utf-8";
+
+body{font-family: Microsoft Yahei;overflow-x:hidden;color: #666;background:#fff;position: relative;}
+ul,ol,li{list-style: none;}
+a{color: #333;}
+a:hover{text-decoration:none;outline:none;}
+a:visited,a:active {outline:none;}
+div:focus{
+    outline:none;
+}
+
+
+/* 通用 */
+
+.blank5,.blank10,.blank15,.blank20,.blank30,.blank50,.blank60 {clear:both;height:5px;overflow:hidden;}
+.blank10 {height:10px;}
+.blank15 {height:15px;}
+.blank20 {height:20px;}
+.blank30 {height:30px;}
+.blank50 {height:50px;}
+.blank60 {height:60px;}
+
+ 
+ .color-orange {color:#FE6604}
+
+ .content-content,
+ .content-text,
+ .content-text .content,
+.categorycontent {display:block;width:100%;}
+.content-content img,
+.content-text img,
+.content-text .content img,
+.categorycontent img {max-width:100%;}
+
+.copyright{padding: 20px 0;text-align: center;}
+.copyright p{color: #999;margin-bottom: 2px;}
+.copyright p a{color: #999;}
+
+
+.cbanner{margin-top: 70px;background-size:cover;}
+@media screen and (max-width:486px) {
+    .cbanner {margin-top:0px;}
+}
+.cbanner .container {height:100%;}
+.cbanner-bg{height:100%;background: rgba(0,0,0,.68);}
+.cbanner-title {position: relative; display:block; height:100%;}
+.fat-menu2-title h4.column-title,
+.cbanner-title h4.column-title,
+.cbanner-title h4.special-title,
+.cbanner-title h4.type-title{position: absolute; top: 40%; transform: translateY(-40%);color: #fff;font-size: 42px; }
+.cbanner-title h4.column-title,
+.cbanner-title h4.column-title a,
+.cbanner-title h4.special-title a,
+.cbanner-title h4.type-title a{color: #fff;}
+.cbanner-title h4.column-title:after,
+.cbanner-title h4.special-title:after,
+.cbanner-title h4.type-title:after{content:"";display: block;height: 3px;width: 2em;background: #fff;margin-top: 15px;}
+
+
+@media (min-width:769px) {
+.cbanner-bg{min-height:auto;}
+.cbanner-title{margin-bottom: 40px;}
+.cbanner-title h4.column-title,
+.cbanner-title h4.special-title,
+.cbanner-title h4.type-title{font-size: 40px;}
+}
+
+@media (min-width:992px) {
+    .cbanner-bg{min-height:auto;}
+    .cbanner-title h4.column-title,
+    .cbanner-title h4.special-title,
+    .cbanner-title h4.type-title{font-size: 30px;}
+}
+
+@media (max-width:768px) {
+.cbanner-bg{min-height:auto;}
+.cbanner-title{margin-bottom: 30px;}
+.cbanner-title h4.column-title,
+.cbanner-title h4.special-title,
+.cbanner-title h4.type-title{font-size: 20px;}
+}
+
+
+.content-subtitle{margin-left: 15px;margin-right: 15px;}
+
+
+
+
+
+
+
+.banner3{background: url(../images/base/s2.jpg) center center no-repeat;background-size:cover;}
+.banner3-bg{max-height: 320px; padding: 80px 0 200px; background: rgba(0,0,0,.68);}
+.banner3-title{}
+.banner3-title h4{color: #fff;font-size: 42px;}
+.banner3-title h4:after{content:"";display: block;height: 3px;width: 2em;background: #fff;margin-top: .5em;}
+@media screen and (min-width: 992px) and (max-width: 1199px){
+.banner3-bg{min-height:500px;}
+.banner3-title h4{font-size: 60px;}
+}
+@media screen and (min-width: 768px) and (max-width: 991px){
+.banner3-bg{min-height:300px;}
+.banner3-title h4{font-size: 50px;}
+}
+@media screen and (min-width: 0) and (max-width: 767px){
+.banner3-bg{min-height:200px;}
+.banner3-title h4{font-size: 40px;}
+}
+
+.hot-news {margin-bottom: 60px;margin-left: 15px;margin-right: 15px;}
+.hot-news ul{padding: 0;margin: 0;}
+.hot-news ul li{line-height: 35px;margin-top: 20px;padding: 0 10px;border-bottom-width:1px; border-bottom-style: dashed;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
+.hot-news ul li span{padding-right: 10px;font-size: 18px;color: #D33D25;vertical-align:middle;}
+
+
+.s31-img{float: left;width: 248px;height: 185px;position: relative;overflow: hidden;}
+.s31-img img{width: 100%;height: 100%;object-fit: cover;transition: all 300ms ease-in-out 0s;}
+.s31-img span{position: absolute;bottom: 10px;left: 10px;color: #fff;}
+.s31-text{padding: 30px;overflow: hidden;}
+.s31-text h4{color: #333;margin-bottom: 20px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
+.s31-text h4 a{color: #333;}
+.s31-text p{line-height: 24px;max-height: 72px;overflow: hidden;margin-bottom: 0;}
+@media screen and (min-width: 0) and (max-width: 767px){
+.s31-img{float: none;width: 100%;margin: 0 auto;}
+}
+
+
+.title20{border-left:8px solid #060D33;padding-left: 20px;margin-bottom: 30px;}
+.title20 h4{font-size: 22px;color: #333;text-transform : uppercase;}
+.title20 h4 a{color: #333;}
+.title20 p{font-size: 16px;color: #333;text-transform : capitalize;}
+.title20 p a{color: #333;}
+@media screen and (min-width: 768px) and (max-width: 991px){
+.title20 h4{font-size: 32px;}
+}
+@media screen and (min-width: 0) and (max-width: 767px){
+.title20 h4{font-size: 24px;}
+}
+
+
+
+
+.new-teg{margin-bottom: 60px;margin-left: 15px;margin-right: 15px;}
+.new-teg-list{}
+.new-teg-list a{display: inline-block;margin-right: 2px;margin-bottom: 15px;line-height: 32px;padding: 0 10px;background: #f5f5f5;color: #333;border-radius: 2px;}
+.new-teg-list a:hover{background: #1276E6;color: #fff;}
+
+
+
+
+
+/*内容页相关文章*/
+.content-relevant-list1{padding: 30px 0;margin: 0 15px;}
+.content-relevant-list1 dl:after{content:"";display:table;clear:both;}
+.content-relevant-list1 dt {margin:30px 0px 15px 0px;font-size:18px;}
+.content-relevant-list1 dt em {padding-right:10px;}
+.content-relevant-list1 dd a {display:block; margin:0px 10px 0px 0px; padding:10px 0px 10px 10px; border-bottom: 1px dashed #ededee;}
+.content-relevant-list1 dd:before {content:"";position:absolute;left:5px;top:20px;width: 5px;height: 5px;background: #060D33;border-radius: 10px;}
+
+/* 可视化中清除边距 */
+#visual-right .cbanner {margin-top:0px;}
+#navbar .nav .dropdown-menu {border-radius: 0px;}
+@media (min-width: 486px) {
+    #navbar .nav .dropdown-menu {
+        border-top: 2px solid #060D33;
+    }
+}
+@media (max-width: 486px) {
+    #navbar .nav .dropdown-menu {
+        padding-top: 10px;
+        margin-left: 20px;
+        border-left: 2px solid #060D33;
+    }
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {background:none;}
+

@@ -1,0 +1,11 @@
+
+.form-link {
+	display:block;
+	border-width:1px;
+	border-style:solid;
+}
+
+.form-link a {
+	border:none;
+	background:none;
+}

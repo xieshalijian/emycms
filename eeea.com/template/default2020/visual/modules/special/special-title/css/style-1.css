@@ -1,0 +1,5 @@
+
+.special-title{position: relative;padding: 30px 0;}
+.special-title h1 { clear:both; display:inline-block;margin:0px 0px 0px 0px;}
+.special-title p { clear:both; display:inline-block; }
+.special-title span {display: block; margin-top: 30px;}

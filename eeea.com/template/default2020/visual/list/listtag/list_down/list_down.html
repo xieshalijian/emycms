@@ -1,0 +1,65 @@
+<link href="{$template_path}/visual/list/listtag/list_down/css/style.css" rel="stylesheet">
+	<div class="column-list-down column-list-down-$_id">
+		<ul>
+			{loop $archives $i $archive}
+			<li>
+				<span>
+					{if $archive['attachment_path']}
+					{attachment_js($archive['aid'])}
+					{else}
+					<a class="btn btn-default visual-content-down-link-btn cmseasyedit" cmseasy-id="nodownload" cmseasy-table="lang" cmseasy-field="template">
+						{lang('nodownload')}
+					</a>
+					{/if}
+				</span>
+				<a title="{$archive['stitle']}" href="{$archive['url']}"  cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="title" class="cmseasyedit ">
+					{$archive['title']}
+				</a>
+			</li>
+			{/loop}
+		</ul>
+	</div>
+
+
+<style>
+	.column-list-down-$_id ul li {
+		border-bottom-style:$_link-border-style;
+		border-bottom-color:$_link-border-color;
+		border-radius: $_link-border-radius;
+	}
+	.column-list-down-$_id ul li:hover {
+		border-bottom-style:$_link-border-hover-style;
+		border-bottom-color:$_link-border-hover-color;
+		border-radius: $_link-border-hover-radius;
+	}
+	.column-list-down-$_id ul li a {
+		font-size:$_link-font-size;
+		color:$_link-color;
+
+		background:$_link-background-color;
+	}
+	.column-list-down-$_id ul li a:hover {
+		color:$_link-hover-color;
+
+		background:$_link-background-hover-color;
+	}
+	.column-list-down-$_id ul li span {
+
+		border-color:$_btn-border-color;
+		border-radius: $_btn-border-radius;
+		background:$_btn-background-color;
+	}
+	.column-list-down-$_id ul li:hover span {
+
+		border-color:$_btn-border-hover-color;
+		border-radius: $_btn-border-hover-radius;
+		background:$_btn-background-hover-color;
+	}
+	.column-list-down-$_id ul li span a {
+		font-size:$_btn-size;
+		color:$_btn-text-color;
+	}
+	.column-list-down-$_id ul li:hover span a {
+		color:$_btn-text-hover-color;
+	}
+</style>

@@ -1,0 +1,737 @@
+{template_user 'head.html'}
+
+<div class="main-right-box">
+    <h5>注册域名</h5>
+    <div class="blank20"></div>
+    <div class="box">
+
+
+            <div class="user-content-table-nav">
+                 <ul>
+                    <li><a href="{url('manage/vhostlist/manage/vhost/type/all')}" <?php if($type=='all'){?>class="active" <?php }?>>注册域名</a></li>
+                    <li><a href="{url('manage/vhostlist/manage/vhost/type/trial')}" <?php if($type=='trial'){?>class="active" <?php }?>>管理域名</a></li>
+                </ul>
+            </div>
+            <div class="blank30"></div>
+
+
+            <div class="index-title">
+                <h4>网站信息</h4>
+            </div>
+            <div class="user-content">
+
+                
+            
+                <form name="domainreg" onsubmit="return CheckInput()" action="domainregok.asp" method="post">
+                    <table border="0" align="center" cellpadding="2" cellspacing="1" width="95%" bgcolor="#e7e7eb">
+                        <tbody><tr bgcolor="#ffffff"><td colspan="2" align="left"><strong>基本信息</strong></td>
+                        </tr>
+                        <tr bgcolor="#FFFFFF">
+                            <td colspan="2" align="left"> <font color="#FF0000">
+                                1、注册单位，即域名的拥有者，请务必填写正确才有保障。 <br>
+                                2、单位注册请填写单位全称，全称必须与您公章上的名称一致。个人注册，请填写真实姓名。 <br>
+                                3、注册成功后，注册单位是无法随意修改的。 (推荐爱名、Webnic，可以自由过户！)<br>
+                                4、注册信息填写(中文)必须包含中文，(英文)必须不能有中文,且必须是半角状态下纯英文字符。 <br>
+                            </font></td>
+                        </tr>
+                        <tr bgcolor="#FFFFFF">
+                            <td width="90"><div align="right">要注册的域名：</div></td>
+                            <td width="435" align="left"><p><strong><font color="#009900">adsfagagaghashga.com </font></strong> </p><input type="hidden" name="domainname" id="domainname" value="adsfagagaghashga"><input type="hidden" name="domaintype" id="domaintype" value="com"></td>
+                        </tr>
+                        <tr bgcolor="#FFFFFF">
+                            <td width="90"><div align="right">注册域名类型：</div></td>
+                            <td align="left"><p><strong><font color="#009900">.com英文国际域名</font> </strong></p><input type="hidden" name="domainenc" id="strdomain" value="adsfagagaghashga.com"></td>
+                        </tr>
+                        <tr bgcolor="#FFFFFF">
+                            <td width="90"><div align="right">选择注册年限：</div></td>
+
+                            <td align="left">
+                                <select class="form-control">
+                                    <option>1年</option>
+                                    <option>2年</option>
+                                    <option>3年</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr bgcolor="#FFFFFF">
+                            <td width="90"><div align="right">注册需要费用：</div></td>
+                            <td align="left"><strong><font color="#009900"><div id="iPayCount">50元</div></font></strong></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+
+
+
+                    <table border="0" align="center" cellpadding="2" cellspacing="1" width="95%" bgcolor="#e7e7eb">
+                        <tbody>
+
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位名称(中文)(个人写姓名)</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"> <b><input type="text" name="reg_OrganizeNameCN" maxlength="60" size="38" value="董云超" class="inputText" onblur="reg_OrganizeNameUK.value=n2py(reg_OrganizeNameCN.value)"></b> 如:XX公司(张三)</td>
+                        </tr>
+
+                        <script language="javascript">
+                            function showcontact()
+                            {
+                                with (document.domainreg) {
+                                    if (reg_contact_type[0].checked){
+
+                                        enid.innerHTML = "身份证号码:";
+
+                                        custom_reg1.value="220322197811089270";
+
+                                    }
+                                    else{
+
+                                        enid.innerHTML = "营业执照或机构代码证号码:";
+
+                                        custom_reg1.value="";
+
+                                    }
+                                }
+                            }
+                        </script>
+                        <tr>
+                            <td bgcolor="#ffffff" align="right"> 注册单类型:</td>
+                            <td bgcolor="#ffffff" align="left"><label><input name="reg_contact_type" id="reg_contact_type0" onclick="showcontact()" type="radio" value="0" checked="" style="border: 0px;margin-left: 3px;">个人用户</label><label><input name="reg_contact_type" id="reg_contact_type1" onclick="showcontact()" type="radio" value="1" style="border: 0px;">企业用户</label></td>
+                        </tr>
+
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right" id="enid">身份证号码:</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"> <b><input type="text" name="custom_reg1" value="220322197811089270" maxlength="80" size="38" class="inputText"></b></td>
+                        </tr>
+
+                        <tr>
+                            <td bgcolor="#ffffff" align="right">单位所属行业:</td>
+                            <td bgcolor="#ffffff" align="left">
+                                <select name="reg_Organizetype" style="width:130px;">
+                                    <option value="S1">党政机关</option>
+                                    <option value="S2">信息咨询与服务</option>
+                                    <option value="S3">社会福利事业</option>
+                                    <option value="S4">税务机构</option>
+                                    <option value="S5">体育运动事业</option>
+                                    <option value="S6">运输业</option>
+                                    <option value="S7">新闻广告媒体</option>
+                                    <option value="S8" selected="">商业企业</option>
+                                    <option value="S9">科研教育</option>
+                                    <option value="S10">房地产</option>
+                                    <option value="S11">邮政快递</option>
+                                    <option value="S12">信息技术</option>
+                                    <option value="S13">制造业</option>
+                                    <option value="S14">水电气公共事业单</option>
+                                    <option value="S15">建筑业</option>
+                                    <option value="S16">农，林，牧，渔业</option>
+                                    <option value="S17">采矿业</option>
+                                    <option value="S18">其他行业</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位名称(英文)(个人写英文名) </div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"> <b><input type="text" name="reg_OrganizeNameUK" maxlength="64" size="38" value="Dong YunChao" class="inputText" onfocus="reg_OrganizeNameUK.value=n2py(reg_OrganizeNameCN.value)"></b> 如:XX(zhang san)</td>
+                        </tr>
+
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册人名称(中文)</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"> <b><input type="text" name="reg_UserNameCN" maxlength="10" size="20" value="董云超" class="inputText" onblur="reg_UserNameUK.value=n2py(reg_UserNameCN.value)"></b> 如:张三</td>
+                        </tr>
+
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册人名称(英文)</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"> <b><input type="text" name="reg_UserNameUK" maxlength="20" size="20" value="Dong YunChao" class="inputText" onfocus="reg_UserNameUK.value=n2py(reg_UserNameCN.value)"></b> 如:zhang san</td>
+                        </tr>
+
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位/用户地址(中文)</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"> <b><input type="text" name="reg_PublicStreetCN" maxlength="50" size="40" value="吉林省四平市九洲城6号楼208室" class="inputText" onblur="reg_PublicStreetUK.value=cc2py(reg_PublicStreetCN.value)"> </b> 如:XX街道</td>
+                        </tr>
+
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位/用户地址(英文)</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"> <b><input type="text" name="reg_PublicStreetUK" maxlength="64" size="40" value="jilinshengsipingshijiuzhoucheng" class="inputText" onfocus="reg_PublicStreetUK.value=cc2py(reg_PublicStreetCN.value)"> </b> 如:XX street</td>
+                        </tr>
+
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位/用户城市(中文)</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"> <b><input type="text" name="reg_PublicCityCN" maxlength="12" size="20" value="四平" class="inputText" onblur="reg_PublicCityUK.value=cc2py(reg_PublicCityCN.value)"> </b> 如:上海</td>
+                        </tr>
+
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位/用户城市(英文)</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"> <b><input type="text" name="reg_PublicCityUK" maxlength="12" size="20" value="Si Ping" class="inputText" onfocus="reg_PublicCityUK.value=cc2py(reg_PublicCityCN.value)"> </b> 如:shang hai</td>
+                        </tr>
+
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位/用户省份(中文)</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left">
+
+                                <select name="reg_PublicProvinceUK" size="1" style="width:130px;" onchange="reg_PublicProvinceCN.value=this.options[this.selectedIndex].label">
+                                    <option label="请选择" value="">请选择</option>
+                                    <option label="安徽" value="Anhui">安徽</option>
+                                    <option label="澳门" value="Macao">澳门</option>
+                                    <option label="北京" value="Beijing">北京</option>
+                                    <option label="重庆" value="Chongqing">重庆</option>
+                                    <option label="福建" value="Fujian">福建</option>
+                                    <option label="甘肃" value="Gansu">甘肃</option>
+                                    <option label="广东" value="Guangdong">广东</option>
+                                    <option label="广西" value="Guangxi">广西</option>
+                                    <option label="贵州" value="Guizhou">贵州</option>
+                                    <option label="海南" value="Hainan">海南</option>
+                                    <option label="河北" value="Hebei">河北</option>
+                                    <option label="黑龙江" value="Heilongjiang">黑龙江</option>
+                                    <option label="河南" value="Henan">河南</option>
+                                    <option label="香港" value="Hongkong">香港</option>
+                                    <option label="湖南" value="Hunan">湖南</option>
+                                    <option label="湖北" value="Hubei">湖北</option>
+                                    <option label="江苏" value="Jiangsu">江苏</option>
+                                    <option label="江西" value="Jiangxi">江西</option>
+                                    <option label="吉林" value="Jilin" selected="">吉林</option>
+                                    <option label="辽宁" value="Liaoning">辽宁</option>
+                                    <option label="内蒙古" value="Neimenggu">内蒙古</option>
+                                    <option label="宁夏" value="Ningxia">宁夏</option>
+                                    <option label="青海" value="Qinghai">青海</option>
+                                    <option label="四川" value="Sichuan">四川</option>
+                                    <option label="山东" value="Shandong">山东</option>
+                                    <option label="山西" value="Shan1xi">山西</option>
+                                    <option label="陕西" value="Shan2xi">陕西</option>
+                                    <option label="上海" value="Shanghai">上海</option>
+                                    <option label="台湾" value="Taiwan">台湾</option>
+                                    <option label="天津" value="Tianjin">天津</option>
+                                    <option label="新疆" value="Xinjiang">新疆</option>
+                                    <option label="西藏" value="Xizang">西藏</option>
+                                    <option label="云南" value="Yunnan">云南</option>
+                                    <option label="浙江" value="Zhejiang">浙江</option>
+                                    <option label="其它" value="Others">其它</option>
+                                </select> 请选择
+
+                                <input name="reg_PublicProvinceCN" type="hidden" value="吉林">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位/用户国家</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left">
+                                <select name="reg_PublicCountryUK" size="1" style="width:130px;" onchange="reg_PublicCountryCN.value=this.options[this.selectedIndex].label">
+                                    <option label="请选择" value="">请选择</option>
+                                    <option label="阿富汗" value="AF">阿富汗</option>
+                                    <option label="阿尔巴尼亚" value="AL">阿尔巴尼亚</option>
+                                    <option label="阿尔及利亚" value="DZ">阿尔及利亚</option>
+                                    <option label="东萨摩亚" value="AS">东萨摩亚</option>
+                                    <option label="安道尔" value="AD">安道尔</option>
+                                    <option label="安哥拉" value="AO">安哥拉</option>
+                                    <option label="安圭拉" value="AI">安圭拉</option>
+                                    <option label="南极洲" value="AQ">南极洲</option>
+                                    <option label="安提瓜和巴布达" value="AG">安提瓜和巴布达</option>
+                                    <option label="阿根廷" value="AR">阿根廷</option>
+                                    <option label="亚美尼亚" value="AM">亚美尼亚</option>
+                                    <option label="阿鲁巴" value="AW">阿鲁巴</option>
+                                    <option label="澳大利亚" value="AU">澳大利亚</option>
+                                    <option label="奥地利" value="AT">奥地利</option>
+                                    <option label="阿塞拜疆" value="AZ">阿塞拜疆</option>
+                                    <option label="巴哈马" value="BS">巴哈马</option>
+                                    <option label="巴林" value="BH">巴林</option>
+                                    <option label="孟加拉国" value="BD">孟加拉国</option>
+                                    <option label="巴巴多斯" value="BB">巴巴多斯</option>
+                                    <option label="白俄罗斯" value="BY">白俄罗斯</option>
+                                    <option label="比利时" value="BE">比利时</option>
+                                    <option label="伯利兹" value="BZ">伯利兹</option>
+                                    <option label="贝宁" value="BJ">贝宁</option>
+                                    <option label="百慕大" value="BM">百慕大</option>
+                                    <option label="不丹" value="BT">不丹</option>
+                                    <option label="玻利维亚" value="BO">玻利维亚</option>
+                                    <option label="波黑" value="BA">波黑</option>
+                                    <option label="博茨瓦纳" value="BW">博茨瓦纳</option>
+                                    <option label="布维岛" value="BV">布维岛</option>
+                                    <option label="巴西" value="BR">巴西</option>
+                                    <option label="英属印度洋领地" value="IO">英属印度洋领地</option>
+                                    <option label="文莱达鲁萨兰国" value="BN">文莱达鲁萨兰国</option>
+                                    <option label="保加利亚" value="BG">保加利亚</option>
+                                    <option label="布基纳法索" value="BF">布基纳法索</option>
+                                    <option label="布隆迪" value="BI">布隆迪</option>
+                                    <option label="柬埔塞" value="KH">柬埔塞</option>
+                                    <option label="喀麦隆" value="CM">喀麦隆</option>
+                                    <option label="加拿大" value="CA">加拿大</option>
+                                    <option label="佛得角" value="CV">佛得角</option>
+                                    <option label="开曼群岛" value="KY">开曼群岛</option>
+                                    <option label="中非共和国" value="CF">中非共和国</option>
+                                    <option label="乍得" value="TD">乍得</option>
+                                    <option label="智利" value="CL">智利</option>
+                                    <option label="中国" value="CN" selected="selected">中国</option>
+                                    <option label="圣诞岛" value="CX">圣诞岛</option>
+                                    <option label="科科斯群岛" value="CC">科科斯群岛</option>
+                                    <option label="哥伦比亚" value="CO">哥伦比亚</option>
+                                    <option label="科摩罗" value="KM">科摩罗</option>
+                                    <option label="刚果" value="CG">刚果</option>
+                                    <option label="库克群岛" value="CK">库克群岛</option>
+                                    <option label="哥斯达黎加" value="CR">哥斯达黎加</option>
+                                    <option label="克罗地亚" value="HR">克罗地亚</option>
+                                    <option label="古巴" value="CU">古巴</option>
+                                    <option label="塞浦路斯" value="CY">塞浦路斯</option>
+                                    <option label="捷克共和国" value="CZ">捷克共和国</option>
+                                    <option label="丹麦" value="DK">丹麦</option>
+                                    <option label="吉布提" value="DJ">吉布提</option>
+                                    <option label="多米尼加联邦" value="DM">多米尼加联邦</option>
+                                    <option label="多米尼加共和国" value="DO">多米尼加共和国</option>
+                                    <option label="东帝汶" value="TP">东帝汶</option>
+                                    <option label="厄瓜多尔" value="EC">厄瓜多尔</option>
+                                    <option label="埃及" value="EG">埃及</option>
+                                    <option label="萨尔瓦多" value="SV">萨尔瓦多</option>
+                                    <option label="赤道几内亚" value="GQ">赤道几内亚</option>
+                                    <option label="爱沙尼亚" value="EE">爱沙尼亚</option>
+                                    <option label="埃塞俄比亚" value="ET">埃塞俄比亚</option>
+                                    <option label="福克兰群岛" value="FK">福克兰群岛</option>
+                                    <option label="法罗群岛" value="FO">法罗群岛</option>
+                                    <option label="斐济" value="FJ">斐济</option>
+                                    <option label="芬兰" value="FI">芬兰</option>
+                                    <option label="前捷克斯洛伐克" value="CS">前捷克斯洛伐克</option>
+                                    <option label="前苏联" value="SU">前苏联</option>
+                                    <option label="法国" value="FR">法国</option>
+                                    <option label="法属欧洲领地" value="FX">法属欧洲领地</option>
+                                    <option label="法属圭亚那" value="GF">法属圭亚那</option>
+                                    <option label="法属南半球领地" value="TF">法属南半球领地</option>
+                                    <option label="加蓬" value="GA">加蓬</option>
+                                    <option label="冈比亚" value="GM">冈比亚</option>
+                                    <option label="格鲁吉亚" value="GE">格鲁吉亚</option>
+                                    <option label="德国" value="DE">德国</option>
+                                    <option label="加纳" value="GH">加纳</option>
+                                    <option label="直布罗陀" value="GI">直布罗陀</option>
+                                    <option label="大不列颠联合王国" value="GB">大不列颠联合王国</option>
+                                    <option label="希腊" value="GR">希腊</option>
+                                    <option label="格陵兰" value="GL">格陵兰</option>
+                                    <option label="格林纳达" value="GD">格林纳达</option>
+                                    <option label="瓜德罗普(法属)" value="GP">瓜德罗普(法属)</option>
+                                    <option label="关岛(美属)" value="GU">关岛(美属)</option>
+                                    <option label="危地马拉" value="GT">危地马拉</option>
+                                    <option label="几内亚比绍" value="GW">几内亚比绍</option>
+                                    <option label="圭亚那" value="GY">圭亚那</option>
+                                    <option label="海地" value="HT">海地</option>
+                                    <option label="洪都拉斯" value="HN">洪都拉斯</option>
+                                    <option label="匈牙利" value="HU">匈牙利</option>
+                                    <option label="冰岛" value="IS">冰岛</option>
+                                    <option label="印度" value="IN">印度</option>
+                                    <option label="印度尼西亚" value="ID">印度尼西亚</option>
+                                    <option label="伊朗" value="IR">伊朗</option>
+                                    <option label="伊拉克" value="IQ">伊拉克</option>
+                                    <option label="爱尔兰" value="IE">爱尔兰</option>
+                                    <option label="以色列" value="IL">以色列</option>
+                                    <option label="意大利" value="IT">意大利</option>
+                                    <option label="象牙海岸" value="CI">象牙海岸</option>
+                                    <option label="牙买加" value="JM">牙买加</option>
+                                    <option label="日本" value="JP">日本</option>
+                                    <option label="约旦" value="JO">约旦</option>
+                                    <option label="哈萨克斯坦" value="KZ">哈萨克斯坦</option>
+                                    <option label="肯尼亚" value="KE">肯尼亚</option>
+                                    <option label="基里巴斯" value="KI">基里巴斯</option>
+                                    <option label="科威特" value="KW">科威特</option>
+                                    <option label="吉尔吉斯斯坦" value="KG">吉尔吉斯斯坦</option>
+                                    <option label="老挝" value="LA">老挝</option>
+                                    <option label="拉脱维亚" value="LV">拉脱维亚</option>
+                                    <option label="黎巴嫩" value="LB">黎巴嫩</option>
+                                    <option label="莱索托" value="LS">莱索托</option>
+                                    <option label="利比里亚" value="LR">利比里亚</option>
+                                    <option label="利比亚" value="LY">利比亚</option>
+                                    <option label="列支敦士登" value="LI">列支敦士登</option>
+                                    <option label="立陶宛" value="LT">立陶宛</option>
+                                    <option label="卢森堡" value="LU">卢森堡</option>
+                                    <option label="马其顿" value="MK">马其顿</option>
+                                    <option label="马达加斯加" value="MG">马达加斯加</option>
+                                    <option label="马拉维" value="MW">马拉维</option>
+                                    <option label="马来西亚" value="MY">马来西亚</option>
+                                    <option label="马尔代夫" value="MV">马尔代夫</option>
+                                    <option label="马里" value="ML">马里</option>
+                                    <option label="马耳他" value="MT">马耳他</option>
+                                    <option label="马绍尔群岛" value="MH">马绍尔群岛</option>
+                                    <option label="马提尼克(法属)" value="MQ">马提尼克(法属)</option>
+                                    <option label="毛利塔尼亚" value="MR">毛利塔尼亚</option>
+                                    <option label="毛里求斯" value="MU">毛里求斯</option>
+                                    <option label="马约特" value="YT">马约特</option>
+                                    <option label="墨西哥" value="MX">墨西哥</option>
+                                    <option label="密克罗尼西亚" value="FM">密克罗尼西亚</option>
+                                    <option label="摩尔多瓦" value="MD">摩尔多瓦</option>
+                                    <option label="摩纳哥" value="MC">摩纳哥</option>
+                                    <option label="蒙古" value="MN">蒙古</option>
+                                    <option label="蒙特塞拉特" value="MS">蒙特塞拉特</option>
+                                    <option label="摩洛哥" value="MA">摩洛哥</option>
+                                    <option label="莫桑比克" value="MZ">莫桑比克</option>
+                                    <option label="缅甸" value="MM">缅甸</option>
+                                    <option label="纳米比亚" value="NA">纳米比亚</option>
+                                    <option label="瑙鲁" value="NR">瑙鲁</option>
+                                    <option label="尼泊尔" value="NP">尼泊尔</option>
+                                    <option label="荷兰" value="NL">荷兰</option>
+                                    <option label="荷兰属地" value="AN">荷兰属地</option>
+                                    <option label="新喀里多尼亚(法属)" value="NC">新喀里多尼亚(法属)</option>
+                                    <option label="新西兰" value="NZ">新西兰</option>
+                                    <option label="尼加拉瓜" value="NI">尼加拉瓜</option>
+                                    <option label="尼日尔" value="NE">尼日尔</option>
+                                    <option label="尼日利亚" value="NG">尼日利亚</option>
+                                    <option label="纽埃" value="NU">纽埃</option>
+                                    <option label="诺福克岛" value="NF">诺福克岛</option>
+                                    <option label="朝鲜" value="KP">朝鲜</option>
+                                    <option label="北马里亚纳群岛" value="MP">北马里亚纳群岛</option>
+                                    <option label="挪威" value="NO">挪威</option>
+                                    <option label="阿曼" value="OM">阿曼</option>
+                                    <option label="巴基斯坦" value="PK">巴基斯坦</option>
+                                    <option label="帕劳" value="PW">帕劳</option>
+                                    <option label="巴拿马" value="PA">巴拿马</option>
+                                    <option label="巴布亚新几内亚" value="PG">巴布亚新几内亚</option>
+                                    <option label="巴拉圭" value="PY">巴拉圭</option>
+                                    <option label="秘鲁" value="PE">秘鲁</option>
+                                    <option label="菲律宾" value="PH">菲律宾</option>
+                                    <option label="皮特克恩岛" value="PN">皮特克恩岛</option>
+                                    <option label="波兰" value="PL">波兰</option>
+                                    <option label="玻利尼西亚(法属)" value="PF">玻利尼西亚(法属)</option>
+                                    <option label="葡萄牙" value="PT">葡萄牙</option>
+                                    <option label="波多黎各" value="PR">波多黎各</option>
+                                    <option label="卡塔尔" value="QA">卡塔尔</option>
+                                    <option label="留尼汪(法属)" value="RE">留尼汪(法属)</option>
+                                    <option label="罗马尼亚" value="RO">罗马尼亚</option>
+                                    <option label="俄罗斯联邦" value="RU">俄罗斯联邦</option>
+                                    <option label="卢旺达" value="RW">卢旺达</option>
+                                    <option label="海伦娜" value="SH">海伦娜</option>
+                                    <option label="圣卢西亚" value="LC">圣卢西亚</option>
+                                    <option label="萨摩亚" value="WS">萨摩亚</option>
+                                    <option label="圣马力诺" value="SM">圣马力诺</option>
+                                    <option label="沙特阿拉伯" value="SA">沙特阿拉伯</option>
+                                    <option label="塞内加尔" value="SN">塞内加尔</option>
+                                    <option label="塞舌尔" value="SC">塞舌尔</option>
+                                    <option label="塞拉利昂" value="SL">塞拉利昂</option>
+                                    <option label="新加坡" value="SG">新加坡</option>
+                                    <option label="斯洛伐克共和国" value="SK">斯洛伐克共和国</option>
+                                    <option label="斯洛文尼亚" value="SI">斯洛文尼亚</option>
+                                    <option label="所罗门群岛" value="SB">所罗门群岛</option>
+                                    <option label="索马里" value="SO">索马里</option>
+                                    <option label="南非" value="ZA">南非</option>
+                                    <option label="韩国" value="KR">韩国</option>
+                                    <option label="西班牙" value="ES">西班牙</option>
+                                    <option label="斯里兰卡" value="LK">斯里兰卡</option>
+                                    <option label="苏丹" value="SD">苏丹</option>
+                                    <option label="苏里南" value="SR">苏里南</option>
+                                    <option label="斯瓦尔巴特" value="SJ">斯瓦尔巴特</option>
+                                    <option label="斯威士兰" value="SZ">斯威士兰</option>
+                                    <option label="瑞典" value="SE">瑞典</option>
+                                    <option label="瑞士" value="CH">瑞士</option>
+                                    <option label="叙利亚" value="SY">叙利亚</option>
+                                    <option label="塔吉克斯坦" value="TJ">塔吉克斯坦</option>
+                                    <option label="坦桑尼亚" value="TZ">坦桑尼亚</option>
+                                    <option label="泰国" value="TH">泰国</option>
+                                    <option label="多哥" value="TG">多哥</option>
+                                    <option label="托克劳" value="TK">托克劳</option>
+                                    <option label="汤加" value="TO">汤加</option>
+                                    <option label="特立尼达和多巴哥" value="TT">特立尼达和多巴哥</option>
+                                    <option label="突尼斯" value="TN">突尼斯</option>
+                                    <option label="土耳其" value="TR">土耳其</option>
+                                    <option label="土库曼斯坦" value="TM">土库曼斯坦</option>
+                                    <option label="凯科斯群岛" value="TC">凯科斯群岛</option>
+                                    <option label="图瓦卢" value="TV">图瓦卢</option>
+                                    <option label="乌干达" value="UG">乌干达</option>
+                                    <option label="乌克兰" value="UA">乌克兰</option>
+                                    <option label="阿联酋" value="AE">阿联酋</option>
+                                    <option label="英国" value="UK">英国</option>
+                                    <option label="美国" value="US">美国</option>
+                                    <option label="乌拉圭" value="UY">乌拉圭</option>
+                                    <option label="美属边远群岛" value="UM">美属边远群岛</option>
+                                    <option label="乌兹别克斯坦" value="UZ">乌兹别克斯坦</option>
+                                    <option label="瓦努阿图" value="VU">瓦努阿图</option>
+                                    <option label="梵蒂冈" value="VA">梵蒂冈</option>
+                                    <option label="委内瑞拉" value="VE">委内瑞拉</option>
+                                    <option label="越南" value="VN">越南</option>
+                                    <option label="维京群岛(英属)" value="VG">维京群岛(英属)</option>
+                                    <option label="维京群岛(美属)" value="VI">维京群岛(美属)</option>
+                                    <option label="西萨摩亚" value="EH">西萨摩亚</option>
+                                    <option label="也门" value="YE">也门</option>
+                                    <option label="南斯拉夫" value="YU">南斯拉夫</option>
+                                    <option label="扎伊尔" value="ZR">扎伊尔</option>
+                                    <option label="赞比亚" value="ZM">赞比亚</option>
+                                    <option label="津巴布韦" value="ZW">津巴布韦</option>
+                                </select> 请选择
+                                <input name="reg_PublicCountryCN" type="hidden" value="中国">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位/用户邮编</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"> <b><input type="text" name="reg_PublicZipCode" maxlength="6" size="20" value="136000" class="inputText"> </b></td>
+                        </tr>
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位电话</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"><input type="text" value="86" name="reg_UserPhoneInter" maxlength="5" size="5" class="inputText"> -
+                                <input type="text" name="reg_UserPhoneArea" maxlength="5" size="5" value="0434" class="inputText"> -
+                                <input type="text" name="reg_UserPhoneNumber" maxlength="12" size="12" value="6063021" class="inputText"> -
+                                <input type="text" name="reg_UserPhoneExt" value="" maxlength="6" size="5" class="inputText">
+                                &nbsp; <br>
+                                国家区号 - 地区区号 -&nbsp;&nbsp;&nbsp;&nbsp; 电话号码(7-8位)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 分机号码 </td>
+                        </tr>
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位传真</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"><input type="text" value="86" name="reg_UserFaxInter" maxlength="5" size="5" class="inputText"> -
+                                <input type="text" name="reg_UserFaxArea" size="5" maxlength="5" value="0434" class="inputText"> -
+                                <input type="text" name="reg_UserFaxNumber" maxlength="12" size="12" value="6063021" class="inputText"> -
+                                <input type="text" name="reg_UserFaxExt" value="" maxlength="6" size="5" class="inputText">
+                                &nbsp; <br>
+                                国家区号 - 地区区号 -&nbsp;&nbsp;&nbsp;&nbsp; 传真号码(7-8位)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 分机号码 </td>
+                        </tr>
+                        <tr>
+                            <td width="40%" bgcolor="#ffffff"><div align="right">注册单位负责人电子邮件</div></td>
+                            <td width="60%" bgcolor="#ffffff" align="left"> <b><input type="text" name="reg_UserEmail" maxlength="40" size="30" value="625569327@qq.com" class="inputText"> </b></td>
+                        </tr>
+
+                        </tbody></table><br>
+                    <input type="hidden" name="category" value="domain">
+                    <input type="hidden" name="action" value="activate">
+                    <input type="hidden" name="productid" value="">
+                    <input type="hidden" name="admin_same_as" value="2">
+                    <input type="hidden" name="tech_same_as" value="2">
+                    <input type="hidden" name="bill_same_as" value="2">
+                    <table border="0" align="center" cellpadding="2" cellspacing="1" width="95%" bgcolor="#e7e7eb">
+                        <tbody><tr bgcolor="#ffffff">
+                            <td bgcolor="#ffffff" align="center"><img src="../Images/newest.gif" width="20" height="20"> <a href="/domain_1.html" target="_blank"><font color="#0000ff">国际域名注册协议</font></a> <img src="../Images/newest.gif" width="20" height="20"> <a href="/domain_2.html" target="_blank"><font color="#0000ff">中国国家顶级域名注册协议</font></a><br>
+                                <label for="order"><input id="order" type="checkbox" class="input1" value="3" name="bmode">先下订单</label><label for="check"><input name="agreement" id="check" type="checkbox" class="input1" value="1">
+                                    我已经阅读、理解并接受域名注册协议　</label></td>
+                        </tr>
+                        </tbody></table><br>
+                    <div id="dd" align="center">
+                        <input type="hidden" name="enc" id="enc" value="E">
+                        <input type="hidden" name="strDomain" value="adsfagagaghashga.com">
+                        <input type="hidden" value="OK" name="IFOK"><input type="hidden" value="" name="chk">
+
+                        <input type="submit" name="Submit1" value="下一步" class="bt">
+                    </div>
+                </form>
+
+
+
+
+            </div>
+            <div class="blank30"></div>
+
+
+        </div>
+    </div>
+</div>
+
+<div id="vue-app" style="display: none; padding: 10px;" class="domain-manage">
+    <div>
+        <form class="form-inline">
+            <div class="form-group" :class="errors.has('new_domain')?'has-error':''">
+                <input v-model="new_domain" v-validate="'required'" type="text" class="form-control" name="new_domain" id="new_domain" :placeholder="errors.has('new_domain')?errors.first('new_domain'):'www.*****.com'">
+            </div>
+            <button @click="addDomain" type="button" class="btn btn-warning">添加域名</button>
+        </form>
+    </div>
+    <div class="blank30"></div>
+    <div>
+        <table width="100%" class="table table-hover">
+            <tr>
+                <th width="80%">域名</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(item,index) in domainList">
+                <td width="80%">{{item.name}}</td>
+                <td><span @click="delDomain(index,item)" title="删除"><i class="glyphicon glyphicon-trash"></i></span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="blank30"></div>
+    <div>
+        <form class="form-inline">
+            <div class="form-group">
+                <label>PHP版本</label>
+                <select v-model="phpversion" class="form-control">
+                    <option v-for="option in options" :value="option.version">
+                        {{ option.name }}
+                    </option>
+                </select>
+            </div>
+            <button @click="changePHPVersion" type="button" class="btn btn-danger">切换</button>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">续费</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" name="vid" id="vid" value="" />
+                    <input type="hidden" name="conn" id="conn" value="" />
+                    <h5>当前账户余额 : {getmenoy()}元</h5>
+                    <h5>续费站点 : <span id="sitedomain"></span></h5>
+                    <div class="form-group">
+                        <label for="timelong">时长</label>
+                        <select id="timelong" name="timelong" class="form-control">
+                            <option value="1">1年</option>
+                            <option value="2">2年</option>
+                            <option value="3">3年</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="btn_pay" type="button" class="btn btn-primary">续费</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="blank30"></div>
+<script src="{$base_url}/common/js/layer/layer.js"></script>
+<script flashpath="{$base_url}/common/js/hprose/" src="{$base_url}/common/js/hprose/hprose.js"></script>
+<script src="{$base_url}/common/plugins/guestbook/vue.js"></script>
+<script src="{$base_url}/common/plugins/guestbook/vee-validate.min.js"></script>
+<script src="{$base_url}/common/plugins/guestbook/vee-validate-zh_CN.js"></script>
+<script src="{$base_url}/common/js/shopping.js"></script>
+<script src="{$base_url}/common/plugins/vhost/js/vhost.js"></script>
+<script>
+    Vue.use(VeeValidate, {
+        events: 'blur',
+        locale: 'zhCN',
+        //errorBagName: 'errorBags', // change if property conflicts.
+        //fieldsBagName: 'fieldBags',
+        dictionary: {
+            zhCN:__vee_validate_locale__zh_CN.js
+        }
+    });
+
+    var dictionary = {
+        zhCN: {
+            messages:{
+                required : (field) => field + '不能为空!'
+            },
+            attributes: {
+                new_domain: '域名'
+            }
+        }
+    };
+    VeeValidate.Validator.localize(dictionary);
+
+
+    var vue_app = new Vue({
+        el: '#vue-app',
+        data : {
+            domainList : [],
+            visible: false,
+            siteid : '',
+            sitename : '',
+            conn : '',
+            new_domain : '',
+            phpversion : '',
+            options : [],
+
+        },
+        mounted :function () {
+            //this.getCateList();
+        },
+        methods : {
+            getDomainList : function (siteid,sitename,conn) {
+                this.errors.items.length = 0;
+                this.siteid = siteid;
+                this.sitename = sitename;
+                this.conn = conn;
+                _this = this;
+                client.getDomain(siteid,conn,function(result) {
+                    if(result)
+                        _this.domainList = result;
+                });
+            },
+            getPHPVersionList : function(siteid,sitename,conn){
+                this.siteid = siteid;
+                this.sitename = sitename;
+                this.conn = conn;
+                _this = this;
+                client.getPHPVersionList(siteid,sitename,conn,function(result) {
+                    if(result)
+                        _this.options = result;
+                });
+                client.getSitePHPVersion(siteid,sitename,conn,function(result) {
+                    _this.phpversion = result.phpversion;
+                });
+            },
+            changePHPVersion:function () {
+                client.setPHPVersion(this.sitename,this.phpversion,conn,function(result) {
+                    alert(result.msg);
+                });
+            },
+            addDomain : function () {
+                let _this = this;
+                this.$validator.validate().then(result => {
+                    if (result) {
+                        client.addDomain(this.siteid,this.sitename,this.new_domain,this.conn,function(result) {
+                            if(result.status == true) {
+                                _this.getDomainList(_this.siteid, _this.sitename, _this.conn);
+                            }
+                            alert(result.msg);
+                        });
+                    }
+                });
+            },
+            delDomain : function (index,row) {
+                console.log(index);
+                console.log(row);
+                let _this = this;
+                if(row.pid && confirm('确定要删除吗?')) {
+                    client.delDomain(row.pid,this.sitename,row.name,this.conn,function(result) {
+                        //alert(result);
+                        if(result.status == true){
+                            alert(result.msg);
+                            _this.getDomainList(_this.siteid,_this.sitename,_this.conn);
+                        }else{
+                            alert(result.msg);
+                        }
+                    });
+                }
+
+            },
+
+        }
+    })
+</script>
+
+<script>
+    $(function () {
+        $('[data-target=\'#payModal\']').click(function () {
+            $('#sitedomain').html($(this).data('sitedomain'));
+            $('#vid').val($(this).data('siteid'));
+            $('#conn').val($(this).data('conn'));
+            //console.log($(this).data('aid'));
+            var def = client.getYear($(this).data('aid'),$(this).data('conn'));
+            def = def.then(function (res) {
+                $('#timelong').empty();
+                for(i in res){
+                    $('#timelong').append('<option value="'+i+'">'+res[i]+'</option>');
+                }
+            },function (err) {
+                alert(err);
+            });
+        });
+        $('#btn_pay').click(function () {
+            siteid = $('#vid').val();
+            conn = $('#conn').val();
+            timelong = $('#timelong').val();
+            if(!siteid){
+                alert('参数错误!');
+                return;
+            }
+            var def = client.Renew(siteid,timelong,conn);
+            def = def.then(function (res) {
+                //console.log(res);
+                //return;
+                if(res.CODE != 'ok'){
+                    throw res;
+                }else{
+                    window.location.reload();
+                }
+            },function (err) {
+                alert(err);
+            });
+        });
+    });
+</script>
+
+{template_user 'foot.html'}

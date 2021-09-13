@@ -1,0 +1,114 @@
+<link href="{$template_path}/visual/list/listtypetag/list_loop/css/style.css" rel="stylesheet">
+<div class="type-list-loop type-list-loop-$_id">
+	{loop type($typeid) $t}
+	<div class="type-list-loop-title">
+		<p cmseasy-id="{$t['typeid']}" cmseasy-table="type" cmseasy-field="subtitle" class="cmseasyedit column-htmldir">
+			{$t['subtitle']}
+		</p>
+		<h4>
+			<a title="{$t['typename']}" href="{category::url($t['typeid'])}" cmseasy-id="{$t['typeid']}" cmseasy-table="type" cmseasy-field="typename" class="cmseasyedit">
+				{$t['typename']}
+			</a>
+		</h4>
+	</div>
+	<div class="type-list-loop-list">
+		<div class="row">
+		{loop archive(0,$t['typeid'],0,'0,0,0',$_title-number,'aid',$_list-number,false,0) $i $archive}
+
+			{if $_align-number == 6}
+			{if $i%2==0 && $i>0}
+			<div class="clearfix"></div>
+			{/if}
+			{elseif $_align-number == 4}
+			{if $i%3==0 && $i>0}
+			<div class="clearfix"></div>
+			{/if}
+			{elseif $_align-number == 3}
+			{if $i%4==0 && $i>0}
+			<div class="clearfix"></div>
+			{/if}
+			{elseif $_align-number == 2}
+			{if $i%6==0 && $i>0}
+			<div class="clearfix"></div>
+			{/if}
+			{else}
+			<div class="clearfix"></div>
+			{/if}
+
+			<div class="col-sm-$_align-number">
+		<div class="type-list-loop-item">
+			<div class="type-list-loop-date">
+				<span>
+					{=sdate($archive['adddate'],'d')}
+				</span>
+				<p>
+					{=sdate($archive['adddate'],'Y-m')}
+				</p>
+			</div>
+			<div class="type-list-loop-text">
+				<h4>
+					<a title="{$archive['stitle']}" href="{$archive['url']}" cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="title" class="cmseasyedit ">
+						{$archive['title']}
+					</a>
+				</h4>
+				<p cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="intro" class="cmseasyedit textarea">
+					{cut(strip_tags($archive['introduce']),$_intro-number)}
+				</p>
+			</div>
+		</div>
+		</div>
+		{/loop}
+		</div>
+	</div>
+	<div class="blank30"></div>
+	{/loop}
+	<div class="clearfix"></div>
+</div>
+
+<style>
+	.type-list-loop-$_id .type-list-loop-item {
+		background:$_background-color;
+		border-color:$_background-border-color;
+	}
+	.type-list-loop-$_id .type-list-loop-item:hover {
+		background:$_background-hover-color;
+		border-color:$_background-border-hover-color;
+	}
+	.type-list-loop-$_id .type-list-loop-title h4 {
+		text-align: $_text-align;
+		font-size:$_title-size;
+		color:$_title-color;
+	}
+
+	.type-list-loop-$_id .type-list-loop-title p {
+		font-size:$_subtitle-size;
+		color:$_subtitle-color;
+		text-align: $_text-align;
+	}
+
+	.type-list-loop-$_id .type-list-loop-text h4 a {
+		font-size:$_link-font-size;
+		color:$_link-color;
+		border-color:$_link-border-color;
+		border-radius: $_link-border-radius;
+		background:$_link-background-color;
+	}
+	.type-list-loop-$_id .type-list-loop-item:hover .type-list-loop-text h4 a {
+		color:$_link-hover-color;
+		border-color:$_link-border-hover-color;
+		border-radius: $_link-border-hover-radius;
+		background:$_link-background-hover-color;
+	}
+	.type-list-loop-$_id .type-list-loop-item:hover .type-list-loop-date span,
+	.type-list-loop-$_id .type-list-loop-item:hover .type-list-loop-date p {
+		color:$_link-hover-color;
+	}
+	.type-list-loop-$_id .type-list-loop-text p {
+		font-size:$_p-size;
+		color:$_p-color;
+	}
+	.type-list-loop-$_id .type-list-loop-item:hover .type-list-loop-text p {
+		color:$_p-hover-color;
+	}
+</style>
+

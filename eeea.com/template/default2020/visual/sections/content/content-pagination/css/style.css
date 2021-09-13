@@ -1,0 +1,14 @@
+
+
+.content-pagination span {
+    padding: 5px 14px;
+    border-width:1px;
+    border-style:solid;
+    max-width:45%;
+}
+.content-pagination .content-archivep {
+    float:left;
+}
+.content-pagination .content-archiven {
+    float:right;
+}

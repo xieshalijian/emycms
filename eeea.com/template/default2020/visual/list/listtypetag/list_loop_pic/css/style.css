@@ -1,0 +1,43 @@
+
+
+.type-list-loop-pic-title {margin: 0 15px 40px;}
+.type-list-loop-pic-title p {margin-bottom: 0;}
+
+
+.type-list-loop-pic-item {
+    margin-bottom: 40px;
+    border-width:1px;
+    border-style:solid;
+    padding:0px 0px 15px 0px;
+}
+
+.type-list-loop-pic-text {
+    text-align:left;
+    overflow: hidden;
+    padding:10px;
+}
+.type-list-loop-pic-text h4 {
+    margin: 15px 0px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.type-list-loop-pic-text p {
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+
+.type-list-loop-pic-item:hover .type-list-loop-pic-text p {
+    opacity: .9;
+}
+
+.type-list-loop-pic-more {
+    text-align:center;
+}
+.type-list-loop-pic-more a {
+    padding:5px 15px;
+    border-width:1px;
+    border-style:solid;
+}

@@ -1,0 +1,16 @@
+
+.content-comment {
+    border-width:1px;
+    border-style:solid;
+}
+
+.content-comment .form-control {
+    border-width:1px;
+    border-style:solid;
+}
+
+.content-comment .comment_btn {
+    border-width:1px;
+    border-style:solid;
+    padding:5px 15px;
+}

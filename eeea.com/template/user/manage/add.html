@@ -1,0 +1,194 @@
+{template_user 'head.html'}
+
+<div class="index-bg">
+	<div class="container">
+		<div class="section2">
+
+		<div class="index-title">
+				<h4>{lang('addcontent')}</h4>	
+			</div>
+
+
+<div class="user-content">
+
+    <script type="text/javascript" charset="utf-8" src="{$base_url}/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="{$base_url}/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="{$base_url}/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" charset="utf-8" src="{$base_url}/ueditor/addCustomizeButton.js"></script>
+
+
+<script>
+    function checkform() {
+        if(document.form1.catid.value=="0") {
+            alert('{lang('pselectcat')}');
+            document.form1.catid.focus();
+            return false;
+        }
+        if(!document.form1.title.value) {
+            alert('{lang('pinput_title')}');
+            document.form1.title.focus();
+            return false;
+        }
+        {loop $field $f}
+<?php
+
+if(!preg_match('/^my_/',$f['name']) || !$f['notnull']) {
+    //unset($field[$f[name]]);
+    continue;
+}
+?>
+        if(!document.form1.{$f['name']}.value){
+            alert("{lang('pinput')}<?php echo setting::$var['archive'][$f['name']]['cname']; ?>");
+            $("#lm7").css("display","block");
+            document.form1.{$f['name']}.focus();
+            return false;
+        }
+        {/loop}
+        return true;
+    }
+</script>
+
+
+
+<form method="post" name="form1" action="<?php if(front::$act=='edit') $id="/id/".$data[$primary_key]; else $id=''; echo modify("/act/".front::$act."/manage/".$manage.$id);?>" enctype="multipart/form-data" onsubmit="return checkform();">
+
+    <input type="hidden" name="onlymodify" value=""/>
+    
+  
+
+    <script>
+        $(document).ready(function(){
+            $("#catid").change( function(){
+                get_field($("#catid").val());
+            });
+        });
+		function getEditor(name) {
+	return FCKeditorAPI.GetInstance(name);
+}
+        function attachment_delect(id) {
+            $.ajax({
+                url: '{url('tool/deleteattachment',false)}&id='+id,
+                type: 'GET',
+                dataType: 'text',
+                timeout: 1000,
+                error: function(){
+                    //	alert('Error loading XML document');
+                },
+                success: function(data){
+                    document.form1.attachment_id.value=0;
+                    get('attachment_path').innerHTML='';
+                    get('file_info').innerHTML='';
+                }
+            });
+        }
+
+        
+    </script>
+
+
+
+
+
+  <div class="clearfix form-group">
+    <label>{lang('addcategory')}</label>
+      <select id="catid" name="catid" class="form-control select catid">
+          <option value="0" selected="">{lang_admin('please_choose')}...</option>
+      </select>
+  </div>
+    <script>
+        $(function () {
+            if($('#catid').length >0){
+                //加载栏目下拉
+                var getsearch_catid_url='/index.php?case=archive&act=getsearch_catid&ajax=1&shopping=0';
+                $.ajax({
+                    type: "get",
+                    url: getsearch_catid_url,
+                    async: true,
+                    success: function (data) {
+                        $('#catid').html(data);
+                        getsearch_catid_static=true;
+                    }
+                });
+            };
+        });
+    </script>
+
+  <div class="clearfix form-group">
+    <label>{lang('addtype')}</label>
+    {form::getform('typeid',$form,$field,$data,'class="input"')}
+  </div>
+
+  <div class="clearfix form-group">
+    <label>{lang('title')}</label>
+{form::getform('title',$form,$field,$data,'class="input"')}
+  </div>
+
+    <div class="clearfix form-group" style="display: none">
+        {form::getform('langid',$form,$field,$data,'class="input"')}
+    </div>
+
+
+
+
+
+<div class="clearfix form-group">
+    <label>{lang('content')}</label>
+        <div class="clearBoth" style="background:none;">
+            <script id="content" name="content" type="text/plain" style="width:100%;max-height:500px;"></script>
+			 <script type="text/javascript">
+				window.UEDITOR_HOME_URL = "{$base_url}/ueditor/";
+                $(function(){
+                    var ue_content = UE.getEditor('content',{
+                        toolbars: [
+                            ['fullscreen', 'source', '|','undo', 'redo', '|',
+                                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                                'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+                                'directionalityltr', 'directionalityrtl', 'indent', '|',
+                                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+                                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                                'simpleupload', 'music', 'attachment', 'map','gmap', '|',
+                                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows']
+                        ],
+                        autoHeightEnabled : false
+                    });
+				});
+
+			</script>
+			<div style="width: 100%;margin-top: 0px;">
+			<div class="fieldset flash" id="fsUploadProgress">
+			<span class="legend"></span>
+		</div>
+		<div id="divStatus"></div>
+		</div>
+		<div class="blank30"></div>
+        </div>
+    </div>
+
+	<style type="text/css">
+		#content {height:300px;}
+	</style>
+<div class="blank5"></div>
+
+    <div class="clearBoth">
+        <strong>{lang('tag')}</strong>
+        <div class="clearBoth" style="background:none;">
+            <div style="width:99%;">
+                {form::getform('tag',$form,$field,$data)}
+            </div>
+        </div>
+
+
+
+   
+    <div class="blank30"></div>
+    <input type="submit" name="submit" value=" {lang('submit_on')} " class="btn btn-primary" />
+
+</form>
+<div class="blank10"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="blank30"></div>
+{template_user 'foot.html'}

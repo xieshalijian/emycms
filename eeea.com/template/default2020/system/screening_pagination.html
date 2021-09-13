@@ -1,0 +1,31 @@
+<nav>
+<ul class="pagination">
+	{if ($record_count==$page || $record_count==0)}
+		<li class="active"><a>1</a></li>
+	{/if}
+    {if $page>1}
+    <li><a href="{modify('')}{$articlesWhere}&page={=$page-1}"><span aria-hidden="true">«</span></a></li>
+    {/if}
+	<?php
+	$index=0;
+	if($record_count<10){
+		$indexstart=1;
+	}else{
+		$indexstart=($page+10)<$record_count?$page:($record_count-10);
+	}
+	for($i=$indexstart;$i<=$record_count;$i++){
+	$index++;
+		?>
+	{if $index<=10}
+		{if $i==$page}
+			<li class="active"><a>{$i}</a></li>
+		{else}
+			<li><a href="{modify('')}{$articlesWhere}&page={$i}">{$i}</a></li>
+		{/if}
+	{/if}
+	<?php } ?>
+	{if ($page+1)<=$record_count}
+		<li><a href="{modify('')}{$articlesWhere}&page={=$page+1}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+	{/if}
+</ul>
+</nav>

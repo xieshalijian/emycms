@@ -1,0 +1,16 @@
+
+.contact-columns{position: relative;}
+.contact-columns .view {position: relative; z-index:15;}
+.contact-columns:before{content:"";display: block;z-index: 1;width: 100%;height: 140px;position: absolute;left: 0;right: 0;bottom: 0; background:#fff; }
+
+.contact-columns-left{padding:50px;overflow:hidden}
+.contact-columns-left h4{line-height:35px;margin:0}
+.contact-columns-left span{text-transform:uppercase;line-height:25px}
+.contact-columns-left p{line-height:32px;margin-bottom:20px;margin-top:15px;height:108px;overflow:hidden}
+.contact-columns-left a.more{display:inline-block;padding:5px 30px;text-transform:uppercase;border-width:1px; border-style:solid; box-shadow:0 5px 15px 0 #eee; }
+
+@media screen and (min-width: 0) and (max-width: 767px){
+    .contact-columns {background:none !important;}
+    .contact-columns-left{padding: 20px;}
+    .contact-columns-left p {height: auto !important;}
+}

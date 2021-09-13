@@ -1,0 +1,72 @@
+<link href="{$template_path}/visual/list/listtypetag/list_page/css/style.css" rel="stylesheet">
+
+<div class="type-list-page type-list-page-$_id">
+	<h1 class="cmseasyedit $_text-align" cmseasy-id="{$type['typeid']}" cmseasy-table="type" cmseasy-field="typename">
+		{$type['typename']}
+	</h1>
+	<div class="visual-level clearfix"></div>
+	<h5 class="cmseasyedit $_text-align" cmseasy-id="{$type['typeid']}" cmseasy-table="type" cmseasy-field="subtitle">
+		{$type['subtitle']}
+	</h5>
+
+		<p class="visual-print-tools text-right">
+			<a href="javascript:CallPrint('print');">
+				<i class="glyphicon glyphicon-print"></i>
+			</a>
+			<a href="javascript:doZoom(14)">
+        <span class="column-title cmseasyedit" cmseasy-id="small" cmseasy-table="lang" cmseasy-field="template">
+        {lang('small')}
+            </span>
+			</a>
+			<a href="javascript:doZoom(18)">
+        <span class="column-title cmseasyedit" cmseasy-id="middle" cmseasy-table="lang" cmseasy-field="template">
+        {lang('middle')}
+            </span>
+			</a>
+			<a href="javascript:doZoom(20)">
+        <span class="column-title cmseasyedit" cmseasy-id="big" cmseasy-table="lang" cmseasy-field="template">
+        {lang('big')}
+            </span>
+			</a>
+		</p>
+
+	<div cmseasy-id="{$type['typeid']}" cmseasy-table="type" cmseasy-field="typecontent" class="cmseasyedit content clearfix typecontent">
+		{$type['typecontent']}
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+<style>
+
+	.type-list-page-$_id {
+		background:$_background-color;
+		border-color:$_background-border-color;
+	}
+	.type-list-page-$_id:hover {
+		background:$_background-hover-color;
+		border-color:$_background-border-hover-color;
+	}
+	.type-list-page-$_id h1 {
+		display: block !important;
+		font-size:$_title-size;
+		color:$_title-color;
+	}
+	.type-list-page-$_id h1:hover {
+		color:$_title-hover-color;
+	}
+	.type-list-page-$_id h5 {
+		display: block !important;
+		font-size:$_subtitle-size;
+		color:$_subtitle-color;
+	}
+	.type-list-page-$_id h5:hover {
+		color:$_subtitle-hover-color;
+	}
+	.type-list-page-$_id .typecontent {
+		font-size:$_p-size;
+		color:$_p-color;
+	}
+	.type-list-page-$_id .typecontent:hover {
+		color:$_p-hover-color;
+	}
+</style>

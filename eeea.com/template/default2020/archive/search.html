@@ -1,0 +1,141 @@
+{template 'header.html'}
+<div class="category-first-degree-banner clearfix">
+	<div class="category-first-degree-banner-img">
+		<img class="cmseasyeditimg" src="{get('cslide_pic1')}">
+	</div>
+	<div class="category-first-degree-banner-title category-first-degree-banner-title-$_id">
+		<div class="container  $_text-align">
+			<h1 cmseasy-id="{$catid}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit">
+				{if count($articles)<=0}
+				{lang('no_search_results')}	[ {$keyword} ]
+				{else}
+				[ {$keyword} ]{lang('searchresults')}
+				{/if}
+			</h1>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<style>
+
+	.category-first-degree-banner {position: relative; overflow:hidden;height: 250px;
+		background: #06276a;}
+	.category-first-degree-banner .category-first-degree-banner-img {position: relative; z-index: 0;height:100%;text-align:center;}
+	.category-first-degree-banner .category-first-degree-banner-img img {width:100% !important;object-fit:cover;min-height:100%;}
+	.category-first-degree-banner {position: relative; overflow:hidden;}
+
+	.category-first-degree-banner .category-first-degree-banner-title {position: absolute; top:50%;transform: translateY(-50%) !important; width:100%; z-index: 2;}
+	.category-first-degree-banner .category-first-degree-banner-title h1 {display:inline-block; line-height:1.8; padding-bottom:5px;font-size: 30px;
+		color: #ffffff;}
+	.category-first-degree-banner .category-first-degree-banner-title p {display:inline-block;font-size: 14px;
+		color: #ffffff;}
+	@media (min-width:768px) {
+		.category-first-degree-banner .category-first-degree-banner-title p {
+			width:60%;
+		}
+	}
+	@media (max-width:768px) {
+		.category-first-degree-banner {height:auto !important;}
+	}
+	.category-pagination .pagination li a {
+		display: inline-block;
+		height: 38px;
+		border-width: 1px;
+		border-style: solid;
+		text-decoration: none;
+		margin: 0px 5px 10px 0;
+		padding: 7px 14px;
+		border-radius: 0px;
+	}
+	.category-pagination .pagination .btn-primary, .category-pagination .pagination li.active a {
+		color: #ffffff !important;
+		border-color: #06276a !important;
+		border-radius: 0px !important;
+		background: #06276a !important;
+	}
+</style>
+<!-- 内页随机图片 -->
+
+<!-- 中部开始 -->
+<div class="container list-container">
+	<div class="blank30"></div>
+	<!-- 面包屑导航开始 -->
+	{template 'position.html'}
+	<!-- 面包屑导航结束 -->
+	<div class="row column">
+		<div class="col-md-9 clo-xs-12">
+			{if count($articles)<=0}
+			<div class="blank30"></div>
+			<div class="blank30"></div>
+			<div class="text-center">
+				<h2>{lang('no_search_results')}</h2>
+			</div>
+			<div class="blank30"></div>
+			<div class="blank30"></div>
+			{else}
+			<!-- 内容列表开始 -->
+			<div class="blank30"></div>
+			<div class="column-list-text">
+				{loop $articles $article}
+				{cb_data($article)}
+				<div class="column-list-text-item">
+					<div class="column-list-text-date">
+						<span>
+							{=sdate($article['adddate'],'d')}
+						</span>
+						<p>
+							{=sdate($article['adddate'],'Y-m')}
+						</p>
+					</div>
+					<div class="column-list-text-text">
+						<h4>
+							<a title="{$article['stitle']}" href="{$article['url']}" >
+								<?php if($keyword) echo str_replace($keyword,"<font style=color:red;font-weight:bold;>$keyword</font>",$article['title']); else { ?>{$article['title']}<?php } ?>
+							</a>
+						</h4>
+						<p>
+							{cut(strip_tags($article['introduce']),66)}
+						</p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				{/loop}
+			</div>
+			<!-- 内容列表结束 -->
+			<!-- 内容列表分页开始 -->
+			<div class="category-pagination">
+				{if isset($record_count)} {search_pagination($page,$record_count)} {/if}
+			</div>
+			{/if}
+		</div>
+		<div class="col-md-3 clo-xs-12">
+			<div class="blank30"></div>
+			<div class="title20">
+				<p>
+					Retrieval condition
+				</p>
+				<h4>
+					{lang('search_by_time')}
+				</h4>
+			</div>
+			<div class="search-by-time">
+				<button class="btn btn-default" type="button"  onclick="window.location.href ='{url('archive/search/keyword/'.$keyword)}&searchtype=0';" {if $searchtype==0 || !$searchtype } action {/if}>
+				{lang('all_time')}
+				</button>
+				<button class="btn btn-default" type="button"  onclick="window.location.href ='{url('archive/search/keyword/'.$keyword)}&searchtype=3';" {if $searchtype==3 } action {/if}>
+				{lang('this_year')}
+				</button>
+				<button class="btn btn-default" type="button"  onclick="window.location.href ='{url('archive/search/keyword/'.$keyword)}&searchtype=2';" {if $searchtype==2 } action {/if}>
+				{lang('this_month')}
+				</button>
+				<button class="btn btn-default" type="button"  onclick="window.location.href ='{url('archive/search/keyword/'.$keyword)}&searchtype=1';" {if $searchtype==1 } action {/if}>
+				{lang('this_week')}
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="blank30"></div>
+	<!-- 内容列表分页结束 -->
+</div>
+<div class="blank30"></div>
+{template 'footer.html'}

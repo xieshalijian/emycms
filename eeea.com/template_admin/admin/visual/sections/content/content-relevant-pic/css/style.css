@@ -1,0 +1,11 @@
+
+
+.content-relevant .content-relevant-list-pic-text h4 {margin:15px 0px;}
+.content-relevant .content-relevant-list-pic-more {
+    text-align:center;
+}
+.content-relevant .content-relevant-list-pic-more a {
+    padding:4px 14px;
+    border-width:1px;
+    border-style:solid;
+}

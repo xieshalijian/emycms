@@ -1,0 +1,34 @@
+{template 'header.html'}
+
+{template 'system/random_jpg.html'}
+<div class="list-title list-title2">
+</div>
+
+<div class="container">
+
+
+    <form action="<?php echo uri();?>" id="consumption" name="consumption" method="post" onsubmit="return check()">
+
+
+        <div id="step1" >
+            
+            <div class="form-group">
+                <label for="{lang('logistics_document_number')}">{lang('logistics_document_number')}:<span style="color: red">{$logisticCode}</span></label>
+            </div>
+
+            <div class="container">
+                    <label for="{lang('logistics_information')}">{lang('logistics_information')}：</label><br/>
+                    <font>{$str}</font>
+                </div>
+            </div>
+
+</form>
+
+<div class="blank30"></div>
+
+</div>
+
+
+
+
+{template 'footer.html'}

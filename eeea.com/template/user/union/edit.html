@@ -1,0 +1,70 @@
+{template_user 'head.html'}
+
+<div class="index-bg">
+    <div class="container">
+        <div class="section2">
+
+            <div class="user-content-table-nav">
+                <ul>
+                    <li><a href="{url('union/stats/manage/union')}">{lang('stats')}</a></li>
+                    <li><a href="{url('union/getcode/manage/union')}">{lang('access_code')}</a></li>
+                    <li><a href="{url('union/visit/manage/union')}">{lang('access_statistics')}</a></li>
+                    <li><a href="{url('union/reguser/manage/union')}">{lang('registered_users')}</a></li>
+                    <li><a href="{url('union/pay/manage/union')}">{lang('promotion_of_settlement')}</a></li>
+                    <li><a class="active" href="{url('union/edit/manage/union')}">{lang('edituserinfo')}</a></li>
+                </ul>
+            </div>
+            <div class="blank30"></div>
+
+
+            <div class="user-content">
+
+
+
+
+
+
+
+
+
+<form method="post" name="form1" action="<?php echo modify("/act/edit/userid/".$data['userid']);?>"  onsubmit="return checkform();">
+
+                <div class="clearBoth">
+                    <strong>{lang('username')}</strong>
+                    <div class="clearBoth">
+                        {form::getform('username',$form,$field,$data)}
+                    </div>
+                </div>
+
+                <div class="clearBoth">
+                    <strong>{lang('real-name')}</strong>
+                    <div class="clearBoth">
+                        {form::getform('nickname',$form,$field,$data)}
+                    </div>
+                </div>
+                <div class="blank10"></div>
+                <div class="clearBoth">
+                    <strong>{lang('payment-account')}</strong>
+                    <div class="clearBoth">
+                        {form::getform('payaccount',$form,$field,$data)}
+                    </div>
+                </div>
+                <div class="blank10"></div>
+                <div class="clearBoth">
+                    <strong>{lang('website-address')}</strong>
+                    <div class="clearBoth">
+                        {form::getform('website',$form,$field,$data)}
+                    </div>
+                </div>
+
+<div class="blank30"></div>
+<input type="submit" name="submit" value="{lang('submit_on')}" class="btn btn-primary"/>
+
+</form>
+
+<div class="blank10"></div>
+            </div>
+        </div>
+    </div>
+
+{template_user 'foot.html'}

@@ -1,0 +1,10 @@
+
+
+.category-first-degree-banner {position: relative; overflow:hidden;}
+.category-first-degree-banner .category-first-degree-banner-img {position: relative; z-index: 0;height:100%;text-align:center;}
+.category-first-degree-banner .category-first-degree-banner-img img {width:100% !important;  object-fit:cover;}
+.category-first-degree-banner {position: relative; overflow:hidden;}
+
+.category-first-degree-banner .category-first-degree-banner-title {position: absolute; top:50%;transform: translateY(-50%) !important; width:100%; z-index: 2;}
+.category-first-degree-banner .category-first-degree-banner-title h1 {display:inline-block; padding-bottom:5px;}
+.category-first-degree-banner .category-first-degree-banner-title p {display:inline-block;}

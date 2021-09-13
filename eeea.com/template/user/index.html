@@ -1,0 +1,293 @@
+{template_user 'head.html'}
+
+<div class="index-bg">
+	<div class="container">
+		<div class="row">
+
+
+			<div class="section2">
+
+
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="s2-item s2-item-1">
+							<div class="s2-img pull-left"><i class="icon-note"></i></div>
+							<div class="s2-text pull-right">
+								<h5><a href="{url('user/edit/table/user')}">{lang('edituserinfo')}</a></h5>
+								<p>编辑个人资料</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="s2-item s2-item-2">
+							<div class="s2-img"><i class="icon-key"></i></div>
+							<div class="s2-text">
+								<h5><a href="{url('user/changepassword')}">{lang('changepassword')}</a></h5>
+								<p>修改登录密码</p>
+							</div>
+						</div>
+					</div>
+					<?php if(file_exists(ROOT."/lib/table/shopping.php") && (count(pay::getInstance()->getrows())>1 ||
+					(count(pay::getInstance()->getrows())==1 && count(pay::getInstance()->getrows('pay_code="nopay"'))==0)) ){ ?>
+					<div class="col-sm-3">
+						<div class="s2-item s2-item-3">
+							<div class="s2-img"><i class="icon-magnifier"></i></div>
+							<div class="s2-text">
+								<h5><a href="{url('manage/orderslist/manage/orders')}">{lang('vieworders')}</a></h5>
+								<p>查看订单列表</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="s2-item s2-item-4">
+							<div class="s2-img pull-left"><i class="icon-basket"></i></div>
+							<div class="s2-text pull-right">
+								<h5><a href="{url('archive/orders')}">{lang('shoppingcart')}</a></h5>
+								<p>打开购物车</p>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+				</div>
+			</div>
+
+			<div class="blank30"></div>
+			<div class="line"></div>
+			<div class="blank30"></div>
+
+			<div class="section2">
+
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
+					<div class="row">
+						<div class=" user-index-announ">
+							<div class="index-title">
+								<h4>{lang('bulletin_list')}</h4>
+							</div>
+							{loop announ(3) $an}
+							<dl>
+								<dt><a href="{$an['url']}" target="_blank">{cut($an['content'],20)}<span class="date pull-right">{$an['adddate']}</span></a></dt>
+								<dd>{cut($an['title'],200)}</dd>
+							</dl>
+							{/loop}
+
+							<!--推广链接-->
+							<!--{if $unionstate}
+							<div class="share-links">
+								<h5>{lang('share_this_link_you_will_be_rewarded_for_the_link_access_and_registration_results_please_consult_the_website_customer_service_for_details')}</h5>
+								<form>
+									<div class="input-group">
+
+										<textarea name="unioncode" id="union-link" class="form-control share-links-input" id="union-url" placeholder="{get('site_url')}?case=union&act=into&{$data['userid']}">{get('site_url')}?case=union&act=into&{$data['userid']}</textarea>
+										<span class="input-group-btn">
+        <button class="share-links-btn" type="button" onClick="copyUrl2()"><span class="glyphicon glyphicon-duplicate"></span></button>
+      </span>
+
+										<script type="text/javascript">
+											function copyUrl2()
+											{
+												var Url2=document.getElementById("union-link");
+												Url2.select(); // 选择对象
+												document.execCommand("Copy"); // 执行浏览器复制命令
+												alert("{lang('reproduction_success')}");
+											}
+										</script>
+									</div>
+									<small class="form-text text-muted">{lang('copy_or_share_recommended_links_with_friends')}</small>
+								</form>
+							</div>
+							{/if}-->
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 pull-right">
+					<div class="row">
+						<div class="user-index-right-balance">
+							<h5><span class="icon-wallet"></span>	{lang('account')}</h5>
+
+
+							<p><!-- <span class="icon-credit-card"></span>	 -->{lang('balance')}：</p>
+							<p class="user-index-right-user-balance"><i>{lang('unit')}</i><span class="timer">{getmenoy()}</span></p>
+							<?php if(session::get('ver') == 'corp'){ ?>
+							<p><!-- <span class="icon-basket-loaded"></span>	 -->{lang('integral')}：{getintegration()}</p>
+							<?php } ?>
+
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<script type="text/javascript">
+				<!--
+				//读数效果
+				jQuery(document).ready(function($) {
+
+					$.fn.countTo = function(a) {
+						a = a || {};
+						return $(this).each(function() {
+							var c = $.extend({},
+									$.fn.countTo.defaults, {
+										from: $(this).data("from"),
+										to: $(this).text(),
+										speed: 1000,
+										refreshInterval: $(this).data("refresh-interval"),
+										decimals: $(this).data("decimals")
+									},
+									a);
+							var h = Math.ceil(c.speed / c.refreshInterval),
+									i = (c.to - c.from) / h;
+							var j = this,
+									f = $(this),
+									e = 0,
+									g = c.from,
+									d = f.data("countTo") || {};
+							f.data("countTo", d);
+							if (d.interval) {
+								clearInterval(d.interval)
+							}
+							d.interval = setInterval(k, c.refreshInterval);
+							b(g);
+							function k() {
+								g += i;
+								e++;
+								b(g);
+								if (typeof(c.onUpdate) == "function") {
+									c.onUpdate.call(j, g)
+								}
+								if (e >= h) {
+									f.removeData("countTo");
+									clearInterval(d.interval);
+									g = c.to;
+									if (typeof(c.onComplete) == "function") {
+										c.onComplete.call(j, g)
+									}
+								}
+							}
+							function b(m) {
+								var l = c.formatter.call(j, m, c);
+								f.html(l)
+							}
+						})
+					};
+					$.fn.countTo.defaults = {
+						from: 0,
+						to: 0,
+						speed: 1000,
+						refreshInterval: 100,
+						decimals: 0,
+						formatter: formatter,
+						onUpdate: null,
+						onComplete: null
+					};
+					function formatter(b, a) {
+						return b.toFixed();
+					}
+					$(".timer").data("countToOptions", {
+						formatter: function(b, a) {
+							return b.toFixed().replace(/\B(?=(?:\d{3})+(?!\d))/g, ",");
+						}
+					});
+					$(".timer").each(count);
+					function count(a) {
+						var b = $(this);
+						a = $.extend({},
+								a || {},
+								b.data("countToOptions") || {});
+						b.countTo(a)
+					};
+				});
+				//-->
+			</script>
+
+
+
+
+
+
+			<div class="blank30"></div>
+
+			<?php if(file_exists(ROOT."/lib/table/shopping.php") && (count(pay::getInstance()->getrows())>1 ||
+			(count(pay::getInstance()->getrows())==1 && count(pay::getInstance()->getrows('pay_code="nopay"'))==0)) ){ ?>
+			<div class="section2">
+
+				<div class="index-title">
+					<h4>{lang('listorders')}</h4>
+				</div>
+				<div class="user-content">
+
+					<div class="user-content-table-nav">
+						<ul>
+							<li><a href="{url('manage/orderslist/manage/orders/type/all')}" <?php if($type=='all'){?>class="active" <?php }?>>{lang('all_orders')}</a></li>
+							<li><a href="{url('manage/orderslist/manage/orders/type/buy')}" <?php if($type=='buy'){?>class="active" <?php }?>>{lang('payment_to_be_made')}</a></li>
+							<li><a href="{url('manage/orderslist/manage/orders/type/shou')}" <?php if($type=='shou'){?>class="active" <?php }?>>{lang('to_be_received')}</a></li>
+						</ul>
+					</div>
+
+
+
+
+					{loop $ordersdata $d}
+					<?php
+	switch($d['status']){
+	case 1:
+	$d['status']="<p><span class='btn-soft-success'>".lang('complete')."</span></p>";
+					break;
+					case 2:
+					$d['status']="<p><span class='btn-soft-success'>".lang('processing)')."</span></p>";
+					break;
+					case 3:
+					$d['status']="<p><span class='btn-soft-success'>".lang('shipped')."</span></p>";
+					break;
+					case 4:
+					$d['status']="<p><span class='btn-icon-inner'>".lang('pending_audit_payment')."</span></p>";
+					break;
+					case 5:
+					$d['status']="<p><span class='btn-soft-success'>".lang('check_payment')."</span></p>";
+					break;
+					default:
+					$d['status']="<p><span class='btn-icon-inner'>".lang('non-payment')."</span></p>";
+					break;
+					}
+					?>
+					<div  class="row orders-list">
+						<div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 orders-pic">
+							<p>{cut(date('Y-m-d H:i:s',$d['adddate']))}</p>
+
+						</div>
+						<div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+							<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 orders-padding-x pull-right">
+								<a href="<?php echo url("archive/orders/oid/".$d['oid'],false);?>" class="orders-list-dosomething-b">{lang('look')}</a>
+							</div>
+							<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 orders-padding-x pull-left">
+								<div class="row">
+									<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+										<p>{lang('order_number')}：{cut($d['oid'])}</p>
+										<p>{$d['status']}</p>
+									</div>
+
+									<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 orders-list-price">
+										<p>{lang('price')}</p>
+										<p>{lang('unit')}<span class="price">{cut($d['menoy'])} </span>
+											</p>
+											</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{/loop}
+
+
+
+
+
+
+
+
+				</div>
+			</div>
+			<?php } ?>
+		</div>
+	</div>
+</div>
+<div class="blank30"></div>
+{template_user 'foot.html'}

@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule !\.(mp3|mp4|wmv|wma|rm|rmvb|js|ico|gif|jpeg|jpg|png|css|swf|php|html|shtml|xml|xsl|wsdl|xslt|eot|svg|ttf|woff|woff2|map|txt)$ /index.php [NC]
+
+RewriteEngine on
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+RewriteRule .* - [F]

@@ -1,0 +1,41 @@
+{loop plugins::categoryinfo($_catid,$_titlenum) $cat}
+
+				
+<div class="section7">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="s7-1">
+					<h4 cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit">
+						{$cat['catname']}
+					</h4>
+					<p cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="htmldir" class="cmseasyedit">
+						{$cat['htmldir']}
+					</p>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="s7-2">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="s7-2-text">
+								<h4>{lang('servertel')}</h4>
+								<span>{get('tel')}</span>
+								<p><i class="icon-envelope"></i>	{get('email')}</p>
+								<a href="{$cat['url']}" class="more"><span class="glyphicon glyphicon-menu-right"></span></a>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="s7-2-img">
+								<img cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="image" class="cmseasyedit img lazy" src="{$skin_path}/images/base/img71.jpg" width="344" height="226" alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{/loop}

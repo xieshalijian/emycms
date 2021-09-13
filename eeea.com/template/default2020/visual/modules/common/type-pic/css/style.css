@@ -1,0 +1,27 @@
+
+
+.type-pic {position: relative;}
+.type-pic:hover .type-pic-text,
+.type-pic .type-pic-text {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) !important;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 15px;
+}
+.type-pic .type-pic-text h2 {
+    border-width:1px;
+    border-style:solid;
+}
+.type-pic .type-pic-text p {
+    clear:both;
+    margin-top:10px;
+}
+.type-pic img {
+    width:100%;
+    position: relative;
+    z-index: -1;
+}

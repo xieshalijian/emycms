@@ -1,0 +1,62 @@
+{template_user 'head.html'}
+
+<div class="index-bg">
+	<div class="container">
+		<div class="section2">
+
+            <div class="user-content-table-nav">
+                <ul>
+                    <li><a href="{url('manage/usergrouplist/manage/usergroup/statu/all')}"  class="active">{lang('用户组')}</a></li>
+                          </ul>
+            </div>
+            <div class="blank30"></div>
+
+<div class="user-content">
+
+
+<form name="listform" id="listform"  action="<?php echo uri();?>" method="post">
+
+
+
+
+<div class="table-responsive">
+<table class="table table-hover ">
+
+        <thead>
+            <tr class="th">
+                <th class="coupon-list-couponid"><!--couponid-->{lang('id')}</th>
+                <th class="coupon-list-coupontitle">{lang('title')}</th>
+                <th class="coupon-list-couponuse"><!--couponuse-->{lang('积分要求')}</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {loop $data $d}
+            <tr class="s_out">
+                <td class="coupon-list-couponid">{cut($d['groupid'])}</td>
+                <td class="coupon-list-coupontitle">{$d['name']}{if user::getuserid()==$d['groupid']}[当前]{/if}</td>
+                <td class="coupon-list-couponuse"><!--couponuse-->{$d['integrationclaim']}</td>
+            </tr>
+            {/loop}
+
+
+        </tbody>
+    </table>
+</div>
+
+    <div class="blank30"></div>
+
+</form>
+
+
+<div class="pages">
+<?php if(get('table')!='type' && front::get('case')!='field') echo pagination::html($record_count); ?>
+</div>
+<div class="blank30"></div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="blank30"></div>
+{template_user 'foot.html'}

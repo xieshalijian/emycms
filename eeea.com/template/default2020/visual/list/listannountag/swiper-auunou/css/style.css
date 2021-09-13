@@ -1,0 +1,39 @@
+
+.swiper-auunou {position:relative; }
+
+.swiper-auunou .swiper-wrapper .announ-date {
+    position: absolute;
+    min-width: 10px;
+    padding: 3px 7px;
+    top:50%;
+    transform: translateY(-50%);
+}
+.swiper-auunou .swiper-wrapper a {
+
+}
+
+.swiper-auunou .swiper-button-next,
+.swiper-auunou .swiper-button-prev {
+    background:none !important;
+}
+
+.swiper-auunou .swiper-slide {
+    padding:0px 30px;
+}
+
+.swiper-auunou .swiper-button-prev {
+    height:24px;
+    left:0px;
+    top:50%;
+    transform: translateY(-50%);
+    margin-top:0px !important;
+}
+
+.swiper-auunou .swiper-button-next {
+    height:24px;
+    right:0px;
+    top:50%;
+    transform: translateY(-50%);
+    margin-top:0px !important;
+    text-align:right;
+}

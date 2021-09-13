@@ -1,0 +1,107 @@
+{template_user 'head.html'}
+<style type="text/css">
+    .table td a.list-thumb {
+        display:block;
+        width:100px;
+        height:100px;
+        line-height:100px;
+        overflow: hidden;
+        text-align:center;
+        margin:0px auto;
+    }
+    .table td a.list-thumb img {
+        display: inline !important;
+        max-width:100%;
+        max-height:100%;
+        margin:0px auto;
+    }
+</style>
+<div class="index-bg">
+	<div class="container">
+		<div class="section2">
+
+		<div class="index-title">
+				<h4>{lang('my-praise_list')}</h4>
+			</div>
+
+
+<div class="user-content">
+
+
+<form name="listform" id="listform"  action="<?php echo uri();?>" method="post">
+
+<div class="table-responsive">
+<table class="table table-hover ">
+        <thead>
+            <tr class="th">
+                <th class="coupon-list-couponid"><!--couponid-->{lang('id')}</th>
+                <th class="coupon-list-coupontitle text-center">{lang('picture')}</th>
+                <th class="coupon-list-coupontitle">{lang('title')}</th>
+                <!--<th class="coupon-list-couponuse">&lt;!&ndash;couponuse&ndash;&gt;内容</th>-->
+                <th class="coupon-list-manage text-center">{lang('dosomething')}</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {loop $data $d}
+            <tr class="s_out">
+                <td class="coupon-list-couponid">{cut($d['aid'])}</td>
+                <td class="coupon-list-couponid" >
+                    <a target="_blank" href="<?php echo $base_url;?>/index.php?case=archive&act=show&aid={$d['aid']}" class="list-thumb">
+                        <img style="height:100px;width: 200px" src="{$d['thumb']}" class="img-responsive" onerror='this.src="<?php echo config::get('onerror_pic');?>"' />
+                    </a>
+                </td>
+                <td class="coupon-list-coupontitle">{$d['title']}</td>
+                <th class="coupon-list-manage" >
+                    <?php $urlname='archive/show/aid/'.$d['aid']; ?>
+                    <a onclick="getarchive('{url($urlname)}')" title="{lang('look')}"><i class="glyphicon glyphicon-eye-open"></i></a>
+
+                    <a onclick="setpraise('{$d['aid']}')" title="{lang('cancel_praise')}"><i class="glyphicon glyphicon-trash"></i></a>
+                </th>
+            </tr>
+            {/loop}
+
+
+        </tbody>
+    </table>
+</div>
+
+    <div class="blank30"></div>
+   
+
+</form>
+<script>
+    //查看
+    function getarchive(url) {
+        window.open(url,"_blank");
+    }
+
+    function setpraise(aid) {
+        var hrefname='{url("archive/setpraise")}';
+        //点赞
+        $.get(hrefname,{'aid':aid},function(data,status){
+            if(data != '') {
+                data = JSON.parse(data);
+                if(data[0]=='1'){
+                    alert("{lang('success')}");
+                }else{
+                    alert("{lang('cancel_some_praise')}");
+                }
+                window.location.href='{modify("manage/zanarchivelist/manage/archive",true)}';
+            }
+        });
+    }
+</script>
+
+
+<div class="pages">
+<?php if(get('table')!='type' && front::get('case')!='field') echo pagination::html($record_count); ?>
+</div>
+<div class="blank30"></div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="blank30"></div>
+{template_user 'foot.html'}

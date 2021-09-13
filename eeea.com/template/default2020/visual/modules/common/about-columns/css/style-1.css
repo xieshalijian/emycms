@@ -1,0 +1,20 @@
+
+
+.about-columns .container .view {position: relative; z-index:15;}
+
+.about-columns-text{padding:30px;}
+.about-columns-text h4 a {margin-bottom:0;line-height:34px}
+.about-columns-text .subtile span {line-height:23px;text-transform:uppercase}
+.about-columns-text p span {line-height:37px; margin-top:19px; overflow:hidden;height:185px}
+.about-columns-text em{display:block;height:3px;background:rgba(255,255,255,.3);width:0;transition:all .3s ease-in-out 0s;}
+.about-columns-text:hover em{width:100px}
+
+
+@media screen and (min-width: 0) and (max-width: 991px){
+    .about-columns-text p{height: auto;}
+    .about-columns-text em{margin: 0;}
+}
+@media screen and (min-width: 0) and (max-width: 767px){
+    .about-columns-item:after,
+    .about-columns-item:before {display: none;}
+}

@@ -1,0 +1,56 @@
+<nav>
+<ul class="pagination">
+    {if pages('up')}
+    <li><a href="{tag::url($tag,pages('up'))}"><span aria-hidden="true">«</span></a></li>
+    {/if}
+    {loop pages(null,config::get('list_pagesize')) $p}
+    {if $p==$page}
+    <li class="active"><a>{$p}</a></li>
+    {else}
+    <li><a href="{tag::url($tag,$p)}">{$p}</a></li>
+    {/if}
+
+    {/loop}
+    {if pages('down')}
+    <li><a href="{tag::url($tag,pages('down'))}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+    {/if}
+
+    <input type="text" name="getto_page" id="getto_page" value="{$page}" class="form-control " oninput = "value=value.replace(/[^\d]/g,'')">
+    <input class="btn btn-primary" type="button" value="跳转" name="order"
+           onclick="getto_page()">
+    {if config::get('tag_html') != '1'}
+    <script>
+        function getto_page(){
+            var totlepage='{count(pages())}';
+            totlepage=parseInt(totlepage);
+            var inpage=parseInt($('#getto_page').val());
+            if( inpage>totlepage){
+                window.location='{tag::url($tag,count(pages()))}';
+            }
+            else if(inpage<1){
+                window.location='{tag::url($tag,1)}';
+            } else{
+                window.location='{tag::url($tag,"")}&page='+inpage;
+            }
+        }
+    </script>
+    {else}
+    <script>
+        function getto_page(){
+            var totlepage='{count(pages())}';
+            totlepage=parseInt(totlepage);
+            var inpage=parseInt($('#getto_page').val());
+            if( inpage>totlepage){
+                window.location='{tag::url($tag,count(pages()))}';
+            }
+            else if(inpage<1){
+                window.location='{tag::url($tag,1)}';
+            } else{
+                inpage=inpage+".html";
+                window.location='{tag::url($tag,"")}'+inpage;
+            }
+        }
+    </script>
+    {/if}
+</ul>
+</nav>

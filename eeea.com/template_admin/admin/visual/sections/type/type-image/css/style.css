@@ -1,0 +1,8 @@
+
+
+.type-image {position: relative; overflow:hidden;}
+.type-image-img {position: revert; z-index: 0; height:100%; text-align:center;}
+.type-image img {width:100% !important;object-fit:cover;min-height:100%;}
+.type-image .type-image-title {position: absolute; top:50%;transform: translateY(-50%) !important; width:100%; z-index: 2;}
+.type-image .type-image-title h1 {display:inline-block;padding-bottom:5px;}
+.type-image .type-image-title p {display:inline-block;}

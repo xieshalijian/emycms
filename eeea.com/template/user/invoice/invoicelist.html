@@ -1,0 +1,88 @@
+{template_user 'head.html'}
+<style type="text/css">
+    a.btn-warning:hover {
+        background:#ec971f;
+        margin:0px;
+    }
+    .invoice-tab a {display:inline-block;
+        padding:5px 15px;
+        margin:0px 15px 0px 0px;}
+    .invoice-tab a.active {
+        color: #060D33;
+        border-bottom: 2px solid #060D33;
+    }
+</style>
+<div class="index-bg">
+    <div class="container">
+        <div class="section2">
+            <div class="row">
+                <div class="user-content-table-nav">
+                    <ul>
+                        <li><a href="{url('invoice/consumptionlist/manage/xfconsumption')}" >开票申请</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="{url('invoice/invoicelist/manage/invoice')}" class="active">开票记录</a></li>
+                    </ul>
+                </div>
+                <div class="blank30"></div>
+
+                <div class="user-content">
+
+                    <div class="invoice-tab">
+                        <a onclick="window.location.href='{url('invoice/invoicelist/manage/invoice/static/0')}';" class="active">未审核</a>
+                        <a onclick="window.location.href='{url('invoice/invoicelist/manage/invoice/static/1')}';">已审核</a>
+                        <a onclick="window.location.href='{url('invoice/invoicelist/manage/invoice/static/2')}';">已完成</a>
+                        <a onclick="window.location.href='{url('invoice/invoicelist/manage/invoice/static/3')}';">已关闭</a>
+                    </div>
+                    <div class="blank30"></div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>申请时间</th>
+                                <th>申请项目</th>
+                                <th>状态</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {loop $data $d}
+                            <?php
+                               switch ($d['static']){
+                                 case "0":
+                                     $d['static']="未审核";
+                                     break;
+                                 case "1":
+                                     $d['static']="已审核";
+                                     break;
+                                   case "2":
+                                     $d['static']="已完成";
+                                     break;
+                                   case "3":
+                                      $d['static']="已关闭";
+                                     break;
+                                   default:
+                                     $d['static']="未审核";
+                               }
+                            ?>
+                            <tr>
+                                <td>{$d['adddate']}</td>
+                                <td>{$d['project']}</td>
+                                <td>{$d['static']}</td>
+                            </tr>
+                            {/loop}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pages">
+                        <?php  echo pagination::html($record_count); ?>
+                    </div>
+                    <div class="blank30"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blank30"></div>
+</div>
+    {template_user 'foot.html'}

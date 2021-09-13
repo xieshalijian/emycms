@@ -1,0 +1,120 @@
+@charset "utf-8";
+body{font-family: Microsoft Yahei;overflow-x:hidden;color: #666;font-size: 14px;height: 100vh; background:#f7f8fa;}
+ul,ol,li{list-style: none;}
+a {color:#333;}
+input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {  
+
+     
+    -webkit-box-shadow: 0 0 0px 1000px transparent  inset !important;  
+    background-color:transparent;  
+    background-image: none;  
+     transition: background-color 50000s ease-in-out 0s; //背景色透明  生效时长  过渡效果  启用时延迟的时间  
+}  
+input {  
+     background-color:transparent;  
+}
+
+.div-table{display:table;height:100%;width:100%;padding: 30px 0px;}
+.div-cell{display:table-cell;vertical-align:middle;}
+
+.form-title{width: 450px;max-width:90%;margin: 0 auto 30px;text-align: center;}
+.form-title h4{font-size: 34px;color: #142C4C;}
+.form-title h5{padding: 0 5px;margin-bottom: 20px;font-size: 14px;color: #999;position: relative;display: inline-block;}
+.form-title h5:before{content:"";display: block;position: absolute;right: 100%;top: 50%;height: 1px;width: 60px;background: #ccc;}
+.form-title h5:after{content:"";display: block;position: absolute;left: 100%;top: 50%;height: 1px;width: 60px;background: #ccc;}
+.form-title p{color: #999;}
+.form-title p i{margin-right: 3px;}
+.form-title p i ~ i{margin-left: 20px;}
+.form-title .fa-check-square{display: inline-block;background: #0064E4;padding: 3px;border-radius: 50%;}
+
+
+.form-box{position: relative; width:450px;max-width:90%;margin:20px auto;border:1px solid #eee;box-shadow:1px 1px 35px rgba(0,0,0,.05);padding:40px 40px;background:#fff;}
+
+.form-box .btn,.form-box .form-control{height:44px}
+.form-box h2{color:#142C4C;margin-bottom:30px;margin-top:0}
+@media screen and (max-width: 468px) {
+.form-title h4 {font-size:20px;}
+.form-title,
+.form-box{width:90%;}
+.form-box h2{font-size:16px;}
+}
+
+.form-box ul{padding:0;margin:0}
+.form-box form>ul>li{margin-top:20px}
+.form-box ul li p{margin-top:30px}
+.form-box .btn,.form-box .form-control,.form-box .input-group-addon{border-radius:0}
+.form-box .input-group-addon{background:0 0}
+.form-box .btn1{background:0 0;border:1px solid #ccc}
+.form-box .btn1:hover{background:0 0}
+.form-box .btn2{background:#0064E4;color:#fff}
+.form-box .btn2:hover{background:#0034E4}
+.form-box ul li p{margin-bottom: 0;}
+.form-box ul li p a{color:#0064E4}
+.form-box .input-group-addon i{width:1em}
+.form-box .btn3{background:0 0;border:1px solid #ccc;width:100%;text-align:left}
+.form-box .btn3 .caret{float:right;margin-top:9px}
+.form-box .btn3:hover{background:0 0}
+.form-box .btn3-list{width:100%}
+.form-box .btn4{background:#0064E4;color:#fff;width:100%}
+.form-box .btn4:hover{background:#0034E4}
+.form-box .othre-loak h5{margin: 0;padding: 0 5px;margin-bottom: 20px;font-size: 14px;color: #999;position: relative;display: inline-block;}
+.form-box .othre-loak h5:before{content:"";display: block;position: absolute;right: 100%;top: 50%;height: 1px;width: 60px;background: #ccc;}
+.form-box .othre-loak h5:after{content:"";display: block;position: absolute;left: 100%;top: 50%;height: 1px;width: 60px;background: #ccc;}
+.form-box .othre-loak a{display: inline-block;height: 40px;width: 40px;border:1px solid #377DFF;color: #377DFF;line-height: 38px;text-align: center;border-radius: 50%;font-size: 16px;}
+.form-box .othre-loak a:hover{background: #377DFF;color: #fff;}
+.copyright {text-align:center; font-size:12px; color:#ccc; }
+.copyright a {color:#ccc;}
+#checkcode {height:100%;}
+
+
+
+.ywz_zhuce_huixian{float:left;background:#d6d3d3;width:50px;height:4px;margin-top:5px;_margin-top:0px;margin-left:5px;_height:2px;font-size:0px;}
+.ywz_zhuce_hongxianwenzi{float:left;width:32px;margin-left:5px;text-align:center;color:#b0adad;font-size:12px;}
+
+
+
+.ywz_zhuce_hongxian{float:left;background:#ff3300;width:50px;height:4px;margin-top:5px;margin-left:5px;_margin-top:0px;_height:2px;font-size:0px;}
+.ywz_zhuce_hongxian2{float:left;background: #099;width:50px;height:4px;margin-top:5px;margin-left:5px;_margin-top:0px;_height:2px;font-size:0px;}
+.ywz_zhuce_hongxian3{float:left;background: #060;width:50px;height:4px;margin-top:5px;margin-left:5px;_margin-top:0px;_height:2px;font-size:0px;}
+
+.ywz_zhuce_yongyu1{float:left;color: #C00;font-size:12px;padding-left:10px;margin-top:10px;_padding-left:0px;}/*后面的文字*/
+.ywz_zhuce_yongyu1 a{ color:#C00;text-decoration:none;}
+.ywz_zhuce_yongyu1 a:hover{ color:#C00;}
+
+.login-switch {position: absolute; width:50px; height:50px; right:10px; top:10px; font-size:30px; text-align:right;}
+.login-switch span { color:#bbb;  }
+
+.login-switch a:link,
+.login-switch a:visited,
+.login-switch a:hover,
+.login-switch a:active
+{color:#ccc;text-decoration:none;}
+
+.line-div{
+width: 66px;
+height: 66px;
+background:#fff;
+position: absolute;
+bottom:-26px;
+left:-36px;
+text-align: center;
+margin-top: -10rem;
+-webkit-transform: rotate(45deg);
+-moz-transform: rotate(45deg);
+filter: progid:DXImageTransform.Microsoft.BasicImage(Rotation=0.45);
+
+}
+
+.poptip { display:inline-block;height: 26px; line-height: 16px; padding: 5px 10px; left:-60px; top:0px; background: #E6F9FC; position: absolute; z-index: 9999; border: 1px solid #14C2DD }
+
+    .poptip .poptip-content { color: #14C2DD; font-size: 12px; font-weight: 400 }
+
+        .poptip .poptip-content .iconfont { color: #df9c1f; font-size: 14px; margin-right: 8px }
+
+.poptip-arrow { position: absolute; z-index: 10; *zoom: 1; top: 8px; right: 0; }
+
+    .poptip-arrow em, .poptip-arrow span { position: absolute; *zoom: 1; width: 0; height: 0; border-color: rgba(255,255,255,0); border-color: transparent \0; *border-color: transparent; _border-color: tomato; _filter: chroma(color=tomato); border-style: solid; overflow: hidden; top: 0; left: 0 }
+
+    .poptip-arrow em { top: 0; left: 1px; border-left-color: #14C2DD; border-width: 6px 0 6px 6px }
+
+    .poptip-arrow span { border-left-color: #E6F9FC; border-width: 6px 0 6px 6px }

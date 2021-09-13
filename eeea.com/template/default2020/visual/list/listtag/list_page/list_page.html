@@ -1,0 +1,69 @@
+<link href="{$template_path}/visual/list/listtag/list_page/css/style.css" rel="stylesheet">
+<div class="column-list-page column-list-page-$_id">
+	<h1 cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit $_text-align">
+		{$category[$catid]['catname']}
+	</h1>
+	<div class="visual-level clearfix"></div>
+	<h5 cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="subtitle" class="cmseasyedit $_text-align">
+		{$category[$catid]['subtitle']}
+	</h5>
+	<p class="visual-print-tools text-right">
+		<a href="javascript:CallPrint('print');">
+			<i class="glyphicon glyphicon-print"></i>
+		</a>
+		<a href="javascript:doZoom(14)">
+        <span class="column-title cmseasyedit" cmseasy-id="small" cmseasy-table="lang" cmseasy-field="template">
+        {lang('small')}
+            </span>
+		</a>
+		<a href="javascript:doZoom(18)">
+        <span class="column-title cmseasyedit" cmseasy-id="middle" cmseasy-table="lang" cmseasy-field="template">
+        {lang('middle')}
+            </span>
+		</a>
+		<a href="javascript:doZoom(20)">
+        <span class="column-title cmseasyedit" cmseasy-id="big" cmseasy-table="lang" cmseasy-field="template">
+        {lang('big')}
+            </span>
+		</a>
+	</p>
+	<div cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="categorycontent" class="cmseasyedit content clearfix categorycontent clearfix">
+		{$category[$catid]['categorycontent']}
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+<style>
+
+	.column-list-page-$_id {
+		background:$_background-color;
+		border-color:$_background-border-color;
+	}
+	.column-list-page-$_id:hover {
+		background:$_background-hover-color;
+		border-color:$_background-border-hover-color;
+	}
+	.column-list-page-$_id h1 {
+		display: block !important;
+		font-size:$_title-size;
+		color:$_title-color;
+	}
+	.column-list-page-$_id h1:hover {
+		color:$_title-hover-color;
+	}
+	.column-list-page-$_id h5 {
+		display: block !important;
+		font-size:$_subtitle-size;
+		color:$_subtitle-color;
+	}
+	.column-list-page-$_id h5:hover {
+		color:$_subtitle-hover-color;
+	}
+	.column-list-page-$_id .categorycontent {
+		font-size:$_p-size;
+		color:$_p-color;
+	}
+	.column-list-page-$_id .categorycontent:hover {
+		color:$_p-hover-color;
+	}
+</style>

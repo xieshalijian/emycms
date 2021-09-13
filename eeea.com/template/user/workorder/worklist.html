@@ -1,0 +1,98 @@
+{template_user 'head.html'}
+
+<style>
+    .table>tbody>tr>td{line-height:62px;}
+    .table>tbody>tr>td.text-center {text-align:center;}
+</style>
+
+<div class="index-bg">
+    <div class="container">
+        <div class="row">
+            <div class="section2">
+                <div class="index-title">
+                    <h4>
+                        <a href="{url('workorder/addworkorder/manage/workorder')}" class="btn btn-primary pull-right">创建工单</a>
+                        工单列表
+                    </h4>
+                </div>
+                <div class="blank30"></div>
+                <div class="user-content">
+                    <div class="table-responsive">
+
+
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>类型</th>
+                                <th>时间</th>
+                                <th class="text-center">状态</th>
+                                <th class="text-center">详情</th>
+                            </thead>
+                            <tbody>
+                            {loop $data $d}
+                            <tr>
+
+                                <td   ><strong>{$d['title']}{if  $d['reading']==0}<b style="color: red">(有新的回复！)</b>{/if}</strong></td>
+                                <?php
+                                    switch ($d['type']){
+                                        case "1":
+                                            $d['type']="投诉建议";
+                                            break;
+                                        case "2":
+                                            $d['type']="其他问题";
+                                            break;
+                                        case "3":
+                                            $d['type']="售后服务";
+                                            break;
+                                        case "4":
+                                            $d['type']="BUG反馈";
+                                            break;
+                                        default:
+                                            $d['type']="投诉建议";
+                                    }
+                                ?>
+                                <td>{$d['type']}</td>
+                                <td>{$d['adddate']}</td>
+                                <?php
+                                    switch ($d['statu']){
+                                        case "0":
+                                            $d['status']="待处理";
+                                            break;
+                                        case "1":
+                                            $d['status']="处理中";
+                                            break;
+                                        case "2":
+                                            $d['status']="已完成";
+                                            break;
+                                        case "3":
+                                            $d['status']="已关闭";
+                                            break;
+                                        default:
+                                            $d['status']="待处理";
+                                    }
+                                  ?>
+                                <td class="text-center">{$d['status']}</td>
+                                <td class="text-center"><a href="{url('workorder/workorderreply/manage/workorder/workid/'.$d['id'])}" class="btn btn-default">详情</a></td>
+                            </tr>
+                            {/loop}
+                           </tbody>
+                        </table>
+
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="pages">
+                        <?php  echo pagination::html($record_count); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="blank30"></div>
+        </div>
+    </div>
+</div>
+<div class="blank30"></div>
+
+
+{template_user 'foot.html'}
+

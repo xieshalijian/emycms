@@ -1,0 +1,69 @@
+{{template_user 'head.html'}
+
+<div class="index-bg">
+    <div class="container">
+        <div class="section2">
+
+            <div class="user-content-table-nav">
+                <ul>
+                    <li><a href="{url('union/stats/manage/union')}">{lang('stats')}</a></li>
+                    <li><a href="{url('union/getcode/manage/union')}">{lang('access_code')}</a></li>
+                    <li><a href="{url('union/visit/manage/union')}">{lang('access_statistics')}</a></li>
+                    <li><a href="{url('union/reguser/manage/union')}">{lang('registered_users')}</a></li>
+                    <li><a class="active" href="{url('union/pay/manage/union')}">{lang('promotion_of_settlement')}</a></li>
+                    <li><a href="{url('union/edit/manage/union')}">{lang('edituserinfo')}</a></li>
+                </ul>
+            </div>
+            <div class="blank30"></div>
+
+
+            <div class="user-content">
+
+
+
+
+<form name="listform" id="listform"  action="<?php echo uri();?>" method="post">
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr class="th">
+                <th align="center">{lang('settlement-date')}</th>
+                <th align="center">{lang('settlement-amount')}</th>               
+                <th align="center">{lang('user-points')}</th>
+                <th align="center">{lang('account-receivable')}</th>          
+                <th align="center">{lang('operator')}</th>
+            </tr>
+
+        </thead>
+        <tbody>
+         
+      {loop $paylist $val}
+            <tr>
+
+                <td align="center">{date('Y-m-d H:i:s',$val['addtime'])}</td>
+                <td align="center">{$val['amount']}</td>
+                <td align="center">{$val['expendamount']}</td>
+                <td align="center">{$val['payaccount']}</td>                
+                <td align="center">{$val['inputer']}</td>
+            </tr>
+        {/loop}
+
+        </tbody>
+    </table>
+    </div>
+
+    <div class="blank10"></div>
+   
+
+</form>
+
+<div class="blank30"></div>
+<div class="pages"><?php echo pagination::html($record_count); ?></div>
+
+
+</div>
+</div>
+</div>
+
+{template_user 'foot.html'}

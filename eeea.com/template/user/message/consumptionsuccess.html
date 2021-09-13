@@ -1,0 +1,69 @@
+{template_user 'head.html'}
+<link rel="stylesheet" href="{$skin_user_path}/css/orders.css" />
+<div class="index-bg">
+	<div class="container">
+		<div class="section2">
+
+		<div class="index-title">
+				<h4>{lang('order')}</h4>	
+			</div>
+
+
+<div class="blank30"></div>
+
+  {if $consumption['oid']}
+
+<div class="row orders-list">
+<input type="hidden" id="hidden118" name="aid[]" value="118,1#my_color:redd,jia,5.my_chicuna:refwsdsss,jia,100">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 orders-oid"><strong>{lang('order_number')}：{$consumption['oid']}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{lang('orderadddate')}：{date('Y-m-d H:i:s',$consumption['adddate'])}</div>
+<div class="blank5"></div>
+   <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 orders-pic">
+       <a>{$consumption['menoy']}</a>
+  </div>
+
+  <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+
+
+<div class="pull-right col-xs-1 col-sm-1 col-md-1 col-lg-1 orders-padding-x">
+<a href="#" onclick="document.getElementById('list015').style.display='none';document.getElementById('thisnum015').value=0;setTotal();" title="{lang('delete')}" class="orders-del">Χ</a>
+</div>
+
+
+</div>
+</div>
+
+<hr class="featurette-divider">
+
+
+
+
+<hr class="featurette-divider">
+<div class="blank30"></div>
+<div class="thistotal  pull-right">
+        {lang('ordertotal')}：<span>￥<label id="total">{$consumption['menoy']}</label></span>
+</div>
+
+<div class="blank30"></div>
+
+    {else}
+    {lang('ordersnot')}
+	<meta http-equiv="refresh" content="1;URL={get('site_url')}">
+    {/if}
+    
+ 
+<div class="blank30"></div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="blank30"></div>
+<style type="text/css">
+	.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #fff;
+    opacity: 1;
+}
+.btn-default {background:#eee;}
+.orders-oid strong {color:#FF4A00;}
+</style>
+{template_user 'foot.html'}

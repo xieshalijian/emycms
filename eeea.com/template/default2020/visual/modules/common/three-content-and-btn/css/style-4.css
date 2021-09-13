@@ -1,0 +1,4 @@
+.three-content-and-btn-more{clear:both; margin-top: 30px;text-align: center;}
+.three-content-and-btn-more a{display: inline-block;width: 200px;border-width: 1px; border-style: solid;height: 50px;line-height: 48px;text-align: center;transition:all 300ms ease-in-out 0ms;}
+.three-content-and-btn-more a span{margin-left: 5px;font-size: .8em;transition:all 300ms ease-in-out 0ms;}
+.three-content-and-btn-more a:hover span{margin-left: 10px;}

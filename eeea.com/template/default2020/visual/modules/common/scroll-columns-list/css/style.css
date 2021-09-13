@@ -1,0 +1,38 @@
+
+
+.scroll-columns-list{}
+
+.scroll-columns-list-swiper {width: 100%;height: 100%;}
+.scroll-columns-list-swiper .swiper-pagination{position: static;margin-top: 20px;text-align: center;}
+.scroll-columns-list-swiper .swiper-pagination .swiper-pagination-bullet{width:10px;height:10px;margin:0 5px;border:1px solid #ccc;display: inline-block;border-radius:50%;background: #fff;opacity: 1;}
+.scroll-columns-list-swiper .swiper-pagination .swiper-pagination-bullet-active{background:#ccc;}
+
+
+
+
+.scroll-columns-list-item{}
+.scroll-columns-list-item:after{content:"";display:table;clear:both;}
+.scroll-columns-list-img{float: left;width: 50%;height: auto;margin-right: 30px;}
+.scroll-columns-list-img img{width: 100%;height: 100%;object-fit: cover;}
+.scroll-columns-list-text{overflow: hidden;padding-top: 20px;}
+.scroll-columns-list-text h4{text-transform : uppercase;margin-bottom: 40px;}
+.scroll-columns-list-text h4 strong {margin-left: 15px;padding-left: 15px;border-left:1px solid #ccc;}
+.scroll-columns-list-text h4:after{content:"";display: block;height: 3px;width: 60px;margin: 20px 0;background: #0E77EA;background-image: linear-gradient(150deg, #0E77EA 0%, #060D33 100%);}
+.scroll-columns-list-text .scroll-columns-list-text-subtitle {font-size: 22px;color: #555;display: block;margin-bottom: 30px;}
+.scroll-columns-list-text .scroll-columns-list-text-p {line-height: 24px; overflow: hidden;margin-bottom: 30px;	}
+.scroll-columns-list-text a.more{display: inline-block;line-height: 40px;padding: 0 40px; box-shadow:0 5px 15px 0 #eee;}
+@media screen and (min-width: 0) and (max-width: 1199px){
+    .scroll-columns-list-text{padding-top: 0;}
+    .scroll-columns-list-text h4{margin-bottom: 20px;}
+    .scroll-columns-list-text .scroll-columns-list-text-subtitle {margin-bottom: 20px;}
+    .scroll-columns-list-text .scroll-columns-list-text-p {margin-bottom: 20px;}
+}
+@media screen and (min-width: 0) and (max-width: 991px){
+    .scroll-columns-list-img {width: 100%;float: none;margin: 0 auto 20px;}
+}
+@media screen and (min-width: 0) and (max-width: 767px){
+    .scroll-columns-list-item{padding: 15px;}
+    .scroll-columns-list-text h4{font-size: 22px;}
+    .scroll-columns-list-text .scroll-columns-list-text-subtitle {font-size: 18px;}
+    .scroll-columns-list-text a.more{margin-bottom: 10px;}
+}

@@ -1,0 +1,43 @@
+
+
+
+
+
+.column-list-pic-item {
+    margin-bottom: 15px;
+    border-width:1px;
+    border-style:solid;
+    padding:0px 0px 15px 0px;
+}
+.column-list-pic-img {
+    max-height:200px;
+    overflow:hidden;
+}
+.column-list-pic-text {
+    text-align:left;
+    overflow: hidden;
+    padding:10px;
+}
+.column-list-pic-text h4 {
+    margin: 15px 0px;
+    overflow:hidden;
+}
+
+.column-list-pic-text p {
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+
+.column-list-pic-item:hover .column-list-pic-text p {
+    opacity: .9;
+}
+
+.column-list-pic-more {
+    padding:0px 10px;
+}
+.column-list-pic-more a {
+    padding:5px 15px;
+    border-width:1px;
+    border-style:solid;
+}

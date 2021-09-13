@@ -1,0 +1,30 @@
+
+
+
+.about-one {position: relative;z-index: 2;}
+.about-one .about-one-title {padding-top:60px;}
+.about-one .about-one-title h4 {margin-bottom:30px;}
+.about-one .about-one-title p {}
+.about-one .about-one-right-img { margin:60px 0px; box-shadow:0 5px 15px 0 #ccc;}
+.about-one .about-one-right-img img{width: 100%;height: auto;}
+.about-one .about-one-right-text {padding-top: 10px;}
+
+.about-one .about-one-right .about-one-right-text p{color: #666;font-size: 16px;line-height: 1.8;}
+@media screen and (min-width: 480px) and (max-width: 767px){
+    .about-one {padding-bottom: 40px;}
+}
+@media screen and (min-width: 0) and (max-width: 479px){
+    .about-one {padding-bottom: 20px;}
+}
+@media screen and (min-width: 992px){
+    .about-one:before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 15px;
+        bottom: 100%;
+        height: 50px;
+        width: 50%;
+        background: #fff;
+    }
+}

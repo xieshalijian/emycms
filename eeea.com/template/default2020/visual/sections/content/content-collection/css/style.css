@@ -1,0 +1,13 @@
+
+.content-collection {
+
+display: inline-block;
+    margin: 0px 10px 0px 10px;
+cursor: pointer;
+width:30px;
+height:30px;
+line-height:30px;
+text-align:center;
+    border-width:1px;
+    border-style: solid;
+}

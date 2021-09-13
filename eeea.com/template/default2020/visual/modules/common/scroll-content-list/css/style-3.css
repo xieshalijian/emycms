@@ -1,0 +1,31 @@
+
+
+
+.scroll-content-list {width: 100%;height: 100%;}
+
+.scroll-content-list-container .swiper-pagination{position: static;margin-top: 20px;text-align: center;}
+.scroll-content-list-container .swiper-pagination .swiper-pagination-bullet{width:10px;height:10px;margin:0 5px;border:1px solid #ccc;display: inline-block;border-radius:50%;background: #fff;opacity: 1;}
+.scroll-content-list-container .swiper-pagination .swiper-pagination-bullet-active{background:#ccc;}
+
+.scroll-content-list .scroll-content-list-item{margin: 20px 0;}
+.scroll-content-list .scroll-content-list-item:hover {box-shadow:0 5px 15px 0 #eee;}
+.scroll-content-list .scroll-content-list-img img{width: 100%;height: auto;}
+.scroll-content-list .scroll-content-list-text{ padding: 30px 15px 15px 15px;}
+.scroll-content-list .scroll-content-list-text h4{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
+.scroll-content-list .scroll-content-list-text a.more{display: inline-block;line-height: 30px;width: 120px;border-width:1px; border-style:solid; box-shadow:0 5px 15px 0 #eee; }
+.scroll-content-list .scroll-content-list-item:hover .scroll-content-list-text a.more{ box-shadow:0 5px 15px 0 #ccc; }
+
+
+.scroll-content-list .scroll-content-list-text p{line-height: 20px;max-height: 40px;mine-height:15px;overflow:hidden;}
+.scroll-content-list .scroll-content-list-text .products-buy i {display: block;
+    float: right;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+.scroll-content-list .scroll-content-list-text .products-buy .add-to-cart {float:right; margin-left:5px;}
+.scroll-content-list .scroll-content-list-text .products-buy .content-collection {
+
+    width:24px;height:24px;text-align:center;
+}

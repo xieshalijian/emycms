@@ -1,0 +1,11 @@
+
+.visual-button {
+	display:block;
+	border-width:1px;
+	border-style:solid;
+}
+
+.visual-button a {
+	border:none;
+	background:none;
+}

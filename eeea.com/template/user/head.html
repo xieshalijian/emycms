@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<title>{lang('membercenter')}</title>
+	<link href="{$base_url}/common/css/bootstrap/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{$base_url}/common/font/simple/css/font.css" rel="stylesheet" type="text/css"/>
+	<link href="{$skin_user_path}/css/user.css" rel="stylesheet">
+	<script src="{$base_url}/common/js/jquery/jquery.min.js"></script>
+	<script src="{$base_url}/common/js/jquery/jquery-migrate.min.js"></script>
+	<script src="{$skin_user_path}/js/nav.js"></script>
+
+</head>
+<body>
+
+<div id="nav">
+	<div class="container">
+		<div class="row">
+			<div class="logo-box">
+				<a href="{$base_url}/"><img src="{get('site_logo')}" class="img-responsive" alt="{get('sitename')}" /></a>
+			</div>
+			<div class="nav-btn">
+				<span></span><span></span><span></span>
+			</div>
+			<div class="nav1">
+
+				<ul>
+					<li class="oen"><a href="{$base_url}/" class="aa on">{lang('homepage')}</a></li>
+					{loop categories_nav() $t}
+					<li class="one">
+						<a href="{$t['url']}"{if config::get('nav_blank')==1} target=" _blank"{/if} class="aa toogle">{$t['catname']}{if count(categories($t['catid']))}<span class="caret"></span>{/if}</a>
+						{if count(categories($t['catid']))}
+						<div class="subnav nav2">
+							<ul>
+								{loop categories_nav($t['catid']) $t1}
+								<li class="tow">
+									<a title="{$t1['catname']}" href="{$t1['url']}" class="bb toogle">{$t1['catname']} {if count(categories($t1['catid']))}<span class="caret"></span>{/if}</a>
+									{if count(categories($t1['catid']))}
+									<div class="subnav nav3">
+										<ul>
+											{loop categories_nav($t1['catid']) $t2}
+											<li class="tree">
+												<a title="{$t2['catname']}" href="{$t2['url']}" class="cc toogle">{$t2['catname']}{if count(categories($t2['catid']))}<span class="caret"></span>{/if}</a>
+												{if count(categories($t2['catid']))}
+												<div class="subnav nav4">
+													<ul>
+														{loop categories_nav($t2['catid']) $t3}
+														<li class="four">
+															<a title="{$t3['catname']}" href="{$t3['url']}" class="dd toogle">{$t3['catname']}{if count(categories($t3['catid']))}<span class="caret"></span>{/if}</a>
+															{if count(categories($t3['catid']))}
+															<div class="subnav nav5">
+																<ul>
+																	{loop categories_nav($t3['catid']) $t4}
+																	<li class="five">
+																		<a title="{$t4['catname']}" href="{$t4['url']}" class="ee">{$t4['catname']}</a>
+																	</li>
+																	{/loop}
+																</ul>
+																{/if}
+														</li>
+														{/loop}
+													</ul>
+													{/if}
+											</li>
+											{/loop}
+										</ul>
+										{/if}
+								</li>
+								{/loop}
+							</ul>
+							{/if}
+					</li>
+					{/loop}
+
+					{if config::get('lang_open')=='1'}
+					<li id="fat-menu" class="dropdown">
+						<a data-toggle="modal" data-target="#myModalLang"><img src="{getlangimg(lang::getistemplate())}" width="20"> {getlangurlname(lang::getistemplate())}
+							<span class="caret"></span>
+						</a>
+
+					</li>
+					{/if}
+					{if config::get('site_login')=='1'}
+					<li id="login" class="head-loginoen dropdown oen"></li>
+					{/if}
+				</ul>
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="section1 user-banner" id="section1">
+	<div class="container">
+
+		<div class="nav-btn2">
+			<span></span><span></span><span></span>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6 col-md-push-6">
+				<div class="position">
+
+					<a>{lang('membercenter')}</a>
+					<span>&gt;</span>
+					<a>{lang('home')}</a>
+				</div>
+			</div>
+			<div class="col-md-6 col-md-pull-6">
+				<div class="s1-user">
+					<div class="s1-user-img">
+						<?php if(isset($user) && is_array($user)) { ?>
+                        <div class="s1-user-img-ico glyphicon glyphicon-ok"></div>
+						<img src="{$user['headimage']}" alt="headimage" class="img-responsive img-circle">
+						<?php } ?>
+					</div>
+					<div class="s1-user-text">
+						<?php if(isset($user) && is_array($user)) { ?>
+						<h4>{lang('welcomeyou')} , {$user.username}</h4>
+						<p>{$user['e_mail']}</p>
+						<p><a href="{url('user/edit/table/user')}" class="logout"><i class="icon-note"></i> {lang('edituserinfo')}</a>	|	<a href="{url('user/logout')}" class="logout">[	{lang('logout')}	]</a></p>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-9">
+				<div class="s1-menu">
+					<?php if(isset($user) && is_array($user)) { ?>
+					<ul>
+						<li class="one"><a href="{url('user/index')}" class="aa on">{lang('membercenter')}</a></li>
+
+						<?php
+						 if( file_exists(ROOT."/lib/table/shopping.php") && (count(pay::getInstance()->getrows(null,0))>1
+						||  (count(pay::getInstance()->getrows(null,0))==1 && count(pay::getInstance()->getrows('pay_code="nopay"'))==0)) ){ ?>
+						<li class="one"><a class="aa toogle">{lang('my-finance')}<span class="caret"></span></a>
+							<div class="subnav nav2">
+								<ul>
+									<li class="tow"><a class="aa" href="{url('manage/consumptionlist/manage/xfconsumption')}">{lang('consumption_details')}</a></li>
+									<li class="tow"><a class="aa" href="{url('manage/consumptionlist/manage/consumption')}">{lang('recharge_record')}</a></li>
+									<li class="tow"><a class="aa" href="{url('archive/consumption')}">{lang('recharge')}</a></li>
+
+									<li class="tow"><a class="aa" href="{url('manage/orderslist/manage/orders/type/all')}">{lang('order')}</a></li>
+									<li class="tow"><a class="aa" href="{url('manage/orderslist/manage/orders/type/refund')}">{lang('refund_record')}</a></li>
+								</ul>
+							</div>
+						</li>
+						<?php } ?>
+
+						{if config::get('coupon_show')}
+						<li class="one"><a class="aa toogle">{lang('coupon')}<span class="caret"></span></a>
+							<div class="subnav nav2">
+								<ul>
+									<li class="tow"><a class="aa" href="{url('manage/couponlist/manage/coupon/statu/all')}">{lang('exchange_coupons')}</a></li>
+									<li class="tow"><a class="aa" href="{url('manage/couponlist/manage/coupon/statu/usable')}">{lang('available_coupons')}</a></li>
+									<li class="tow"><a class="aa" href="{url('manage/couponlist/manage/coupon/statu/used')}">{lang('used_coupons')}</a></li>
+									<li class="tow"><a class="aa" href="{url('manage/couponlist/manage/coupon/statu/old')}">{lang('expired_coupons')}</a></li>
+								</ul>
+							</div>
+						</li>
+						{/if}
+						<li class="one"><a class="aa toogle">{lang('content')}<span class="caret"></span></a>
+							<div class="subnav nav2">
+								<ul>
+
+									{if chkfpw('add_archive',$user['groupid'])}<li><a href="{url('manage/add/manage/archive')}">{lang('addcontent')}</a></li>{/if}
+									<li class="tow"><a class="bb" class="bb" href="{url('/manage/list/manage/archive/needcheck/1')}">{lang('waitcheckedcontent')}</a></li>
+									<li class="tow"><a class="bb" href="{url('/manage/list/manage/archive/needcheck/0')}">{lang('alreadycheckedcontent')}</a></li>
+									<li class="tow"><a class="bb" href="{url('/manage/commentlist/manage/comment')}">{lang('my-comment')}</a></li>
+								</ul>
+							</div>
+						</li>
+
+						{if config::get('extension_type')}
+						<li class="one"><a class="aa">{lang('promotion_of_alliances')}<span class="caret"></span></a>
+							<div class="subnav nav2">
+								<ul>
+									<li class="tow"><a class="bb toogle" href="{url('union/stats/manage/union')}">{lang('stats')}</a></li>
+									<li class="tow"><a class="bb toogle" href="{url('union/getcode/manage/union')}">{lang('access_code')}</a></li>
+									<li class="tow"><a class="bb toogle" href="{url('union/visit/manage/union')}">{lang('access_statistics')}</a></li>
+									<li class="tow"><a class="bb toogle" href="{url('union/reguser/manage/union')}">{lang('registered_users')}</a></li>
+									<li class="tow"><a class="bb toogle" href="{url('union/pay/manage/union')}">{lang('promotion_of_settlement')}</a></li>
+									<li class="tow"><a class="bb toogle" href="{url('union/edit/manage/union')}">{lang('edituserinfo')}</a></li>
+								</ul>
+						</li>
+						{/if}
+						<li class="one"><a class="aa toogle" href="{url('manage/notificationlist/manage/notification')}">{lang('notice')}{if getnotread()>0}<span style="color: red">({getnotread()})<span>{/if}</a></li>
+
+						{if is_array(getappdata())}
+						<li class="one">
+							<a class="aa">{lang('extend')}<span class="caret"></span></a>
+							<div class="subnav nav2">
+								<ul>
+									<?php
+									foreach(getappdata() as $app){
+									?>
+									{if getisshoew($app['id'])}
+									<li class="tow">
+										<a class="bb toogle" href="{$app['tempate_url']}" title="{$app['name']}">
+											{$app['name']}
+										</a>
+									</li>
+									{/if}
+									<?php
+											}
+									?>
+								</ul>
+							</div>
+						</li>
+						{/if}
+
+
+					</ul>
+					<?php } ?>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="s1-btn">
+				<?php if(file_exists(ROOT."/lib/table/shopping.php") && (count(pay::getInstance()->getrows())>1 ||
+				(count(pay::getInstance()->getrows())==1 && count(pay::getInstance()->getrows('pay_code="nopay"'))==0) )){ ?>
+
+					<a href="{url('archive/consumption')}" class="s1-btn-1"><span class="glyphicon glyphicon-plus"></span>	{lang('recharge')}</a>
+
+				<?php } ?>
+
+					<a href="tencent://Message/?Uin={get('qq1')}&websiteName={get('site_url')}=&Menu=yes"><span class="icon-earphones-alt"></span>	{lang('contact_customer_service')}</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	</div>
+</div>
+
+
+
+
+
+<?php
+if(hasflash()){
+	$showmessage = showflash();
+	//var_dump($showmessage);exit;
+	if(strlen($showmessage)>200){
+?>
+<div id='message'><span style="color:red;float:left"><?php echo $showmessage; ?></span>
+	<span style="color:blue;float:right"><a href="#" onClick="javascript:turnoff('#message');">(×)</a></span></div><div class="blank20"></div>
+<?php
+    }else{
+?>
+<link rel="stylesheet" href="{$base_url}/js/dialog.css">
+<script type="text/javascript" src="{$base_url}/js/dialog.js"></script>
+<script type="text/javascript">
+	var d = dialog({
+		title: "{lang('prompted')}",
+		content: "<?php echo $showmessage; ?>",
+		ok: function () {}
+	});
+	d.showModal();
+</script>
+<?php
+    }
+}
+?>

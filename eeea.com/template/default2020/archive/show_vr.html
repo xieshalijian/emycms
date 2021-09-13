@@ -1,0 +1,47 @@
+{template 'header.html'}
+
+<style type="text/css">
+  #vr-content {position:absolute; left:0px; right:0px; top:15%; width:600px; height:600px; margin:0px auto; padding:15px; background:rgba(255,255,255,0.7); border-radius: 5px; box-shadow: 0px 8px 15px rgba(0,0,0,0.5); color:#000;}
+  .vr-content {height:500px; overflow-y:auto;}
+  .vr-title {margin-bottom:15px; padding-bottom:15px;font-size:18px;border-bottom:1px solid rgba(0,0,0,0.2);}
+  .vr-content p {}
+  #vr-content-hide {position: absolute; right:-15px; top:-15px; margin:0px auto; width:25px;height:25px; line-height:25px; text-align:center; background:#fff; box-shadow: 0px 8px 15px rgba(0,0,0,0.5); border-radius: 25px; color:red;}
+</style>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#vr-content-hide").click(function(){
+      $("#vr-content").hide();
+    });
+  });
+</script>
+<div id="vr-content">
+  <a id="vr-content-hide"><i class="glyphicon glyphicon-remove"></i></a>
+  <div class="vr-title">{$archive['title']}</div>
+  <div class="vr-content">
+  {$archive['content']}
+  </div>
+</div>
+
+
+<script src="{$base_url}/common/plugins/vr/js/modernizr-2.7.1-csstransforms3d-canvas-touch.js"></script>
+<script src="{$base_url}/common/plugins/vr/js/megapix-image.js"></script>
+<script src="{$base_url}/common/plugins/vr/js/three.min.js"></script>
+<script src="{$base_url}/common/plugins/vr/js/Detector.js"></script>
+<script src="{$base_url}/common/plugins/vr/js/CSS3DRenderer.js"></script>
+<script src="{$base_url}/common/plugins/vr/js/theta-viewer.min.js"></script>
+<link rel="stylesheet" href="{$base_url}/common/plugins/vr/css/styles.css">
+
+
+
+  <div id="theta-viewer"></div>
+  <script>
+/*global jQuery */
+(function ($) {
+    'use strict';
+    $("#theta-viewer").createThetaViewer('{$archive[my_vr]}');
+}(jQuery));
+  </script>
+  <div class="clearfix"></div>
+
+
+{template 'footer.html'}

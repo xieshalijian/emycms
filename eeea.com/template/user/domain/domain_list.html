@@ -1,0 +1,317 @@
+{template_user 'head.html'}
+
+<div class="main-right-box">
+    <h5>域名列表</h5>
+    <div class="blank20"></div>
+    <div class="box">
+
+
+            <div class="user-content-table-nav">
+                 <ul>
+                    <li><a href="{url('manage/vhostlist/manage/vhost/type/all')}" <?php if($type=='all'){?>class="active" <?php }?>>注册域名</a></li>
+                    <li><a href="{url('manage/vhostlist/manage/vhost/type/trial')}" <?php if($type=='trial'){?>class="active" <?php }?>>管理域名</a></li>
+                </ul>
+            </div>
+            <div class="blank30"></div>
+
+
+            <div class="index-title">
+                <h4>网站信息</h4>
+            </div>
+            <div class="user-content">
+
+                
+               <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <th>序号</th>
+                            <th>域名</th>
+                            <th>注册时间</th>
+                            <th>到期时间</th>
+                            <th>续费</th>
+                            <th>管理</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                baidu.com
+                            </td>
+                            <td>
+                                2019-01-01
+                            </td>
+
+                            <td>
+                                2019-01-01
+                            </td>
+                            <td>
+                                <button type="submit" value="续费">续费</button>
+                            </td>
+                            <td>
+                                <a>管理</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                baidu.com
+                            </td>
+                            <td>
+                                2019-01-01
+                            </td>
+
+                            <td>
+                                2019-01-01
+                            </td>
+                            <td>
+                                <button type="submit" value="续费">续费</button>
+                            </td>
+                            <td>
+                                <a>管理</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+            </div>
+            <div class="blank30"></div>
+
+        </div>
+    </div>
+</div>
+
+<div id="vue-app" style="display: none; padding: 10px;" class="domain-manage">
+    <div>
+        <form class="form-inline">
+            <div class="form-group" :class="errors.has('new_domain')?'has-error':''">
+                <input v-model="new_domain" v-validate="'required'" type="text" class="form-control" name="new_domain" id="new_domain" :placeholder="errors.has('new_domain')?errors.first('new_domain'):'www.*****.com'">
+            </div>
+            <button @click="addDomain" type="button" class="btn btn-warning">添加域名</button>
+        </form>
+    </div>
+    <div class="blank30"></div>
+    <div>
+        <table width="100%" class="table table-hover">
+            <tr>
+                <th width="80%">域名</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(item,index) in domainList">
+                <td width="80%">{{item.name}}</td>
+                <td><span @click="delDomain(index,item)" title="删除"><i class="glyphicon glyphicon-trash"></i></span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="blank30"></div>
+    <div>
+        <form class="form-inline">
+            <div class="form-group">
+                <label>PHP版本</label>
+                <select v-model="phpversion" class="form-control">
+                    <option v-for="option in options" :value="option.version">
+                        {{ option.name }}
+                    </option>
+                </select>
+            </div>
+            <button @click="changePHPVersion" type="button" class="btn btn-danger">切换</button>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">续费</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" name="vid" id="vid" value="" />
+                    <input type="hidden" name="conn" id="conn" value="" />
+                    <h5>当前账户余额 : {getmenoy()}元</h5>
+                    <h5>续费站点 : <span id="sitedomain"></span></h5>
+                    <div class="form-group">
+                        <label for="timelong">时长</label>
+                        <select id="timelong" name="timelong" class="form-control">
+                            <option value="1">1年</option>
+                            <option value="2">2年</option>
+                            <option value="3">3年</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="btn_pay" type="button" class="btn btn-primary">续费</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="blank30"></div>
+<script src="{$base_url}/common/js/layer/layer.js"></script>
+<script flashpath="{$base_url}/common/js/hprose/" src="{$base_url}/common/js/hprose/hprose.js"></script>
+<script src="{$base_url}/common/plugins/guestbook/vue.js"></script>
+<script src="{$base_url}/common/plugins/guestbook/vee-validate.min.js"></script>
+<script src="{$base_url}/common/plugins/guestbook/vee-validate-zh_CN.js"></script>
+<script src="{$base_url}/common/js/shopping.js"></script>
+<script src="{$base_url}/common/plugins/vhost/js/vhost.js"></script>
+<script>
+    Vue.use(VeeValidate, {
+        events: 'blur',
+        locale: 'zhCN',
+        //errorBagName: 'errorBags', // change if property conflicts.
+        //fieldsBagName: 'fieldBags',
+        dictionary: {
+            zhCN:__vee_validate_locale__zh_CN.js
+        }
+    });
+
+    var dictionary = {
+        zhCN: {
+            messages:{
+                required : (field) => field + '不能为空!'
+            },
+            attributes: {
+                new_domain: '域名'
+            }
+        }
+    };
+    VeeValidate.Validator.localize(dictionary);
+
+
+    var vue_app = new Vue({
+        el: '#vue-app',
+        data : {
+            domainList : [],
+            visible: false,
+            siteid : '',
+            sitename : '',
+            conn : '',
+            new_domain : '',
+            phpversion : '',
+            options : [],
+
+        },
+        mounted :function () {
+            //this.getCateList();
+        },
+        methods : {
+            getDomainList : function (siteid,sitename,conn) {
+                this.errors.items.length = 0;
+                this.siteid = siteid;
+                this.sitename = sitename;
+                this.conn = conn;
+                _this = this;
+                client.getDomain(siteid,conn,function(result) {
+                    if(result)
+                        _this.domainList = result;
+                });
+            },
+            getPHPVersionList : function(siteid,sitename,conn){
+                this.siteid = siteid;
+                this.sitename = sitename;
+                this.conn = conn;
+                _this = this;
+                client.getPHPVersionList(siteid,sitename,conn,function(result) {
+                    if(result)
+                        _this.options = result;
+                });
+                client.getSitePHPVersion(siteid,sitename,conn,function(result) {
+                    _this.phpversion = result.phpversion;
+                });
+            },
+            changePHPVersion:function () {
+                client.setPHPVersion(this.sitename,this.phpversion,conn,function(result) {
+                    alert(result.msg);
+                });
+            },
+            addDomain : function () {
+                let _this = this;
+                this.$validator.validate().then(result => {
+                    if (result) {
+                        client.addDomain(this.siteid,this.sitename,this.new_domain,this.conn,function(result) {
+                            if(result.status == true) {
+                                _this.getDomainList(_this.siteid, _this.sitename, _this.conn);
+                            }
+                            alert(result.msg);
+                        });
+                    }
+                });
+            },
+            delDomain : function (index,row) {
+                console.log(index);
+                console.log(row);
+                let _this = this;
+                if(row.pid && confirm('确定要删除吗?')) {
+                    client.delDomain(row.pid,this.sitename,row.name,this.conn,function(result) {
+                        //alert(result);
+                        if(result.status == true){
+                            alert(result.msg);
+                            _this.getDomainList(_this.siteid,_this.sitename,_this.conn);
+                        }else{
+                            alert(result.msg);
+                        }
+                    });
+                }
+
+            },
+
+        }
+    })
+</script>
+
+<script>
+    $(function () {
+        $('[data-target=\'#payModal\']').click(function () {
+            $('#sitedomain').html($(this).data('sitedomain'));
+            $('#vid').val($(this).data('siteid'));
+            $('#conn').val($(this).data('conn'));
+            //console.log($(this).data('aid'));
+            var def = client.getYear($(this).data('aid'),$(this).data('conn'));
+            def = def.then(function (res) {
+                $('#timelong').empty();
+                for(i in res){
+                    $('#timelong').append('<option value="'+i+'">'+res[i]+'</option>');
+                }
+            },function (err) {
+                alert(err);
+            });
+        });
+        $('#btn_pay').click(function () {
+            siteid = $('#vid').val();
+            conn = $('#conn').val();
+            timelong = $('#timelong').val();
+            if(!siteid){
+                alert('参数错误!');
+                return;
+            }
+            var def = client.Renew(siteid,timelong,conn);
+            def = def.then(function (res) {
+                //console.log(res);
+                //return;
+                if(res.CODE != 'ok'){
+                    throw res;
+                }else{
+                    window.location.reload();
+                }
+            },function (err) {
+                alert(err);
+            });
+        });
+    });
+</script>
+
+{template_user 'foot.html'}

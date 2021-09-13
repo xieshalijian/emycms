@@ -1,0 +1,62 @@
+{template 'header.html'}
+<div class="clearfix view-html">
+	<div class="container-fluid clearfix" >
+		<div class="row column">
+			<div class="tag">
+				{tag_sections_common_picture_2}
+			</div>
+			<div class="clearfix">
+			</div>
+		</div>
+	</div>
+	<div class="clearfix">
+	</div>
+	<div class="container clearfix" style="margin-top: 15px; margin-bottom: 15px; z-index: 7;">
+		<div class="row column">
+			<div class="tag">
+				{tag_sections_common_notifications_21}
+			</div>
+			<div class="clearfix">
+			</div>
+		</div>
+	</div>
+
+	<div class="container clearfix" >
+	<div class="column-list-text">
+		<div class="row">
+			{loop $archives $archive}
+			<div class="col-sm-12">
+				<div class="column-list-text-item">
+					<div class="column-list-text-date">
+						<span>{=sdate($archive['adddate'],'d')}</span>
+						<p>{=sdate($archive['adddate'],'Y-m')}</p>
+					</div>
+					<div class="column-list-text-text">
+						<h4>
+							<a title="{$archive['stitle']}" href="{$archive['url']}" cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="title" class="cmseasyedit ">
+								{$archive['title']}
+							</a>
+						</h4>
+						<p cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="intro" class="cmseasyedit textarea">
+							{cut(strip_tags($archive['introduce']),66)}
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			{/loop}
+			<div class="clearfix"></div>
+			{if isset($pages)}
+			<div class="column-pagination">
+				{tag_pagination($tag)}
+			</div>
+			{/if}
+			<div class="clearfix">
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="clearfix">
+	</div>
+</div>
+{template 'footer.html'}

@@ -1,0 +1,16 @@
+<nav>
+<ul class="pagination">
+    {if pages('up')}
+    <li><a href="{area::url($areaid,pages('up'))}"><span aria-hidden="true">«</span></a></li>
+    {/if}
+    {loop pages() $p}
+    {if $p==$page}
+    <li class="active"><a>{$p}</a></li>
+    {else}
+    <li><a href="{area::url($areaid,$p)}">{$p}</a></li>
+    {/if}
+    {/loop}
+    {if pages('down')}
+    <li><a href="{area::url($areaid,pages('down'))}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+    {/if}
+</div>

@@ -1,0 +1,51 @@
+<link href="{$template_path}/visual/list/listtag/list_job/css/style.css" rel="stylesheet">
+<div class="column-list-job column-list-job-$_id">
+	{loop $archives $archive}
+	<div class="column-list-job-item">
+		<h2>
+			<a title="{$archive['stitle']}" href="{$archive['url']}" cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="title" class="cmseasyedit ">
+				{$archive['title']}
+			</a>
+		</h2>
+		<p class="date">{$archive['adddate']}</p>
+		<div class="column-list-job-content">
+			{$archive['content']}
+		</div>
+		<a title="{$archive['stitle']}" href="{$archive['url']}" class="cmseasyedit more" cmseasy-id="details" cmseasy-table="lang" cmseasy-field="template">
+			{lang('detailed')}
+		</a>
+		<div class="clearfix"></div>
+	</div>
+	{/loop}
+</div>
+
+<style>
+	.column-list-job-$_id .column-list-job-item h2 a {
+		font-size:$_title-size;
+		color:$_title-color;
+	}
+	.column-list-job-$_id .column-list-job-item h2 a:hover {
+		color:$_title-hover-color;
+	}
+	.column-list-job-$_id .column-list-job-item .column-list-job-content  {
+		font-size:$_p-size;
+		color:$_p-color;
+	}
+	.column-list-job-$_id .column-list-job-item .column-list-job-content:hover {
+		color:$_p-hover-color;
+	}
+	.column-list-job-$_id .column-list-job-item a.more {
+		font-size:$_link-font-size;
+		color:$_link-color;
+		border-color:$_link-border-color;
+		border-radius: $_link-border-radius;
+		background:$_link-background-color;
+	}
+	.column-list-job-$_id .column-list-job-item a.more:hover {
+		color:$_link-hover-color;
+		border-color:$_link-border-hover-color;
+		border-radius: $_link-border-hover-radius;
+		background:$_link-background-hover-color;
+	}
+</style>
+

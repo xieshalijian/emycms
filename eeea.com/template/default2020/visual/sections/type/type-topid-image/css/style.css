@@ -1,0 +1,9 @@
+
+
+
+.type-topid-image {position: relative; overflow:hidden;}
+.type-topid-image {position: revert; z-index: 1; height:100%; text-align:center;}
+.type-topid-image img {width:100% !important;object-fit:cover;}
+.type-topid-image .type-topid-image-title {position: absolute; top:50%;transform: translateY(-50%) !important; width:100%; z-index: 2;}
+.type-topid-image .type-topid-image-title h1 {display:inline-block;padding-bottom:5px;}
+.type-topid-image .type-topid-image-title p {display:inline-block;}

@@ -1,0 +1,14 @@
+
+
+
+
+.scroll-pic-list-swiper {width: 100%;height: 100%;}
+
+.scroll-pic-list-swiper .swiper-pagination{position: static;margin-top: 20px;text-align: center;}
+.scroll-pic-list-swiper .swiper-pagination .swiper-pagination-bullet{width:10px;height:10px;margin:0 5px;border:1px solid #ccc;display: inline-block;border-radius:50%;background: #fff;opacity: 1;}
+.scroll-pic-list-swiper .swiper-pagination .swiper-pagination-bullet-active{background:#ccc;}
+
+
+.scroll-pic-list-swiper .scroll-pic-list-swiper-item{text-align: center;border-width:1px; border-style:solid;padding: 10px;}
+.scroll-pic-list-swiper .scroll-pic-list-swiper-item img{max-width: 100%;max-height: 100%;}
+

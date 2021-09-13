@@ -1,0 +1,82 @@
+<link href="{$template_path}/visual/list/listspecialtag/list_text/css/style.css" rel="stylesheet">
+
+<div class="special-list-text special-list-text-$_id">
+	<div class="row">
+		{loop $archives $i $sp}
+		{if $_align-number == 6}
+		{if $i%2==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{elseif $_align-number == 4}
+		{if $i%3==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{elseif $_align-number == 3}
+		{if $i%4==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{elseif $_align-number == 2}
+		{if $i%6==0 && $i>0}
+		<div class="clearfix"></div>
+		{/if}
+		{else}
+		<div class="clearfix"></div>
+		{/if}
+		<div class="col-sm-$_align-number">
+			<div class="special-list-text-item">
+				<div class="special-list-text-date">
+					<span>{=sdate($sp['adddate'],'d')}</span>
+					<p>{=sdate($sp['adddate'],'Y-m')}</p>
+				</div>
+				<div class="special-list-text-text">
+					<h4>
+						<a title="{$sp['stitle']}" href="{$sp['url']}" cmseasy-id="{$sp['aid']}" cmseasy-table="archive" cmseasy-field="title" class="cmseasyedit ">
+							{$sp['title']}
+						</a>
+					</h4>
+					<p cmseasy-id="{$sp['aid']}" cmseasy-table="archive" cmseasy-field="intro" class="cmseasyedit textarea">
+						{cut(strip_tags($sp['introduce']),66)}
+					</p>
+				</div>
+			</div>
+		</div>
+		{/loop}
+	</div>
+</div>
+
+<style>
+	.special-list-text-$_id .special-list-text-item {
+		background:$_background-color;
+		border-color:$_background-border-color;
+	}
+	.special-list-text-$_id .special-list-text-item:hover {
+		background:$_background-hover-color;
+		border-color:$_background-border-hover-color;
+	}
+
+	.special-list-text-$_id .special-list-text-item .special-list-text-text h4 a {
+		font-size:$_link-font-size;
+		color:$_link-color;
+		border-color:$_link-border-color;
+		border-radius: $_link-border-radius;
+		background:$_link-background-color;
+	}
+	.special-list-text-$_id .special-list-text-item:hover .special-list-text-text h4 a {
+		color:$_link-hover-color;
+		border-color:$_link-border-hover-color;
+		border-radius: $_link-border-hover-radius;
+		background:$_link-background-hover-color;
+	}
+	.special-list-text-$_id .special-list-text-item:hover .special-list-text-date span,
+	.special-list-text-$_id .special-list-text-item:hover .special-list-text-date p {
+		color:$_link-hover-color;
+	}
+	.special-list-text-$_id .special-list-text-text p {
+		font-size:$_p-size;
+		color:$_p-color;
+	}
+	.special-list-text-$_id .special-list-text-item:hover .special-list-text-text p {
+		color:$_p-hover-color;
+	}
+</style>
+

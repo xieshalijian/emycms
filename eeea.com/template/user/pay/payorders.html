@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{lang('shoppingcart')}</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+    <meta name="keywords" content="{if (isset($archive['keyword']) && $archive['keyword'])}{$archive['keyword']}{else}{if (isset($type['keyword']) && $type['keyword'])}{$type['keyword']}{elseif (isset($category[$catid]['keyword']) && $category[$catid]['keyword'])}{$category[$catid]['keyword']}{else}{get('site_keyword')}{/if}{/if}" />
+    <meta name="description" content="{if (isset($archive['description']) && $archive['description'])}{$archive['description']}{else}{if (isset($type['description']) && $type['description'])}{$type['description']}{elseif (isset($category[$catid]['description']) && $category[$catid]['description'])}{$category[$catid]['description']}{else}{get('site_description')}{/if}{/if}" />
+    <meta name="author" content="CmsEasy Team" />
+    <link rel="icon" href="{get('site_ico')}" type="image/x-icon" />
+    <link href="{$base_url}/common/css/bootstrap/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{$base_url}/common/font/simple/css/font.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{$skin_user_path}/css/orders.css" />
+    <script src="{$base_url}/common/js/jquery/jquery.min.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="blank30"></div>
+    <a href="{url('user/index')}" class="btn btn-default btn-lg pull-right">{lang('backhome')}</a>
+
+
+    <div class="t_1">
+        <div>
+            <h3><a>{lang('order')}</a></h3>
+            <p>Online Payment</p>
+        </div>
+    </div>
+
+
+
+
+    <div style="padding: 10px 5px 10px 5px;margin-top: 5px">
+        <strong>{lang('yourorder')}：<font color="red"><span href="javascript:void(0)">{get('oid')}{count((array)$orderssomedata)}</span></font></strong>
+        <div class="blank10"></div>
+        <?php if(!isset($archivearr1)){?>
+            <div class="row orders-list">
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 orders-pic">
+			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <a target="_blank" href="{$archive['url']}"><img src="{$archive['thumb']}" class="img-responsive"></a>
+
+           </div>
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                        <a target="_blank" href="{$archive['url']}" class="o_title">{$archive['title']}</a>
+                      
+                                        </div>
+            </div>
+                       
+<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+
+                    
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <span class="pull-left">
+					<?php
+                        if($_archive['type']!=""){
+                            $source = explode(";",trim($_archive['type']));
+                            for($index=0;$index<count($source);$index++){
+                                $sourceArry = explode(":",trim($source[$index]));
+                                echo  setting::$var['archive'][$sourceArry[0]]['cname']."：";
+                                $sourceArry = explode(",",trim($sourceArry[1]));
+                                echo $sourceArry[0]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                            }
+                        }else{
+                            echo "无类型";
+                        }
+                        ?>
+</span>
+ </div>
+
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        {lang('price')}&nbsp;:&nbsp;{lang('unit')}&nbsp;
+                        <span align="center" class="price">
+                                      {$archive['attr2']}                                </span>
+                    </div>
+
+                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+				 {lang('numbers')}：{$orders[$key]['pnums']}
+				 </div>
+                
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div class="visible-xs clearfix"></div>
+                    <span class="pull-right">{lang('subtotal')}：{lang('unit')}<strong>{$archive['total']}</strong></span>
+                </div>
+                   
+
+            </div>
+        </div>
+        <?php }else{?>
+        {loop $archivearr1 $key $archive}
+        {if (isset($archive['title']) && $archive['title'] !='')}
+        <div class="row orders-list">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 orders-pic">
+			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <a target="_blank" href="{$archive['url']}"><img src="{$archive['thumb']}" class="img-responsive"></a>
+				</div>
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                        <a target="_blank" href="{$archive['url']}" class="o_title">{$archive['title']}</a>
+                      
+                                        </div>
+            </div>
+
+
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+
+                    
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <span class="pull-left">
+					<?php
+                        if(isset($archive['leixing']) && $archive['leixing']!=""){
+                            $source = explode(";",trim($archive['leixing']));
+                            for($index=0;$index<count($source);$index++){
+                                $sourceArry = explode(":",trim($source[$index]));
+                                 $newcname='cname_'.lang::getistemplate();
+                                  if($orders['type']==2){
+                                     echo  setting::$service_var[$sourceArry['0']][$newcname]."：";
+                                  }else{
+                                     echo  setting::$var['archive'][$sourceArry['0']][$newcname]."：";
+                                  }
+                                $sourceArry = explode(",",trim($sourceArry[1]));
+                                echo $sourceArry[0]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                            }
+                        }else{
+                            echo "无类型";
+                        }
+                        ?>
+</span>
+ </div>
+
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        {lang('price')}&nbsp;:&nbsp;{lang('unit')}&nbsp;
+                        
+                                      {$archive['attr2']}                                
+		
+                    </div>
+
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+				 {lang('numbers')}：{$orders[$key]['pnums']}
+				 </div>
+                
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div class="visible-xs clearfix"></div>
+                    <span class="pull-right">{lang('subtotal')}：{lang('unit')}<strong>{$archive['total']}</strong></span>
+                </div>
+            </div>
+        </div>
+   {/if}
+    {/loop}
+
+    <?php }?>
+
+                <style type="text/css">
+					    .orders-list-dosomething {background: rgba(115,164,255,.2);
+    border: 1px solid rgba(115,164,255,.2);
+    padding: 0px 5px;
+    border-radius: 3px;
+    color: #060D33;}
+                </style>
+
+    <div class="thistotal  pull-right">
+	<p>{lang('total_commodity_price')}：{lang('unit')}{$total}</p>
+                        <p>{lang('freight')}：{lang('unit')}{$logistics['0']['price']}</p>
+                        <p>{lang('service_charge')}：{lang('unit')}{$freetotal}</p>
+	<p>{lang('discount')}：<span class="orders-list-dosomething" style="font-size:14px;">
+<!-- 注释：优惠券名称获取失败 -->
+	        <?php
+                  if(count($archivearr1['couponmenoy'])>0){
+                        for($index=0;$index<count($archivearr1['couponmenoy']);$index++){
+                            $total=$total-$archivearr1['couponmenoy'][$index][0];
+                            echo $archivearr1['couponmenoy'][$index][1].':'.lang('unit').$archivearr1['couponmenoy'][$index][0];
+                        }
+                  }else{
+                    echo '无优惠';
+                  }
+                ?>
+				<!-- 注释：优惠券名称获取失败 -->
+				</span>
+				
+				</p>
+<div class="blank10"></div>
+        <p><span>{lang('actual_payment')}：{lang('unit')}<label>{$fktotal}</label></span></p>
+    </div>
+
+    <div class="blank30"></div>
+    <div class="shoppingcart">
+        {if $paytype == 'wxscanpay'}
+        <script>
+           /* function chkstate(){
+                $.get('{url('archive/chkorders/oid/'.front::get('oid'))}',null,function(res){
+                    if(res == 4){
+                        window.location.href = '{url('archive/orders/oid/'.front::get('oid'))}';
+                    }
+                });
+            }
+            setInterval("chkstate()",3000);*/
+           function chkstate2(){
+               $.get('{url('archive/chkconsumption/oid/'.front::get('oid'))}',null,function(res){
+                   if(res>0){
+                       window.location.href = '{url('archive/orders/oid/'.front::get('oid'))}';
+                   }
+               });
+           }
+           setInterval("chkstate2()",3000);
+        </script>
+        {/if}
+
+
+        <?php
+
+        if(substr(front::get('oid'),19) && $statusnum==0){
+            echo $gotopaygateway;
+        }else{
+            echo 'orderstatus：'.$orders['status'];
+        }
+        ?>
+    </div>
+    <div class="blank30"></div>
+    <div class="clear"></div>
+</div>
+
+<style>
+    .shoppingcart input {display: inline-block;
+        line-height: 50px;
+        border: 1px solid #FF6801;
+        padding: 0 40px;
+
+        font-size: 18px;
+        color: #fff;
+        background: #FF6801;}
+</style>
+
+<div class="clear"></div>
+</div>
+<!-- 中部结束 -->
+
+<script src="{$base_url}/common/js/shopping.js"></script>
+<script type="text/javascript">
+    <!--
+    $(function () {
+        var url='{url("archive/getarchiveprice/aid/".$archive["aid"])}';
+        var myfield="{$archive['my_field']}";
+        var setfieldNameurl='{url("archive/getfieldName")}';
+        var setleixingurl='{url("archive/getarchiveType")}';
+        var aid='{$archive["aid"]}';
+        var shopingurl="{url('archive/doorders/aid/',true)}";
+        getshopping(aid,url,myfield,setfieldNameurl,setleixingurl,shopingurl);
+    });
+    //-->
+</script>
+<div class="c_bottom"></div>
+<div class="clear"></div>
+</div>
+<div class="blank10"></div>
+<div class="f"  style="display:none">
+    {getCopyRight()}
+</div>
+</body>
+</html>

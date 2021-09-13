@@ -1,0 +1,26 @@
+
+
+.left_menu_list h5 {
+  cursor: pointer;
+  font-size:16px;
+  padding:5px 0px;
+}
+
+
+.left_menu_list .opened-for-codepen {
+  display: none;
+}
+
+h5.left_menu_list_two {padding:5px 0px 5px 5px;font-size:14px;}
+h5.left_menu_list_three {padding:5px 0px 5px 10px;font-size:14px;}
+h5.left_menu_list_four {padding:5px 0px 5px 15px;font-size:14px;}
+h5.left_menu_list_five {padding:5px 0px 5px 20px;font-size:14px;}
+h5.left_menu_list_six {padding:5px 0px 5px 25px;font-size:14px;}
+h5.left_menu_list_seven {padding:5px 0px 5px 30px;font-size:14px;}
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+
+.three-content-pic .index-title{text-align: center;}
+.three-content-pic .index-title:after{content:"";display:table;clear:both;}
+
+.three-content-pic .index-title h4{margin:0;}
+.three-content-pic .index-title p{display:block;margin-top:3px;}
+.three-content-pic .index-title h4:after{content:"";display:block;height:2px;width:2em;background:#060D33;margin:10px auto;}

@@ -1,0 +1,14 @@
+{template_user 'head.html'}
+
+<div class="index-bg">
+	<div class="container">
+		{loop $data $d}
+				<p>{$d['title']}</p>
+				<p>{$d['note']}</p>
+				{if $d['titleurl']!=''}
+					<input class="btn btn-secondary" type="button" value=" {lang('see_details')} " name="order" onclick="window.location.href ='{$d['titleurl']}';" />
+				{/if}
+		{/loop}
+</div>
+</div>
+{template_user 'foot.html'}

@@ -1,0 +1,94 @@
+
+.menu-list-categroy{
+    position: relative;
+    display: block;
+}
+.menu-list-categroy .sidebar-menu {
+    margin: 0;
+    padding: 0;
+    margin-left: 5px;
+}
+.menu-list-categroy:before{
+    content: "";
+    position: fixed;
+    display: block;
+    bottom: 0;
+    top: 0;
+    left: 5px;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+    -moz-box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+    z-index: 1;
+}
+.menu-list-categroy .sidebar-menu a{
+    z-index: 123;
+    padding: 0 16px 0 7px;
+    margin: 0;
+    height: 38px;
+    line-height: 36px;
+    -webkit-text-shadow: none!important;
+    text-shadow: none!important;
+}
+.menu-list-categroy .submenu{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    float: none;
+    border: 0;
+    border-radius: 0;
+    z-index: 123;
+}
+.menu-list-categroy .sidebar-menu>li>a {
+
+}
+
+.panel-group .panel{
+    margin: 0;
+    margin-top:0 !important;
+    border: none;
+}
+
+/* 第一层级缩进 */
+.menu-list-categroy .sidebar-menu .submenu>li>a {
+    padding-left: 5px;
+}
+/* 第二层级缩进 */
+.menu-list-categroy .sidebar-menu .submenu>li .submenu>li>a {
+    padding-left: 5px;
+}
+.menu-list-categroy .sidebar-menu .submenu>li .submenu>li .submenu>li>a {
+    padding-left: 5px;
+}
+.menu-list-categroy .sidebar-menu .submenu>li .submenu>li .submenu>li .submenu>li>a {
+    padding-left: 5px;
+}
+.menu-list-categroy .sidebar-menu .submenu>li .submenu>li .submenu>li .submenu>li .submenu>li>a {
+    padding-left: 5px;
+}
+.menu-list-categroy .sidebar-menu a:hover {
+    color: #262626;
+}
+/* 选中增加蓝色border */
+.menu-list-categroy .sidebar-menu .active:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -4px;
+    width: 4px;
+    max-width: 4px;
+    overflow: hidden;
+}
+.menu-list-categroy .sidebar-menu li a:not(.panel-heading):hover:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -4px;
+    width: 4px;
+    max-width: 4px;
+    overflow: hidden;
+    background-color: #fb6e52;
+}

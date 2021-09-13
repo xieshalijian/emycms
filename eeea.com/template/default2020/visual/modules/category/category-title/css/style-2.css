@@ -1,0 +1,15 @@
+
+.category-title {position: relative;}
+.category-title ul.category-title-ul li {display: inline-block;margin-right: 15px;}
+.category-title ul.category-title-ul li a {display: inline-block;border-width:1px; border-style:solid;line-height: 36px;padding: 0 30px;border-radius: 2px;margin-top: 10px;}
+.category-title ul.category-title-ul li span {margin:0px;}
+
+@media screen and (min-width: 768px) and (max-width: 991px){
+    .category-title ul.category-title-ul li {margin-right: 20px;}
+}
+@media screen and (min-width: 480px) and (max-width: 767px){
+    .category-title ul.category-title-ul li {margin-right: 15px;}
+}
+@media screen and (min-width: 0) and (max-width: 479px){
+    .category-title ul.category-title-ul li {margin-right: 10px;}
+}

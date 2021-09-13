@@ -1,0 +1,49 @@
+	<div class="section9">
+		<div class="index-title">
+			{loop plugins::categoryinfo($_catid) $cat}
+			<h4>
+				<a title="{$cat['catname']}" href="{$cat['url']}" cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit ">
+					{$cat['catname']}
+				</a>
+			</h4>
+			<span>/ </span>
+			<span cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit ">{$cat['htmldir']}</span>
+			{/loop}
+		</div>
+		<div class="s9">
+			<div class="swiper-container swiper9">
+				<div class="swiper-wrapper">
+					{loop archive($_catid,$_typeid,$_spid,$_area,$_length,$_ordertype,$_limit,$_image,$_attr1,$_son,$_wheretype,$_tpl,$_intro_len,$_istop) $i $archive}
+					<div class="swiper-slide s9-item">
+						<a title="{$archive['stitle']}" href="{$archive['url']}">
+							<img alt="{$archive['stitle']}" src="{$archive['thumb']}" cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="thumb" class="cmseasyedit img swiper-lazy" />
+						</a>
+					</div>
+					{/loop}
+				</div>
+				<div class="swiper-pagination swiper9-pagination"></div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		var mySwiper = new Swiper ('.swiper9', {
+			loop: true,
+			slidesPerView : 3,
+			slidesPerGroup : 3,
+			lazy: true,
+			spaceBetween : 10,
+			autoHeight: true,
+			grabCursor: true,
+			breakpointsInverse: true,
+			breakpoints: {
+				320: {slidesPerView: 1,slidesPerGroup : 1,},
+				480: {slidesPerView: 2,slidesPerGroup : 2,},
+				768: {slidesPerView: 3,slidesPerGroup : 3,},
+				992: {slidesPerView: 4,slidesPerGroup : 4,},
+				1200: {slidesPerView: 5,slidesPerGroup : 5,},
+			},
+			navigation: {nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev',},
+			pagination: {el: '.swiper-pagination',clickable: true,},
+		});
+	</script>

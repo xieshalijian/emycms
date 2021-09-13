@@ -1,0 +1,12 @@
+{php $sps = plugins::specialinfo($_spid,$_spname,$_subtitle,$_spcontent,$_len,$_spimage)}
+{loop $sps $sp}
+{if $sp['banner']}
+<a href="{$sp['url']}" title="{$sp['title']}"><img alt="{$sp['title']}" class="lazy img-responsive" src="{$sp['banner']}"></a>
+{/if}
+{if $sp['name']}<a href="{$sp['url']}" title="{$sp['title']}">{$sp['title']}</a>{/if}
+{if $sp['subtitle']}<p>{$sp['subtitle']}</p>{/if}
+{if $sp['description']}<p>
+{$sp['description']}
+</p>{/if}
+{/loop}
+

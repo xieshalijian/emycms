@@ -1,0 +1,168 @@
+
+
+
+                {if config::get('ditu_APK')}
+                <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={get('ditu_APK')}"></script>
+                {else}
+                <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+                {/if}
+
+                <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+                <script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+                <div class="col-md-8">
+                <div id="allmap"></div>
+                </div>
+                <div class="col-md-4" id="allmaplist" >
+
+                        <ul class="list-group">
+                            <li class="list-group-item active" id="listatlas">{lang('list')}</li>
+                            {loop $data $d}
+                                <a onclick="showpoint('{$d['mapx']}','{$d['mapy']}','{$d['mapurl']}');" class="list-group-item list-group-item-action">
+                                    <ul>
+                                        <li><p >{lang('ordercontactname')}：<span id="mapname{$d['id']}">{$d['mapname']}</span></p></li>
+                                        <li><p >{lang('longitude')}：<span id="mapx{$d['id']}">{$d['mapx']}</span>，{lang('latitude')}：<span id="mapy{$d['id']}">{$d['mapy']}</span></p></li>
+                                        <li><p >{lang('contact_address')}：<span id="mapurl{$d['id']}">{$d['mapurl']}</span></p></li>
+                                        <li><p >{lang('lang_phone')}：<span id="maptel{$d['id']}">{$d['maptel']}</span></p></li>
+                                    </ul>
+                                </a>
+                            {/loop}
+                        </ul>
+
+                </div>
+
+
+                <script type="text/javascript">
+                    // 百度地图API功能
+                    var markers = new Array();   //先声明
+                    var opts = {
+                        width : 250, // 信息窗口宽度
+                        height: 100, // 信息窗口高度
+                        title : "信息窗口" , // 信息窗口标题
+                        enableMessage:true//设置允许信息窗发送短息
+                    };
+                    var data =[]; //初始化数据  数据库   JSON.parse('{$atlasmaplist}');
+                    $.get('{url("archive/getAtlas")}',function(result){
+                        data = JSON.parse(result);
+                        var html="";
+                        if(data != ''){
+                            //列表
+                            $.each(data, function(i, item) {
+                                html+=" <form name=\"form"+item.id+"\" id=\"form"+item.id+"\"  action='' method=\"post\"> ";
+                                html+=" <a onclick=\"showpoint('"+item.mapx+"','"+item.mapy+"','"+item.mapurl+"');\"  class=\"list-group-item list-group-item-action\">";
+                                html+="<ul>";
+                                html+=" <li><p >{lang('ordercontactname')}：<span id=\"mapname"+item.id+"\">"+item.mapname+"</span></p></li>";
+                                html+="<li><p >{lang('longitude')}：<span id=\"mapx"+item.id+"\">"+item.mapx+"</span>，";
+                                html+="{lang('latitude')}：<span id=\"mapy"+item.id+"\">"+item.mapy+"</span></p></li>";
+                                html+="<li><p >{lang('contact_address')}：<span id=\"mapurl"+item.id+"\">"+item.mapurl+"</span></p></li>";
+                                html+="<li><p >{lang('lang_phone')}：<span id=\"maptel"+item.id+"\">"+item.maptel+"</span></p></li>";
+                                html+="</ul>";
+                                html+="</a>";
+                                html+="</form>";
+                            });
+                        }else{
+                            var html="<h1>{lang('no_location_yet')}</h1>";
+                        }
+                        $('#listatlas').after(html);
+                        //创建和初始化地图
+                        initMap();
+                    });
+
+                    //创建和初始化地图函数：
+                    function initMap(){
+                        createMap();//创建地图
+                        setMapEvent();//设置地图事件
+                        addMapControl();//向地图添加控件
+                        addMarker();//向地图中添加marker
+                    }
+
+                    //创建地图函数：
+                    function createMap(){
+                        var map = new BMap.Map("allmap");//在百度地图容器中创建一个地图
+                        window.map = map;//将map变量存储在全局
+                        if(data.length>0){
+                            var point = new BMap.Point(data[0]['mapx'], data[0]['mapy']);//当前坐标经纬可改
+                            map.addOverlay(new BMap.Marker(point));//定点坐标红点覆盖
+
+                            //默认选中！也可是点击后选中
+                            showpoint(data[0]['mapx'],data[0]['mapy'],data[0]['mapurl']);
+                            //默认选中！也可是点击后选中
+                        }else{
+                            map.centerAndZoom(new BMap.Point('116.404', '39.915'), 12);
+                        }
+                    }
+
+                    //默认选中！也可是点击后选中
+                    function showpoint(lng,lat,site){
+                        //先删除后增加
+                        for(var i=0; i<markers.length; i++){
+                            map.removeOverlay(markers[i]);
+                        }
+                        /*  markerClusterer.clearMarkers();         //此步骤需要*/
+                        if(markers.length>0){
+                            markerClusterer = new BMapLib.MarkerClusterer(map, {markers:markers}); //添加
+                        }
+                        map.centerAndZoom(new BMap.Point(lng, lat), 12);
+                        var pt = new BMap.Point(lng, lat);
+                        var content = "{lang('longitude')}："+lat+"<br/>{lang('latitude')}："+lng+"<br/>{lang('contact_address')}："+site;
+                        var infoWindow = new BMap.InfoWindow(content,opts); // 创建信息窗口对象
+                        map.openInfoWindow(infoWindow,pt); //开启信息窗口
+
+                    }
+
+                    //地图事件设置函数：
+                    function setMapEvent(){
+                        map.enableScrollWheelZoom(true);//启用地图滚轮放大缩小
+                        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+                        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+                        map.enableKeyboard();//启用键盘上下左右键移动地图
+                        //地图单击事件
+                    }
+
+                    //地图控件添加函数：
+                    function addMapControl(){
+                        //向地图中添加缩放控件
+                        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_RIGHT,type:BMAP_NAVIGATION_CONTROL_SMALL});
+                        map.addControl(ctrl_nav);
+                    }
+
+                    //创建marker
+                    function addMarker(){
+                        //初始化数据格式成地图接收的json
+                        $.each(data, function(i, item) {
+                            var point = new BMap.Point(item.mapx, item.mapy);
+                            var marker = new BMap.Marker(point);
+                            var content = "{lang('longitude')}："+item.mapy+"<br/>{lang('latitude')}："+item.mapx+"<br/>{lang('contact_address')}："+item.mapurl;
+                            addClickHandler(content, marker); //添加点击事件
+                            markers.push(marker);
+                        });
+                        //添加聚合效果。
+                        var markerClusterer = new BMapLib.MarkerClusterer(map, {markers:markers});
+                    }
+
+                    //单击弹出框
+                    function addClickHandler(content,marker){
+                        marker.addEventListener("click",function(e){
+                            openInfo(content,e)}
+                        );
+
+                    }
+
+                    //创建弹出框
+                    function openInfo(content,e){
+                        var p = e.target;
+                        var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+                        var infoWindow = new BMap.InfoWindow(content,opts); // 创建信息窗口对象
+                        map.openInfoWindow(infoWindow,point); //开启信息窗口
+                    }
+
+
+                </script>
+
+<style type="text/css">
+	/* 百度地图 */
+.BMap_cpyCtrl span span,.BMap_noprint span span,.anchorBL span span {display:none;}
+    #allmap {
+        width: 100%;
+        height: 500px;
+    }
+</style>

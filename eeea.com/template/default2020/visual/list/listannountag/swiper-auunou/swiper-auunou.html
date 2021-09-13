@@ -1,0 +1,93 @@
+
+<link href="{$template_path}/visual/list/listannountag/swiper-auunou/css/style.css" rel="stylesheet">
+
+<div class="swiper-container swiper-auunou swiper-auunou-$_id">
+    <div class="swiper-wrapper">
+        {loop announ($_align-number,$_title-number,$_isdate) $an}
+        <div class="swiper-slide">
+                   <span cmseasy-id="{$an['aid']}" cmseasy-table="announ" cmseasy-field="adddate" class="cmseasyedit time badge announ-date $_align-data">
+                        {$an['adddate']}
+                    </span>
+            <a title="{$an['title']}" href="{$an['url']}" cmseasy-id="{$an['id']}" cmseasy-table="announ" cmseasy-field="title" class="cmseasyedit ">
+                {$an['title']}
+            </a>
+        </div>
+        {/loop}
+
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-button-next swiper-button-next-auunou">
+        <span class="glyphicon glyphicon-menu-right"></span>
+    </div>
+    <div class="swiper-button-prev swiper-button-prev-auunou">
+        <span class="glyphicon glyphicon-menu-left"></span>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<style>
+    .swiper-auunou-$_id {
+        height: $_height;
+
+    }
+    .swiper-auunou-$_id .swiper-slide {
+        height:$_height;
+        line-height:$_height;
+    }
+    .swiper-auunou-$_id .swiper-wrapper .announ-date {
+        $_align-data:30px;
+    }
+    .swiper-auunou-$_id .swiper-slide a {
+    {if $_align-data == left}
+    margin-left:100px;
+    {else}
+    {/if}
+        font-size:$_link-font-size;
+        color:$_link-color;
+        background:$_link-background-color;
+    }
+    .swiper-auunou-$_id .swiper-slide:hover a,
+    .swiper-auunou-$_id .swiper-slide a:hover {
+        color:$_link-hover-color;
+        border-color:$_link-border-hover-color;
+    }
+    .swiper-auunou-$_id .swiper-slide {
+        border-color:$_link-border-color;
+        border-radius: $_link-border-radius;
+    }
+    .swiper-auunou-$_id .swiper-slide:hover {
+        border-radius: $_link-border-hover-radius;
+        background:$_link-background-hover-color;
+    }
+    .swiper-auunou-$_id .swiper-slide span {
+        font-size:$_btn-size;
+        color:$_btn-text-color;
+        border-color:$_btn-border-color;
+        border-radius: $_btn-border-radius;
+        background:$_btn-background-color;
+    }
+    .swiper-auunou-$_id .swiper-slide:hover span,
+    .swiper-auunou-$_id .swiper-slide span:hover {
+        color:$_btn-text-hover-color;
+        border-color:$_btn-border-hover-color;
+        border-radius: $_btn-border-hover-radius;
+        background:$_btn-background-hover-color;
+    }
+</style>
+
+<script>
+    var swiper = new Swiper('.swiper-auunou-$_id', {
+        direction: 'vertical',
+        slidesPerView: 1,
+        spaceBetween: 30,
+        mousewheel: true,
+        navigation: {
+            nextEl: '.swiper-auunou-$_id .swiper-button-next-auunou',
+            prevEl: '.swiper-auunou-$_id .swiper-button-prev-auunou',
+        },
+        autoplay: {
+            delay: 100000,
+            disableOnInteraction: false,
+        },
+    });
+</script>

@@ -1,0 +1,7 @@
+
+
+.left-pic-and-right-content-title:after{content:"";display:table;clear:both;}
+.left-pic-and-right-content-title {text-align:center;}
+.left-pic-and-right-content-title h4{margin:0;text-align:center;}
+.left-pic-and-right-content-title p{text-align:center;margin-top:3px;}
+.left-pic-and-right-content-title h4:after{content:"";display:block;height:2px;width:2em;background:#060D33;margin:10px auto;}

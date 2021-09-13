@@ -1,0 +1,98 @@
+<link href="{$template_path}/visual/list/listtypetag/list_job/css/style.css" rel="stylesheet">
+	<div class="type-list-job type-list-job-$_id">
+		<ul class="type-list-job-th row">
+			<li class="col-md-6 col-xs-12">
+				<div class="row">
+				<span class=" cmseasyedit" cmseasy-id="recruitmentpost" cmseasy-table="lang" cmseasy-field="template">
+				{lang('recruitmentpost')}
+					</span>
+				</div>
+			</li>
+			<li class="col-md-2 col-xs-12 text-center">
+				<span class=" cmseasyedit" cmseasy-id="recruitingdepartment" cmseasy-table="lang" cmseasy-field="template">
+				{lang('recruitingdepartment')}
+					</span>
+			</li>
+			<li class="col-md-2 col-xs-12 text-center">
+				<span class=" cmseasyedit" cmseasy-id="releasetime" cmseasy-table="lang" cmseasy-field="template">
+				{lang('releasetime')}
+					</span>
+			</li>
+			<li class="col-md-2 col-xs-12 text-center">
+				<span class=" cmseasyedit" cmseasy-id="intro" cmseasy-table="lang" cmseasy-field="template">
+				{lang('intro')}
+					</span>
+			</li>
+			<div class="clearfix"></div>
+		</ul>
+		{loop $archives $archive}
+		<ul class="type-list-job-tr row">
+			<li class="col-md-6 col-xs-12">
+				<div class="row">
+				<a title="{$archive['stitle']}" href="{$archive['url']}" cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="title" class="cmseasyedit ">
+					{$archive['title']}
+				</a>
+				</div>
+			</li>
+			<li class="col-md-2 col-xs-12 text-center">
+				{if $archive['my_zhaopinbumen']}
+				{$archive['my_zhaopinbumen']}
+				{else}
+				<span class=" cmseasyedit" cmseasy-id="not" cmseasy-table="lang" cmseasy-field="template">
+				{lang('not')}
+				</span>
+				{/if}
+			</li>
+			<li class="col-md-2 col-xs-12 text-center">
+				<span cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="adddate" class="cmseasyedit time">
+				{$archive['adddate']}
+				</span>
+			</li>
+			<li class="col-md-2 col-xs-12 text-center">
+				<a title="{$archive['stitle']}" href="{$archive['url']}" class="type-list-job-tr-more cmseasyedit" cmseasy-id="details" cmseasy-table="lang" cmseasy-field="template">
+					{lang('details')}
+				</a>
+			</li>
+			<div class="clearfix"></div>
+		</ul>
+		{/loop}
+		<div class="clearfix"></div>
+	</div>
+
+<style>
+	.type-list-job-$_id ul.type-list-job-th {
+		background:$_background-color;
+		border-color:$_background-border-color;
+	}
+	.type-list-job-$_id ul.type-list-job-th:hover {
+		background:$_background-hover-color;
+		border-color:$_background-border-hover-color;
+	}
+	.type-list-job-$_id ul.type-list-job-tr li {
+		font-size:$_link-font-size;
+		color:$_link-color;
+		border-color:$_link-border-color;
+		border-radius: $_link-border-radius;
+		background:$_link-background-color;
+	}
+	.type-list-job-$_id ul.type-list-job-tr li:hover {
+		color:$_link-hover-color;
+		border-color:$_link-border-hover-color;
+		border-radius: $_link-border-hover-radius;
+		background:$_link-background-hover-color;
+	}
+	.type-list-job-$_id .type-list-job-tr-more {
+		font-size:$_btn-size;
+		color:$_btn-text-color;
+		border-color:$_btn-border-color;
+		border-radius: $_btn-border-radius;
+		background:$_btn-background-color;
+	}
+	.type-list-job-$_id .type-list-job-tr-more:hover {
+		color:$_btn-text-hover-color;
+		border-color:$_btn-border-hover-color;
+		border-radius: $_btn-border-hover-radius;
+		background:$_btn-background-hover-color;
+	}
+	</style>
+

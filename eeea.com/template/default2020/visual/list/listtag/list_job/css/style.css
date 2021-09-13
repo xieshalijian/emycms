@@ -1,0 +1,14 @@
+
+.column-list-job {
+    clear:both;
+}
+.column-list-job .column-list-job-item h2 {padding-bottom:10px; border-bottom:1px solid #ccc;}
+.column-list-job .column-list-job-item .column-list-job-content {line-height:1.8;}
+.column-list-job .column-list-job-item a.more {display:inline-block; margin-bottom:15px; border-width:1px; border-style:solid;padding:3px 15px;}
+.column-list-job .column-list-job-item .column-list-job-content img {
+    max-width:100%;
+}
+
+@media (max-width:468px) {
+.column-list-job .column-list-job-item a.more {display:block; text-align:center;}
+}

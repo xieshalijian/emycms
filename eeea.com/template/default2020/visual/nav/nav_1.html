@@ -1,0 +1,72 @@
+<div id="navbar" class="nav navbar-nav navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        <li class="oen{if $topid==0} active{/if}">
+            <a href="{$base_url}/">
+                <span class=" cmseasyedit" cmseasy-id="homepage" cmseasy-table="lang" cmseasy-field="template">
+                {lang('homepage')}
+                    </span>
+            </a>
+        </li>
+        {loop categories_new_nav() $t}
+        <li class="oen{if isset($topid) && $topid==$t['catid']} active{/if}{if count((array)$t['children'])} dropdown{/if}">
+            <a href="{$t['url']}"{if config::get('nav_blank')==1} target=" _blank"{/if}{if  count((array)$t['children'])} class="toogle"{/if}>
+            <span cmseasy-id="{$t['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit">
+                {$t['catname']}
+            </span>
+            {if count((array)$t['children'])}<span class="caret"></span>{/if}</a>
+
+            {if count((array)$t['children'])}
+                <ul class="two dropdown-menu">
+                    {loop $t['children'] $t1}
+                    <li{if count((array)$t1['children'])} class="dropdown-submenu"{/if}>
+                    <a title="{$t1['catname']}" href="{$t1['url']}" cmseasy-id="{$t1['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit{if  count((array)$t1['children'])} toogle{/if}">{$t1['catname']}</a>
+                    {if count((array)$t1['children'])}
+                    <ul class="three dropdown-menu">
+                        {loop $t1['children'] $t2}
+                        <li{if count((array)$t2['children'])} class="dropdown-submenu"{/if}>
+                        <a title="{$t2['catname']}" href="{$t2['url']}" cmseasy-id="{$t2['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit{if  count((array)$t2['children'])} toogle{/if}">{$t2['catname']}</a>
+                        {if count((array)$t2['children'])}
+                        <ul class="four dropdown-menu">
+                            {loop $t2['children'] $t3}
+                            <li{if count((array)$t3['children'])} class="dropdown-submenu"{/if}>
+                            <a title="{$t3['catname']}" href="{$t3['url']}" cmseasy-id="{$t3['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit{if  count((array)$t3['children'])} toogle{/if}">{$t3['catname']}</a>
+                            {if count((array)$t3['children'])}
+                            <ul class="five dropdown-menu">
+                                {loop $t3['children'] $t4}
+                                <li>
+                                    <a title="{$t4['catname']}" href="{$t4['url']}" cmseasy-id="{$t4['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit">{$t4['catname']}</a>
+                                </li>
+                                {/loop}
+                            </ul>
+                            {/if}
+                            </li>
+                            {/loop}
+                        </ul>
+                        {/if}
+                        </li>
+
+                        {/loop}
+                    </ul>
+                    {/if}
+                    </li>
+
+                    {/loop}
+                </ul>
+            {/if}
+
+        </li>
+        {/loop}
+        {if config::get('lang_open')=='1'}
+
+        <li id="fat-menu" class="one dropdown">
+            <a data-toggle="modal" data-target="#myModalLang"><img src="{getlangimg(lang::getistemplate())}" width="20"> {getlangurlname(lang::getistemplate())}
+                <span class="caret"></span>
+            </a>
+        </li>
+        {/if}
+        {if config::get('site_login')=='1'}
+        <li id="login" class="one head-loginoen dropdown"></li>
+        {/if}
+       
+    </ul>
+</div>

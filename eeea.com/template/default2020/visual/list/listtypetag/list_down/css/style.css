@@ -1,0 +1,37 @@
+
+.type-list-down {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.type-list-down ul {
+    padding: 0;
+    margin: 0;
+}
+.type-list-down ul li {
+    line-height: 1.6;
+    display:block;
+    padding-top: 5px;
+    padding-bottom:5px;
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+.type-list-down ul li.col-sm-12 {
+    padding:5px 0px 5px 0px !important;
+}
+.type-list-down ul li a {
+    overflow: hidden;
+    display: inline-block;
+}
+.type-list-down ul li span {
+    float: right;
+    display: inline-block;
+    min-width: 10px;
+    font-size: 12px;
+}
+
+.type-list-down ul li span .btn {
+    border-radius: 0px;
+}

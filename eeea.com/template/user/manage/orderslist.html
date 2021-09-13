@@ -1,0 +1,383 @@
+{template_user 'head.html'}
+
+<div class="index-bg">
+	<div class="container">
+		<div class="section2">
+
+            <div class="user-content-table-nav">
+                <ul>
+                    <li><a href="{url('manage/orderslist/manage/orders/type/all')}" <?php if($type=='all'){?>class="active" <?php }?>>{lang('all_orders')}</a></li>
+                    <li><a href="{url('manage/orderslist/manage/orders/type/buy')}" <?php if($type=='buy'){?>class="active" <?php }?>>{lang('payment_to_be_made')}</a></li>
+                    <li><a href="{url('manage/orderslist/manage/orders/type/shou')}" <?php if($type=='shou'){?>class="active" <?php }?>>{lang('to_be_received')}</a></li>
+                    <li><a href="{url('manage/orderslist/manage/orders/type/refund')}" <?php if($type=='refund'){?>class="active" <?php }?>>{lang('refund_record')}</a></li>
+                </ul>
+            </div>
+            <div class="blank30"></div>
+
+<div class="user-content">
+
+
+
+
+<form name="listform" id="listform"  action="<?php echo uri();?>" method="post">
+
+     {loop $data $d}
+        <p style="margin: 10px 5px 10px 5px;">
+            <p class="thistotal">
+                <strong>{lang('orderid')}：{$d['oid']}</strong>
+                <span class="pull-right">{lang('order_time')}：{cut(date('Y-m-d H:i:s',$d['adddate']))}</span>
+            </p>
+
+			<?php
+				$source = explode("-",trim($d['aid']));
+				$totl=0;
+				$freetotal=0;
+				$coupontotal=0;
+				$discountid = explode("-",trim($d['oid']));    //获取下单的用户
+                $logistics = logistics::getInstance()->getrows(array('id'=>$discountid[1])); //获取运费
+				$discount=usergroup::getusergrop(user::getuserid($discountid[2])); //获取用户组的折扣
+				$isint =usergroup::getisint(user::getuserid($discountid[2]));      //获取是否取整
+                //支付手续费总价
+                $where=array();
+                $where['pay_code']=substr($d['oid'],19);
+                $pay=pay::getInstance()->getrows($where);
+                $pay[0]['pay_fee']=isset($pay[0]['pay_fee'])?$pay[0]['pay_fee']:0;
+                $pay_fee = $pay[0]['pay_fee'];
+                $pay[0]['pay_fee'] = $pay[0]['pay_fee']/100;
+				for($index=0;$index<count($source);$index++){
+					$newsource = explode("#",trim($source[$index]));
+                     $setdatatype="";
+                     $fh="";
+                     if( $newsource[1] !=''){
+                     $leixin = explode(";",trim($newsource[1]));
+                        for($num=0;$num<count($leixin);$num++){
+                              $leixin2 = explode(":",trim($leixin[$num]));
+                              $newcname='cname_'.lang::getistemplate();
+                              if($d['type']==2){
+                                $setdatatype=$setdatatype.setting::$service_var[$leixin2['0']][$newcname]."：";
+                              }else{
+                                $setdatatype=$setdatatype.setting::$var['archive'][$leixin2['0']][$newcname]."：";
+                              }
+                              $leixin2 = explode(",",trim($leixin2['1']));
+                              $setdatatype=$setdatatype.$leixin2['0']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                              if($fh==""){
+                                 $fh=$fh.$leixin2['1'].','.$leixin2['2'];
+                              }else{
+                                 $fh=$fh.':'.$leixin2['1'].','.$leixin2['2'];
+                              }
+                        }
+                     }
+					$orders = explode(",",trim($newsource[0]));
+					$archive=new archive();
+                    if($d['type']==2){
+                      $archive=servicearchive::getInstance();
+                    }else{
+                      $archive=archive::getInstance();
+                    }
+					$ordersArray=$archive->getarchive($orders[0]);
+                    if($d['type']==2){
+                        $ordersArray['customize_attr2']=$ordersArray['customize_attr2']==""?0:$ordersArray['customize_attr2'];
+                        $newcname='attr2_'.lang::getistemplate();
+                        $attr2=json_decode($ordersArray['customize_attr2'],true);
+                        $attr2=is_array($attr2)?$attr2:array();
+                        //取出中文价格
+                        $attr2_cn_price=(is_array($attr2) && isset($attr2['attr2_cn']))?$attr2['attr2_cn']:0;
+                        //当前价格不存在则使用中文价格
+                        $attr2[$newcname]=(is_array($attr2) && isset($attr2[$newcname]))?$attr2[$newcname]:$attr2_cn_price;
+                        //若是没有设置多语言 默认使用原来价格  否则使用多语言价格
+                        $ordersArray['attr2']=is_numeric($ordersArray['customize_attr2'])?$ordersArray['customize_attr2']:$attr2[$newcname];
+                    }else{
+                        $newcname='attr2_'.lang::getistemplate();
+                        $attr2=json_decode($ordersArray['attr2'],true);
+                        $ordersArray['attr2']=is_array($attr2)?$attr2[$newcname]:$ordersArray['attr2'];
+                        $ordersArray['attr2']=(floatval($ordersArray['attr2'])*$discount/10);   //单价打折
+                    }
+                    if($isint){                                  //判断取整
+                        $ordersArray['attr2']=round($ordersArray['attr2']);
+                    }
+                    $price=0;
+                    if($fh!=""){
+                        $pricesource = explode(":",trim($fh));
+                        $price=floatval($ordersArray['attr2']);
+                        for($priceindex=0;$priceindex<count($pricesource);$priceindex++){
+                            $pricesource2= explode(",",trim($pricesource[$priceindex]));
+                            if($pricesource2['0']=="jia"){
+                             $price=$price+floatval($pricesource2['1']);
+                            }else if($pricesource2['0']=="jian"){
+                             $price=$price-floatval($pricesource2['1']);
+                            }else if($pricesource2['0']=="chen"){
+                             $price=$price*floatval($pricesource2['1']);
+                            }else if($pricesource2['0']=="chu"){
+                             $price=$price/floatval($pricesource2['1']);
+                            }
+                        }
+                    }else{
+                       $price=$ordersArray['attr2'];
+                    }
+				 ?>
+                    <div   class="row orders-list">
+                        <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 orders-pic">
+                            <a target="_blank" href="<?php echo $base_url;?>/index.php?case=archive&act=show&aid={$ordersArray['aid']}"><img src="{$ordersArray['thumb']}" class="img-responsive" onerror='this.src="<?php echo config::get('onerror_pic');?>"' /></a>
+                        </div>
+                        <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                            <div class="pull-left col-xs-11 col-sm-11 col-md-11 col-lg-11 orders-padding-x">
+                                <div class="col-xs-11 col-sm-5 col-md-5 col-lg-5" id="<?php echo $val['name'];?>">
+                                    <a target="_blank" href="<?php echo $base_url;?>/index.php?case=archive&act=show&aid={$ordersArray['aid']}" class="o_title">{$ordersArray['title']}</a>
+                                    <span><?php echo $setdatatype; ?></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
+                                    <?php echo lang('price');?>&nbsp;:&nbsp;<?php echo lang('the_symbol_of_money');?>&nbsp;
+                                    <span  align="center" class="price">
+                                          <?php  echo $price;?>
+                                     </span>&nbsp;
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
+                                    <span>{lang('numbers')}：{$orders[1]}</span>
+                                </div>
+                                <div class="pull-right col-xs-1 col-sm-1 col-md-3 col-lg-3">
+                                    <span>{lang('amount_of_money')}：<label style="color: #FF4A00;font-weight: 700;"><?php echo lang('unit');?>
+                                        <?php
+                                          $totl+=$orders['1']*$price+($orders['1']*$price*$pay['0']['pay_fee']);
+                                          $freetotal +=$orders['1']*$price * $pay['0']['pay_fee'];
+                                          $totl+=$freetotal;
+                                          echo $orders['1']*$price+($orders['1']*$price*$pay[0]['pay_fee']);
+                                        ?>
+                                            </label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+			<?php } ?>
+                <?php  if($d['somecoupon']!=''){?>
+
+
+                    <?php
+                    $coupondata=array();
+                    $couponsource = explode(",", trim($d['somecoupon']));
+                    for ($couponindex = 0; $couponindex < count($couponsource); $couponindex++) {
+                     $coupondata[count($coupondata)]=coupon::getcouponid( $couponsource[$couponindex]);; //优惠劵信息获取
+                    }
+                    foreach($coupondata as $dcoupon) {
+                    ?>
+
+                            <?php
+                             $source = explode(":",trim($dcoupon['couponrange']));
+                             if($source['0']=='0'){
+                                 echo '';
+                             }else{
+                                 $catname=category::getcategoryname($source['0']);
+                                 echo $catname['0']['catname'];
+                             }
+                             if($source['1']=='0'){
+                                   echo '';
+                             }else{
+                                   $catname=archive::getarchivename($source['1']);
+                                   echo ''.$catname;
+                             }
+                              $coupontotal+=(float)($dcoupon['moeny']);
+                           ?>
+
+                    <?php  }  ?>
+
+                <?php  }  ?>
+    <div class="blank10"></div>
+    {if ($d['status']==6 || $d['status']==7 || $d['status']==8)}
+         <div>
+             <p>{lang("application_user")}:{$d['refund_user']}</p>
+             <p>{lang("application_type")}:
+                 <?php
+                    switch($d['refund_type']){
+                        case 'wx':
+                            echo  lang('pay_wx');
+                            break;
+                        case 'zfb':
+                            echo lang('pay_zfb');
+                        break;
+                    }
+                    ?>
+             </p>
+             <p>{lang("application__connent")}:{$d['refund_connent']}</p>
+             {if ($d['status']==8)}
+             <p>{lang("no_application__connent")}:{$d['no_refund_connent']}</p>
+             {/if}
+         </div>
+    {/if}
+    <div class="blank10"></div>
+            <div class="thistotal  pull-right">
+                {if $freetotal}
+                <span style="color: #000;font-weight: bold;">{lang('service_charge')}：<label style="color: #FF4A00;font-size: 20px;max-width: 100%;margin-bottom: 5px;font-weight: 700;">￥{$freetotal}</label></span>
+                {/if}
+                {if $logistics}
+                <span style="color: #000;font-weight: bold;">{lang('freight')}：<label style="color: #FF4A00;font-size: 20px;max-width: 100%;margin-bottom: 5px;font-weight: 700;">￥{$logistics[0]['price']}</label></span>
+                <?php $totl+=$logistics[0]['price'];?>
+                {/if}
+                {if $d['admindiscounts']>0}
+                <span style="color: #000;font-weight: bold;">{lang('administrator_discounts')}：<label style="color: #FF4A00;font-size: 20px;max-width: 100%;margin-bottom: 5px;font-weight: 700;">￥{$d['admindiscounts']}</label></span>
+                <?php $totl-=$d['admindiscounts'];$totl=($totl>0?$totl:0);?>
+                {/if}
+                {if $coupontotal}
+                <span style="color: #000;font-weight: bold;">{$dcoupon['coupontitle']}:<label style="color: #FF4A00;font-size: 20px;max-width: 100%;margin-bottom: 5px;font-weight: 700;">￥{$coupontotal}</label></span>
+                {/if}
+                <span style="color: #000;font-weight: bold;">{lang('total_order_price')}：<label style="color: #FF4A00;font-size: 20px;max-width: 100%;margin-bottom: 5px;font-weight: 700;">￥{$totl}</label></span>
+                <span style="color: #000;font-weight: bold; padding-left: 10px;">{lang('orderstatus')}：
+                    <?php
+                     switch($d['status']){
+                        case 1:
+                          echo "<span class='btn-soft-success'>".lang('complete')."</span>";
+                        break;
+                        case 2:
+                          echo "<span class='btn-soft-success'>".lang('processing')."</span>";
+                        break;
+                        case 3:
+                          echo "<span class='btn-icon-inner'>".lang('shipped')."</span>";
+                        break;
+                        case 4:
+                        echo "<span class='btn-icon-inner'>".lang('customer_has_paid_pending_review')."</span>";
+                        break;
+                        case 5:
+                        echo "<span class='btn-icon-inner'>".lang('verify_that_the_customer_has_paid')."</span>";
+                        break;
+                        case 6:
+                        echo "<span class='btn-icon-inner'>".lang('refund_in_application')."</span>";
+                        break;
+                        case 7:
+                        echo "<span class='btn-icon-inner'>".lang('yse_refund_')."</span>";
+                        break;
+                        case 8:
+                        echo "<span class='btn-icon-inner'>".lang('no_refund')."</span>";
+                        break;
+                        default:
+                          echo "<span class='btn-icon-inner'>".lang('non-payment')."</span>";
+                        break;
+                     }?>
+                </span>
+                <?php if($d['status']==0){ ?>
+                    <span style="font-weight: bold; padding-left: 10px;">
+                     <a  class="orders-list-dosomething" href='<?php echo url("archive/payorders/oid/".$d['oid'],false);?>' target="_blank">{lang('immediate_payment')}</a>
+                    </span>
+                    <span style="font-weight: bold; padding-left: 10px;">
+                     <a  class="orders-list-dosomething" href='<?php echo url("archive/droporders/oid/".$d['oid'],false);?>'>{lang('cancellation_of_order')}</a>
+                    </span>
+                <?php };?>
+
+                <?php if($d['status']==2){ ?>
+                    <span style="font-weight: bold; padding-left: 10px;">
+                     <a  class="orders-list-dosomething" href='<?php echo url("archive/confirmationorders/oid/".$d['oid'],false);?>' >{lang('confirmation_of_receipt')}</a>
+                    </span>
+                <?php };?>
+                <?php if($d['status']==1){ ?>
+                    <span style="font-weight: bold; padding-left: 10px;">
+                     <a  class="orders-list-dosomething" data-toggle="modal" data-target="#refundModal"  onclick="openrefundModal('{$d['oid']}',this)">{lang("refund")}</a>
+                    </span>
+                <?php };?>
+
+                <?php if($d['expresstype'] != '' &&  $d['courier_number'] !=''  && (session::get('ver') == 'corp') ){ ?>
+                    <?php $expressid=$d['courier_number'];$expresstype=$d['expresstype'];?>
+                    <span style="font-weight: bold; padding-left: 10px;">
+                         <a  class="orders-list-dosomething" href='' target="_blank">{lang('logistics_information')}</a>
+                    </span>
+                <?php };?>
+            </div>
+    <div class="blank10"></div>
+      {/loop}
+</div>
+
+    <div class="blank30"></div>
+
+</form>
+
+<div class="modal fade" id="refundModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">{lang('refund_application')}</h4>
+        </div>
+        <div class="modal-body">
+            <forme>
+                {lang("application_oid")} <input type="text" name="refund_oid" id="refund_oid" value="" class="form-control " disabled>
+                <div class="clearfix blank20"></div>
+                {lang("application_user")} <input type="text" name="refund_user" id="refund_user" value="" class="form-control " >
+                <div class="clearfix blank20"></div>
+                {lang("application_type")}
+                <select id="refund_type" name="refund_type" class="form-control select spid">
+                    <option value="0" selected="">请选择...</option>
+                    <option value="wx">微信</option>
+                    <option value="zfb">支付宝</option>
+                </select>
+                <div class="clearfix blank20"></div>
+                {lang("application__connent")} <input type="text" name="refund_connent" id="refund_connent" value="" class="form-control " >
+                <div class="clearfix blank20"></div>
+            </forme>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="closmode" class="btn btn-default" data-dismiss="modal">{lang("close")}</button>
+            <button type="button"  id="btn_refund"  class="btn btn-default" >{lang("sure")}</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    var chickrefund;
+    $(function () {
+        //退款确认
+        $('#btn_refund').click(function () {
+            var refund_oid=$("#refund_oid").val();
+            var refund_user=$("#refund_user").val();
+            var refund_type=$("#refund_type").val();
+            var refund_connent=$("#refund_connent").val();
+            if(refund_user==""){
+                alert("{lang('application_user')}{lang('on_null')}");
+                $("#refund_user").focus();
+                return;
+            }else if(refund_type=="0"){
+                alert("{lang('application_type')}{lang('on_null')}");
+                $("#refund_type").focus();
+                return;
+            }else if(refund_connent==""){
+                alert("{lang('application__connent')}{lang('on_null')}");
+                $("#refund_connent").focus();
+                return;
+            }
+
+            var url="{url('archive/refund',false)}";
+            $.ajax({
+                type: "post",
+                url: url,
+                data:{"refund_oid":refund_oid,"refund_user":refund_user,"refund_type":refund_type,"refund_connent":refund_connent},
+                async: false,
+                success: function (data) {
+                    data = JSON.parse(data);
+                   if(data.static){
+                       $(chickrefund).html("{lang('refund_in_application')}");
+                       $(chickrefund).removeAttr("onclick");
+                       $(chickrefund).removeAttr("data-target");
+                   }
+                   alert(data.retdata.toString());
+                  $('#refundModal').modal('hide');
+                }
+            });
+
+        });
+    });
+    //获取到单号
+    function openrefundModal(oid,obj){
+            $("#refund_oid").val(oid);
+            chickrefund=obj;
+    }
+
+</script>
+
+<div class="pages">
+<?php if(get('table')!='type' && front::get('case')!='field') echo pagination::html($record_count); ?>
+</div>
+<div class="blank30"></div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="blank30"></div>
+{template_user 'foot.html'}

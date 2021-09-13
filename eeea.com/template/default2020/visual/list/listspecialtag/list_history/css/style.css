@@ -1,0 +1,155 @@
+#column-timeline {
+    margin-left:15px;
+    margin-right:15px;
+    position:relative;
+    -webkit-transition:all .4s ease;
+    -moz-transition:all .4s ease;
+    -ms-transition:all .4s ease;
+    transition:all .4s ease
+}
+#column-timeline:before {
+    content:"";
+    width:3px;
+    height:100%;
+    left:50%;
+    top:0;
+    position:absolute
+}
+#column-timeline:after {
+    content:"";
+    clear:both;
+    display:table;
+    width:100%
+}
+
+#column-timeline .column-timeline-item:after,#column-timeline .column-timeline-item:before {
+    content:'';
+    display:block;
+    width:100%;
+    clear:both
+}
+#column-timeline .column-timeline-item {
+    margin-bottom:50px;
+    position:relative
+}
+#column-timeline .column-timeline-item .column-timeline-icon {
+    width:50px;
+    height:50px;
+    position:absolute;
+    top:0;
+    left:50%;
+    overflow:hidden;
+    margin-left:-23px;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    -ms-border-radius:50%;
+    border-radius:50%
+}
+#column-timeline .column-timeline-item .column-timeline-icon img {
+    position:relative;
+    top:14px;
+    left:14px
+}
+#column-timeline .column-timeline-item .column-timeline-icon span.glyphicon {
+    margin:13px 0 0 15px;
+    font-size:20px;
+}
+#column-timeline .column-timeline-item .column-timeline-content {
+    width:45%;
+    background:#fff;
+    padding:20px;
+    border-width: 1px;
+    border-style: solid;
+    
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    -ms-border-radius:5px;
+    border-radius:5px;
+    -webkit-transition:all .3s ease;
+    -moz-transition:all .3s ease;
+    -ms-transition:all .3s ease;
+    transition:all .3s ease
+}
+#column-timeline .column-timeline-item .column-timeline-content h2 {
+    display:block !important;
+    padding:15px;
+    margin:-20px -20px 20px -20px;
+    -webkit-border-radius:3px 3px 0 0;
+    -moz-border-radius:3px 3px 0 0;
+    -ms-border-radius:3px 3px 0 0;
+    border-radius:3px 3px 0 0
+}
+#column-timeline .column-timeline-item .column-timeline-content:before {
+    content:'';
+    position:absolute;
+    left:45%;
+    top:20px;
+    width:0;
+    height:0;
+    border-top:7px solid transparent;
+    border-bottom:7px solid transparent;
+    border-left-width: 7px;
+    border-left-style: solid;
+}
+#column-timeline .column-timeline-item .column-timeline-content.right {
+    float:right
+}
+#column-timeline .column-timeline-item .column-timeline-content.right:before {
+    content:'';
+    right:45% ;
+    left:inherit;
+    border-left:0;
+    border-right-width: 7px;
+    border-right-style: solid;
+}
+#column-timeline .column-timeline-item .btn {
+    padding:5px 15px;
+    text-decoration:none;
+    border-width: 2px;
+    border-style: solid;
+    display:inline-block;
+    position:relative;
+    text-transform:uppercase;
+    -webkit-transition:background .3s ease;
+    -moz-transition:background .3s ease;
+    -ms-transition:background .3s ease;
+    transition:background .3s ease;
+    -webkit-box-shadow:2px 2px 0 #ccc;
+    -moz-box-shadow:2px 2px 0 #ccc;
+    -ms-box-shadow:2px 2px 0 #ccc;
+    box-shadow:2px 2px 0 #ccc
+}
+#column-timeline .column-timeline-item .btn:hover {
+    box-shadow:none;
+    top:2px;
+    left:2px;
+    -webkit-box-shadow:2px 2px 0 transparent;
+    -moz-box-shadow:2px 2px 0 transparent;
+    -ms-box-shadow:2px 2px 0 transparent;
+    box-shadow:2px 2px 0 transparent;
+}
+}
+@media screen and (max-width:768px) {
+    #column-timeline {
+        margin:30px;
+        padding:0
+    }
+    #column-timeline:before {
+        left:0
+    }
+    #column-timeline .column-timeline-item .column-timeline-content {
+        width:90%;
+        float:right
+    }
+    #column-timeline .column-timeline-item .column-timeline-content.right:before, #column-timeline .column-timeline-item .column-timeline-content:before {
+        left:10%;
+        margin-left:-6px;
+        border-left:0;
+        border-width: 7px;
+        border-right-style: solid;
+    }
+    #column-timeline .column-timeline-item .column-timeline-icon {
+        left:0
+    }
+
+}

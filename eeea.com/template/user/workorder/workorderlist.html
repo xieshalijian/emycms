@@ -1,0 +1,105 @@
+{template_user 'head.html'}
+<style type="text/css">
+    a.btn-warning:hover {
+        background:#ec971f;
+        margin:0px;
+    }
+    .workorder-tab a {display:inline-block;
+        padding:5px 15px;
+        margin:0px 15px 0px 0px;}
+    .workorder-tab a.active {
+        color: #060D33;
+        border-bottom: 2px solid #060D33;
+    }
+</style>
+<div class="index-bg">
+    <div class="container">
+        <div class="section2">
+
+
+            <div class="row">
+
+
+                <div class="user-content-table-nav">
+                    <ul>
+                        <li><a href="{url('workorder/workorder/manage/workorder')}" >工单申请</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="{url('workorder/workorderlist/manage/workorder')}" class="active">工单管理</a></li>
+                    </ul>
+                </div>
+                <div class="blank30"></div>
+
+                <div class="user-content">
+                    <div class="workorder-tab">
+                        <a onclick="window.location.href='{url('workorder/workorderlist/manage/workorder/statu/0')}';" class="active">待处理</a>
+                        <a onclick="window.location.href='{url('workorder/workorderlist/manage/workorder/statu/1')}';" >未受理</a>
+                        <a onclick="window.location.href='{url('workorder/workorderlist/manage/workorder/statu/2')}';">处理中</a>
+                        <a onclick="window.location.href='{url('workorder/workorderlist/manage/workorder/statu/3')}';">已完成</a>
+                        <a onclick="window.location.href='{url('workorder/workorderlist/manage/workorder/statu/4')}';">已关闭</a>
+                    </div>
+                    <div class="blank30"></div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>申请时间</th>
+                                <th>工单标题</th>
+                                <th>工单内容</th>
+                                <th>工单分类</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {loop $data $d}
+                            <?php
+                               switch ($d['statu']){
+                                 case "0":
+                                     $d['status']="待处理";
+                                     break;
+                                 case "1":
+                                     $d['status']="未受理";
+                                     break;
+                                   case "2":
+                                     $d['status']="处理中";
+                                     break;
+                                   case "3":
+                                      $d['status']="已完成";
+                                     break;
+                                 case "4":
+                                      $d['status']="已关闭";
+                                    break;
+                                 default:
+                                     $d['status']="待处理";
+                               }
+                            ?>
+                            <tr>
+                                <td>{date('Y-m-d h:i:s', $d['adddate'])}</td>
+                                <td>{$d['title']}</td>
+                                <td>{$d['conent']}</td>
+                                <td>{$d['type']}</td>
+                                <td>{$d['status']}</td>
+                                <td>
+                                    <a {if $d['statu']==3 ||  $d['statu']==4} disabled="disabled" {/if} href="{url('workorder/endworkorder/manage/workorder/id/'.$d['id'])}" title="{lang_admin('完结')}" class="btn btn-gray" >{lang_admin('完结')}</a>
+                                    <a  {if $d['statu']==3 ||  $d['statu']==4} disabled="disabled" {else} href="{url('workorder/workorderreply/manage/workorder/id/'.$d['id'])}" {/if} title="{lang_admin('消息')}" class="btn btn-gray" >{lang_admin('消息')}{if $d['reading']}<span style="color: red">*</span>{/if}</a>
+
+                                </td>
+                            </tr>
+                            {/loop}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pages">
+                        <?php  echo pagination::html($record_count); ?>
+                    </div>
+                    <div class="blank30"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blank30"></div>
+</div>
+    {template_user 'foot.html'}

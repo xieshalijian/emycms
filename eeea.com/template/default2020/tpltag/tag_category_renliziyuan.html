@@ -1,0 +1,28 @@
+{loop plugins::categoryinfo($_catid,$_titlenum,$_textnum) $i $t1}
+
+{if $i==0}
+			<div class="col-sm-8">
+				<div class="s21-item s21-item1">
+{elseif $i==1}
+			<div class="col-sm-4">
+				<div class="s21-item s21-item2">
+{else} 
+			<div class="col-sm-12">
+				<div class="s21-item s21-item3">
+{/if}
+					<img alt="{$t1['catname']}" cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="image" class="cmseasyedit img lazy" src="{$t1['image']}" />
+					<div class="s21-item-bg"></div>
+					<div class="s21-text">
+						<h4>
+							<a title="{$t1['catname']}" href="{$t1['url']}" cmseasy-id="{$cat['catid']}" cmseasy-table="category" cmseasy-field="catname" class="cmseasyedit">
+								{$t1['catname']}
+							</a>
+						</h4>
+						<a class="more" title="{$t1['catname']}" href="{$t1['url']}"><span class="glyphicon glyphicon-menu-right"></span></a>
+					</div>
+				</div>
+			</div>
+
+{/loop}
+
+ 

@@ -1,0 +1,18 @@
+<nav>
+<ul class="pagination">
+    {if pages('up')}
+    <li><a href="{type::url($typeid,pages('up'))}"><span aria-hidden="true">«</span></a></li>
+    {/if}
+    {loop pages() $p}
+    {if $p==$page}
+    <li class="active"><a>{$p}</a></li>
+    {else}
+    <li><a href="{type::url($typeid,$p)}">{$p}</a></li>
+    {/if}
+
+    {/loop}
+    {if pages('down')}
+    <li><a href="{type::url($typeid,pages('down'))}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+    {/if}
+</ul>
+</nav>

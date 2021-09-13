@@ -1,0 +1,5 @@
+
+{if file_exists(ROOT."/lib/table/statdetail.php")}
+<script>var stat_catid=<?php echo isset($catid)?$catid:0; ?>;var stat_aid=<?php echo isset($archive)?$archive['aid']:0; ?></script>
+<script src="{$base_url}/common/plugins/cmseasy_stat/cmseasy_stat.js"></script>
+{/if}

@@ -1,0 +1,49 @@
+
+
+.type-list-loop-title {margin: 0 15px 15px;}
+.type-list-loop-title p {margin-bottom: 0;}
+
+
+.type-list-loop-item {
+    margin-bottom: 15px;
+    padding: 30px;
+    border-width:1px;
+    border-style:solid;
+}
+
+.type-list-loop-date {
+    float: left;
+    margin-right: 30px;
+    text-align: center;
+}
+.type-list-loop-date span {
+    display:block;
+    line-height:1;
+    font-size:50px;
+}
+.type-list-loop-date p {
+    margin-bottom: 0;
+}
+.type-list-loop-text {
+    text-align:left;
+    overflow: hidden;
+
+}
+.type-list-loop-text h4 {
+    margin: 0px 0px 15px 0px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.type-list-loop-text p {
+    overflow: hidden;
+    margin-bottom: 0;
+}
+.type-list-loop-item:hover {
+    box-shadow:0 5px 15px 0 #ccc;
+}
+
+.type-list-loop-item:hover .type-list-loop-text p {
+    opacity: .9;
+}

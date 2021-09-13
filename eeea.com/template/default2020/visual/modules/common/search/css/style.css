@@ -1,0 +1,16 @@
+
+@media (min-width: 486px) {
+    .search-container {
+        width: 60%;
+        margin: 0px auto;
+    }
+}
+
+.search-container .form-control {height:38px;line-height:38px;}
+.search-container .input-group .input-group-btn .btn-default {width:38px; height:38px;line-height:38px; padding: 0px 12px; border-width:1px; border-style:solid;}
+.search-container h3 {margin-bottom:15px;}
+.search-container .btn-default { border-width:1px; border-style:solid; }
+.search-container p {margin-top:10px;}
+
+
+

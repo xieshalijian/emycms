@@ -1,0 +1,1 @@
+{template 'system/sitemap.html'}

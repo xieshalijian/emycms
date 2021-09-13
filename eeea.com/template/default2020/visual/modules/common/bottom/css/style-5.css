@@ -1,0 +1,16 @@
+
+.foot-ul-5 {margin: 0px 15px; border-width:1px; border-style:solid;}
+.foot-ul-5 .checkout{text-align: center;margin: 20px 0;}
+.foot-ul-5 .checkout img {max-width: 100%;height: auto;}
+.foot-ul-5 .checkout p {margin-top: 10px;color: #999;}
+
+@media screen and (min-width: 0) and (max-width: 486px){
+    .foot-ul-5 .checkout {clear:both;}
+}
+
+
+
+
+
+
+

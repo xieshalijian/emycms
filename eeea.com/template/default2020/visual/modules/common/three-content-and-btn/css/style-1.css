@@ -1,0 +1,6 @@
+
+.three-content-and-btn-title{text-align:center;}
+.three-content-and-btn-title:after{content:"";display:table;clear:both;}
+.three-content-and-btn-title h4{margin:0px auto;}
+.three-content-and-btn-title p{margin-top:3px;}
+.three-content-and-btn-title h4:after{content:"";display:block;height:2px;width:2em;background:#060D33;margin: 10px auto;}

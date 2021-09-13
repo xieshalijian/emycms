@@ -1,0 +1,68 @@
+{template_user 'head.html'}
+
+<div class="index-bg">
+    <div class="container">
+        <div class="section2">
+
+            <div class="user-content-table-nav">
+                <ul>
+                    <li><a class="active" href="{url('union/stats/manage/union')}">{lang('stats')}</a></li>
+                    <li><a href="{url('union/getcode/manage/union')}">{lang('access_code')}</a></li>
+                    <li><a href="{url('union/visit/manage/union')}">{lang('access_statistics')}</a></li>
+                    <li><a href="{url('union/reguser/manage/union')}">{lang('registered_users')}</a></li>
+                    <li><a href="{url('union/pay/manage/union')}">{lang('promotion_of_settlement')}</a></li>
+                    <li><a href="{url('union/edit/manage/union')}">{lang('edituserinfo')}</a></li>
+                </ul>
+            </div>
+            <div class="blank30"></div>
+
+
+            <div class="user-content">
+
+
+
+
+
+
+
+
+                <div class="table-responsive">
+
+
+    <table class="table table-hover">
+        <thead>
+
+<tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+    <td class="td_left" width="20%">{lang('username')}：</td>
+    <td class="td_right">{$data['username']}</td>
+  </tr>
+  
+ <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+    <td class="td_left" width="20%">{lang('current_rate')}：</td>
+    <td class="td_right">{$uniondata['profitmargin']} %</td>
+  </tr>
+  <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+    <td class="td_left" width="20%">{lang('available_points')}：</td>
+    <td class="td_right">{$data['point']} {lang(point)}</td>
+  </tr>
+  
+  
+  <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+    <td class="td_left">{lang('visited_frequency')}：</td>
+    <td class="td_right">{$uniondata['visits']} {lang('second')} （<a href="{url('union/visit/manage/union')}">{lang('check_the_visit_record')}</a>）</td>
+  </tr>
+  <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+    <td class="td_left">{lang('the_number_of_registered_users')}：</td>
+    <td class="td_right">{$uniondata['registers']} 个（<a href="{url('union/reguser/manage/union')}">{lang('check_the_registered_users')}</a>）</td>
+  </tr>
+
+
+        </tbody>
+    </table>
+
+</div>
+</div>
+    </div>
+<div class="blank30"></div>
+
+{template_user 'foot.html'}

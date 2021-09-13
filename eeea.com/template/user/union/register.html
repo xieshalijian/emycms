@@ -1,0 +1,171 @@
+{template_user 'head.html'}
+<div class="index-bg">
+    <div class="container">
+        <div class="section2">
+
+
+ <script type="text/javascript" LANGUAGE="javascript">
+            <!--
+
+            function check()
+            {
+                if(document.loginform.username.value.length==0){
+                    alert("{lang('please_enter_your_user_name')}");
+                    document.loginform.username.focus();
+                    return false;
+                }
+
+                if(document.loginform.password.value.length==0){
+                    alert("{lang('please_set_a_password')}");
+                    document.loginform.password.focus();
+                    return false;
+                }
+
+                if(document.loginform.password2.value.length==0){
+                    alert("{lang('enter_confirm_password')}");
+                    document.loginform.password2.focus();
+                    return false;
+                }
+
+                if(document.loginform.aquestion.value.length==0){
+                    alert("{lang('set_security')}");
+                    document.loginform.aquestion.focus();
+                    return false;
+                }
+
+                if(document.loginform.question.value.length==0){
+                    alert("{lang('please_set_the_security_answer')}");
+                    document.loginform.question.focus();
+                    return false;
+                }
+
+                if(document.loginform.answer.value.length==0){
+                    alert("{lang('please_enter_the_custom_security_answer')}");
+                    document.loginform.answer.focus();
+                    return false;
+                }
+                if(document.loginform.verify.value.length==0){
+                    alert("{lang('please_enter_code')}！");
+                    document.loginform.verify.focus();
+                    return false;
+                }
+
+
+            }
+
+
+            function set_question(value)
+            {
+                document.getElementById("question").value=value;
+                document.getElementById("question").focus();
+            }
+            //-->
+        </script>
+
+
+ 
+            <form id="login_form"   name="loginform" method="post"  action="<?php echo url('union/register') ?>" onsubmit="return check()">
+              
+								<strong style="font-size:14px;color:red;">{message()}</strong>
+
+                <div class="clearfix form-group">
+                    <label>{lang('real-name')}</label>
+                    <input class="form-control" name="nickname" type="text" id="nickname" value="{$data['nickname']}" tabindex="1">
+                </div>
+
+                <div class="clearfix form-group">
+                    <label>{lang('payment-account')}</label>
+                    <input class="form-control" name="payaccount" type="text" id="payaccount" value="" tabindex="2">
+                </div>
+
+                <div class="clearfix form-group">
+                    <label>{lang('guesttel')}</label>
+                    <input class="form-control" type='text' id="tel"  name="tel" value="{$data['tel']}" tabindex="3">
+                </div>
+
+                <div class="clearfix form-group">
+                    <label>{lang('guestemail')}</label>
+                    <input class="form-control" type='text' id="e_mail"  name="e_mail" value="{$data['e_mail']}" tabindex="4">
+                </div>
+
+                <div class="clearfix form-group">
+                    <label>{lang('contact_address')}</label>
+                    <input class="form-control" type='text' id="address"  name="address" value="{$data['address']}" tabindex="5">
+                </div>
+
+                <div class="clearfix form-group">
+                    <label>{lang('website-address')}</label>
+                    <input class="form-control" id="website"  name="website" value="{$data['website']}" tabindex="6">
+                </div>
+
+
+
+
+
+{if config::get('verifycode')=='1'}
+                <div class="clearfix form-group">
+                    <label>{lang('verifycode')}</label>
+                    <div class="clearfix"></div>
+                    <input type='text' id="verify"  tabindex="7"  name="verify" />{verify()}
+                </div>
+                <style type="text/css">
+                    #verify {clear:both;height: 50px;    padding: 6px 12px;
+                        font-size: 14px;
+                        line-height: 1.42857143;
+                        color: #555;
+                        background-color: #fff;
+                        background-image: none;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+                        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
+                </style>
+{/if}
+
+{if config::get('verifycode')=='2'}
+                <div class="clearfix form-group">
+                    <label>{lang('verifycode')}</label>
+                    <div class="blank10"></div>
+<div id="verifycode_embed"></div>
+                </div>
+
+<script src="http://api.geetest.com/get.php"></script>
+<script>
+var loadGeetest = function(config) {
+	window.gt_captcha_obj = new window.Geetest({
+gt : config.gt,
+challenge : config.challenge,
+product : 'float',
+offline : !config.success
+	});
+	gt_captcha_obj.appendTo("#verifycode_embed");
+};
+
+$.ajax({
+	url : '{url('tool/geetest')}',
+	type : "get",
+	dataType : 'JSON',
+	success : function(result) {
+//console.log(result);
+loadGeetest(result)
+	}
+});
+</script>
+
+{/if}
+
+
+
+<div class="blank30"></div>
+<input type="submit" name="submit" value=" {lang('submit_on')} " class="btn btn-primary"   />
+</form>
+<div class="blank10"></div>
+        </div>
+    </div>
+</div>
+
+
+{template_user 'foot.html'}

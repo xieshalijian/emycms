@@ -1,0 +1,36 @@
+
+
+.type-list-job {
+    clear:both;
+
+}
+.type-list-job ul {
+    list-style:none;
+    padding:0px 15px;
+    margin:0px;
+    width:100%;
+}
+.type-list-job ul li {
+    display:block;
+    float:left;
+    line-height:38px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+.type-list-job .type-list-job-th {
+    font-weight:bold;
+    border-bottom-width:2px;
+    border-bottom-style: solid;
+    padding:0px;
+}
+.type-list-job .type-list-job-tr {
+    padding:0px;
+}
+.type-list-job-tr .type-list-job-tr-more {
+    display: inline-block;
+    min-width: 10px;
+    padding: 5px 7px;
+    font-size: 12px;
+    line-height: 1;
+}

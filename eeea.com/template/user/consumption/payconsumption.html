@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{lang('online_recharge')}</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+    <meta name="author" content="CmsEasy Team" />
+    <link rel="icon" href="<?php echo get('site_ico');?>" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?php echo get('site_ico');?>" type="image/x-icon" />
+    <link href="<?php echo $base_url;?>/common/css/bootstrap/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="data:text/css;charset=utf-8," data-href="<?php echo $skin_user_path;?>/css/bootstrap-theme.min.css" rel="stylesheet" id="bs-theme-stylesheet">
+	<link rel="stylesheet" href="<?php echo $skin_user_path;?>/css/orders.css" />
+    <script src="<?php echo $base_url;?>/common/js/jquery/jquery.min.js"></script>
+	<style type="text/css">
+        .table>tbody>tr>td.pay-btn {border:none;}
+		.pay-btn input {display: inline-block;
+            line-height: 50px;
+            border: 1px solid #FF6801;
+            padding: 0 40px;
+            font-size: 18px;
+            color: #fff;
+            background: #FF6801;}
+	.pay-btn input:hover {opacity:0.8;}
+	</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="blank30"></div>
+    <a href="{url('user/index')}" class="btn btn-default btn-lg pull-right"><?php echo lang('backhome');?></a>
+
+
+<div id="step1" >
+            <div class="t_1">
+            <div>
+                <h3>{lang('online_recharge')}</h3>
+
+            </div>
+        </div>
+
+
+
+<div class="table-responsive">
+<table class="table">
+<thead>
+        <tr>
+          <th colspan="4">{lang('yourorder')}：<span href="javascript:void(0)">{get('oid')}</span></th>
+        </tr>
+      </thead>
+<tbody>
+      <tr>
+        <td>{lang('productname')}</td>
+		<td>{lang('price')}</td>
+		<td>{lang('service_charge')}</td>
+		<td>{lang('subtotal')}</td>
+        </tr>
+		<tr>
+		<td>{$consumption['title']}</td>
+		<td>{lang('unit')}{$consumption['menoy']} </td>
+<td> {lang('unit')}({$consumption['menoy']} * {$pay[0]['pay_fee']}) </td>
+<td> {lang('unit')}{$consumption['total']}</td>
+</tr>
+		<tr>
+		<td colspan="4">
+        {lang('total')}：{lang('unit')}{$total}
+        </td>
+        </tr>
+      <tr>
+          <td colspan="4">
+              <div class="blank30"></div>
+          </td>
+      </tr>
+      <tr> 
+        <td colspan="4" class="pay-btn text-center">
+		{if $paytype == 'wxscanpay'}
+
+        <script>
+		function chkstate(){
+			$.get("{url('archive/chkconsumption/oid/'.front::get('oid'))}",null,function(res){
+				/*if(res == 4){
+					window.location.href = '{url('archive/consumption/oid/'.front::get('oid'))}';
+				}*/
+                var fieldName=JSON.parse(res);
+                if(fieldName==true){
+                    {if front::get("aid")}
+                        alert("支付成功，调回购买！");
+                        window.location.href = "{url('archive/respond/tablename/'.$tablename.'/code/wxscanpay/oid/'.front::get('oid').'/aid/'.front::get('aid'))}";
+                    {else}
+                    window.location.href = "{url('archive/respond/tablename/'.$tablename.'/code/wxscanpay/oid/'.front::get('oid'))}";
+                    {/if}
+                }
+
+
+			});	
+		}
+		setInterval("chkstate()",3000);
+		</script>
+        {/if}
+
+        <?php
+        
+        if(substr(front::get('oid'),19) && $statusnum==0){
+            echo $gotopaygateway;
+        }else{
+            echo 'consumptionstatus：'.$consumption['status'];
+        }        
+        ?>
+		</td> 
+        </tr> 
+      </tbody>
+    </table> 
+
+<div class="blank30"></div>
+
+<div class="copy">
+    <?php echo get('site_right');?> <a title="<?php echo get('sitename');?>" href="<?php echo $base_url;?>/"><?php echo get('sitename');?></a>&nbsp;&nbsp;{getCopyRight()}
+</div>
+</div>
+
+</div>
+</div>
+</body>
+</html>

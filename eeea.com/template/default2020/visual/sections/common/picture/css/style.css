@@ -1,0 +1,8 @@
+.picture {
+    border-width:1px;
+    border-style:solid;
+    overflow: hidden;
+}
+.picture img {
+    width:100%;
+}

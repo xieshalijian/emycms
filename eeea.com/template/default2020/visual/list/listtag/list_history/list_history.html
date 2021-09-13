@@ -1,0 +1,92 @@
+<link href="{$template_path}/visual/list/listtag/list_history/css/style.css" rel="stylesheet">
+	<div id="column-timeline" class="column-timeline-$_id">
+		{loop $archives $i $archive}
+		<div class="column-timeline-item">
+			<div class="column-timeline-icon">
+				<span class="glyphicon glyphicon-time"></span>
+			</div>
+			<div class="column-timeline-content {if $i%2==1} right{/if}">
+				<h2 cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="title" class="cmseasyedit ">
+					{$archive['title']}
+				</h2>
+				<div class="row">
+					<div class="col-sm-3">
+						<img cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="thumb" class="cmseasyeditimg img-responsive" src="{$archive['thumb']}" alt="{$archive['stitle']}">
+					</div>
+					<div class="col-sm-9">
+						<p cmseasy-id="{$archive['aid']}" cmseasy-table="archive" cmseasy-field="intro" class="cmseasyedit textarea">
+							{cut(strip_tags($archive['introduce']),50)}
+						</p>
+						<a href="{$archive['url']}" class="btn cmseasyedit" cmseasy-id="more" cmseasy-table="lang" cmseasy-field="template">
+							{lang('more')}
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		{/loop}
+		<div class="clearfix"></div>
+	</div>
+
+<style>
+
+	.column-timeline-$_id:before,
+	.column-timeline-$_id .column-timeline-item .column-timeline-icon,
+	.column-timeline-$_id .column-timeline-item .column-timeline-content h2
+	{
+		background: $_background-color;
+	}
+	.column-timeline-$_id .column-timeline-item .column-timeline-content {
+		box-shadow: 0 3px 0 $_background-color;
+	}
+
+	.column-timeline-$_id:hover:before,
+	.column-timeline-$_id .column-timeline-item:hover .column-timeline-icon,
+	.column-timeline-$_id .column-timeline-item:hover .column-timeline-content h2
+	{
+		background: $_background-hover-color;
+	}
+	.column-timeline-$_id .column-timeline-item .column-timeline-content,
+	.column-timeline-$_id .column-timeline-item .column-timeline-content:before,
+	.column-timeline-$_id .column-timeline-item .column-timeline-content.right:before
+	{
+	border-color: $_background-border-color;
+	}
+	.column-timeline-$_id .column-timeline-item:hover .column-timeline-content,
+	.column-timeline-$_id .column-timeline-item:hover .column-timeline-content:before,
+	.column-timeline-$_id .column-timeline-item:hover .column-timeline-content.right:before
+	{
+		border-color: $_background-border-hover-color;
+	}
+	.column-timeline-$_id .column-timeline-item .column-timeline-content h2 {
+		font-size:$_title-size;
+		color:$_title-color;
+	}
+	.column-timeline-$_id .column-timeline-item .column-timeline-content h2:hover {
+		color:$_title-hover-color;
+	}
+	.column-timeline-$_id .column-timeline-item .column-timeline-icon span.glyphicon {
+		color:$_p-color;
+	}
+	.column-timeline-$_id .column-timeline-item .btn {
+		font-size:$_btn-size;
+		color:$_btn-text-color;
+		border-color:$_btn-border-color;
+		border-radius: $_btn-border-radius;
+		background:$_btn-background-color;
+	}
+	.column-timeline-$_id .column-timeline-item .btn:hover {
+		color:$_btn-text-hover-color;
+		border-color:$_btn-border-hover-color;
+		border-radius: $_btn-border-hover-radius;
+		background:$_btn-background-hover-color;
+	}
+	.column-timeline-content p {
+		font-size:$_p-size;
+		color:$_p-color;
+	}
+	.column-timeline-content p:hover {
+		color:$_p-hover-color;
+	}
+	</style>
+

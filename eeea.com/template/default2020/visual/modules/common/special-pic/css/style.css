@@ -1,0 +1,24 @@
+
+
+.special-pic {position: relative;}
+.special-pic:hover .special-pic-text,
+.special-pic .special-pic-text {
+    display:inline-block;
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%) !important;
+    left:0;
+    right:0;
+    z-index: 2;
+    padding:15px;
+
+}
+.special-pic .special-pic-text p {
+    clear:both;
+    margin-top:10px;
+}
+.special-pic img {
+    position: relative;
+    width:100%;
+    z-index: -1;
+}

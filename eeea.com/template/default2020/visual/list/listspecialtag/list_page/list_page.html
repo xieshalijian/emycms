@@ -1,0 +1,68 @@
+<link href="{$template_path}/visual/list/listspecialtag/list_page/css/style.css" rel="stylesheet">
+<div class="special-list-page special-list-page-$_id">
+	<h1 class="cmseasyedit $_text-align" cmseasy-id="{$special['spid']}" cmseasy-table="special" cmseasy-field="title">
+		{$special['title']}
+	</h1>
+	<div class="visual-level clearfix"></div>
+	<h5 class=" cmseasyedit $_text-align" cmseasy-id="{$special['spid']}" cmseasy-table="special" cmseasy-field="subtitle">
+		{$special['subtitle']}
+	</h5>
+	<p class="visual-print-tools text-right">
+		<a href="javascript:CallPrint('print');">
+			<i class="glyphicon glyphicon-print"></i>
+		</a>
+		<a href="javascript:doZoom(14)">
+        <span class="column-title cmseasyedit" cmseasy-id="small" cmseasy-table="lang" cmseasy-field="template">
+        {lang('small')}
+            </span>
+		</a>
+		<a href="javascript:doZoom(18)">
+        <span class="column-title cmseasyedit" cmseasy-id="middle" cmseasy-table="lang" cmseasy-field="template">
+        {lang('middle')}
+            </span>
+		</a>
+		<a href="javascript:doZoom(20)">
+        <span class="column-title cmseasyedit" cmseasy-id="big" cmseasy-table="lang" cmseasy-field="template">
+        {lang('big')}
+            </span>
+		</a>
+	</p>
+	<div cmseasy-id="{$special['spid']}" cmseasy-table="special" cmseasy-field="specialcontent" class="cmseasyedit content clearfix specialcontent">
+		{$special['specialcontent']}
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+<style>
+	.special-list-page-$_id {
+		background:$_background-color;
+		border-color:$_background-border-color;
+	}
+	.special-list-page-$_id:hover {
+		background:$_background-hover-color;
+		border-color:$_background-border-hover-color;
+	}
+	.special-list-page-$_id h1 {
+		display: block !important;
+		font-size:$_title-size;
+		color:$_title-color;
+	}
+	.special-list-page-$_id h1:hover {
+		color:$_title-hover-color;
+	}
+	.special-list-page-$_id h5 {
+		display: block !important;
+		font-size:$_subtitle-size;
+		color:$_subtitle-color;
+	}
+	.special-list-page-$_id h5:hover {
+		color:$_subtitle-hover-color;
+	}
+	.special-list-page-$_id .specialcontent {
+		font-size:$_p-size;
+		color:$_p-color;
+	}
+	.special-list-page-$_id .specialcontent:hover {
+		color:$_p-hover-color;
+	}
+</style>

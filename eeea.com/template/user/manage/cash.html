@@ -1,0 +1,101 @@
+{template_user 'head.html'}
+
+
+<div class="container">
+    <div class="question-box">
+
+        <div class="question-main">
+
+
+            <form method="post" name="form1" action="{uri()}" onsubmit="return checkform();">
+
+                <div class="user-nav-tab">
+                    <h3>
+                        <i class="icon-settings"></i>
+                        <a href="{url('user/index')}">
+                            {lang('membercenter')}
+                        </a>
+                    </h3>
+                </div>
+                <div class="blank60"></div>
+
+                <div class="form-group">
+                    <label>{lang('cash_menoy')}   [ {lang('current_withdrawable_balance')}：<span style="font-size:2.0rem; color: #FF4A00;font-weight: :600;">{getmenoy()}</span> ]</label>
+                    {form::getform('menoy',$form,$field,$data)}
+                </div>
+                <div class="form-group">
+                    <label>{lang('adddate')}</label>
+                    <input type="text" name="adddate" id="adddate" value="{date('Y-m-d H:i:s',time())}" class="form-control " readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label>{lang('cash_type')}</label>
+                    {form::getform('type',$form,$field,$data)}
+                </div>
+                <div class="form-group">
+                    <label>{lang('account_receivable')}</label>
+                    {form::getform('number',$form,$field,$data)}
+                </div>
+                <!--<div class="form-group">
+                    <label>{lang('contactmode')}</label>
+                    {form::getform('contact',$form,$field,$data)}
+                </div>-->
+                <div class="form-group">
+                    <label>{lang('tel')}</label>
+                    {form::getform('tel',$form,$field,$data)}
+                </div>
+                <div class="form-group">
+                    <label>{lang('qq')}</label>
+                    {form::getform('qq',$form,$field,$data)}
+                </div>
+                <div class="form-group">
+                    <label>{lang('lang_email')}</label>
+                    {form::getform('e_mail',$form,$field,$data)}
+                </div>
+                <div class="form-group">
+                    <label>{lang('remarks')}</label>
+                    <textarea name="message" id="message" class="form-control ">
+
+                    </textarea>
+                </div>
+                <div class="blank30"></div>
+                <div class="line"></div>
+                <div class="blank30"></div>
+
+                <input name="submit" value="1" type="hidden">
+                <input type="submit" value="{lang('submit_on')}"   class="btn btn-default btn-blue btn-lg">
+
+            </form>
+
+            <div class="blank30"></div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script>
+    function  checkform() {
+        if($("#number").val()=="" ) {
+            alert("{lang('account_receivable')}{lang('on_null')}");
+            $("#number").focus();
+            return false;
+        }
+        if($("#menoy").val()=="" ) {
+            alert("{lang('cash_menoy')}{lang('on_null')}");
+            $("#menoy").focus();
+            return false;
+        }
+        if($("#type").val()==0 ) {
+            alert("{lang('please_choose')}{lang('cash_type')}");
+            $("#type").focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+
+
+
+{template_user 'foot.html'}
